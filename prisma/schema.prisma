@@ -31,12 +31,16 @@ model User {
 }
 
 model UserProfile {
-  id        String  @id @default(uuid()) @db.Uuid
-  userId    String  @unique @map("user_id") @db.Uuid
-  fullName  String? @map("full_name")
-  avatarUrl String? @map("avatar_url")
-  phone     String?
-  bio       String?
+  id                 String    @id @default(uuid()) @db.Uuid
+  userId             String    @unique @map("user_id") @db.Uuid
+  fullName           String?   @map("full_name")
+  avatarUrl          String?   @map("avatar_url")
+  nim                String?
+  programStudy       String?   @map("program_study")
+  semester           Int?
+  phone              String?
+  bio                String?
+  profileCompletedAt DateTime? @map("profile_completed_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
