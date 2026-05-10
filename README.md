@@ -57,3 +57,11 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 DATABASE_URL=your_postgresql_connection_string
 ```
+
+### Database schema and seed
+
+Run Prisma migrations:
+
+```bash
+npx prisma migrate dev
+```
