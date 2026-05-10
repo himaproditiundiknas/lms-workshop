@@ -8,4 +8,8 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/User'
+export type * from './models/UserProfile'
+export type * from './models/Role'
+export type * from './models/UserRole'
 export type * from './commonInputTypes'
