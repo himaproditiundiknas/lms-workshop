@@ -46,11 +46,11 @@ export async function GET(request: Request) {
 
   const appUser = await syncSupabaseUserToDatabase(user);
 
-  const isProfileComplete = Boolean(
-    appUser.profile?.fullName && appUser.profile?.phone,
-  );
+  const isProfileComplete = Boolean(appUser.profile?.profileCompletedAt);
 
-  const redirectPath = isProfileComplete ? "/dashboard" : "/complete-profile";
+  const redirectPath = isProfileComplete
+    ? "/redeem-invitation"
+    : "/complete-profile";
 
   return NextResponse.redirect(new URL(redirectPath, requestUrl.origin));
 }

@@ -90,8 +90,12 @@ export const UserProfileScalarFieldEnum = {
   userId: 'userId',
   fullName: 'fullName',
   avatarUrl: 'avatarUrl',
+  nim: 'nim',
+  programStudy: 'programStudy',
+  semester: 'semester',
   phone: 'phone',
   bio: 'bio',
+  profileCompletedAt: 'profileCompletedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

@@ -20,8 +20,18 @@ export type UserProfileModel = runtime.Types.Result.DefaultSelection<Prisma.$Use
 
 export type AggregateUserProfile = {
   _count: UserProfileCountAggregateOutputType | null
+  _avg: UserProfileAvgAggregateOutputType | null
+  _sum: UserProfileSumAggregateOutputType | null
   _min: UserProfileMinAggregateOutputType | null
   _max: UserProfileMaxAggregateOutputType | null
+}
+
+export type UserProfileAvgAggregateOutputType = {
+  semester: number | null
+}
+
+export type UserProfileSumAggregateOutputType = {
+  semester: number | null
 }
 
 export type UserProfileMinAggregateOutputType = {
@@ -29,8 +39,12 @@ export type UserProfileMinAggregateOutputType = {
   userId: string | null
   fullName: string | null
   avatarUrl: string | null
+  nim: string | null
+  programStudy: string | null
+  semester: number | null
   phone: string | null
   bio: string | null
+  profileCompletedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,8 +54,12 @@ export type UserProfileMaxAggregateOutputType = {
   userId: string | null
   fullName: string | null
   avatarUrl: string | null
+  nim: string | null
+  programStudy: string | null
+  semester: number | null
   phone: string | null
   bio: string | null
+  profileCompletedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -51,21 +69,37 @@ export type UserProfileCountAggregateOutputType = {
   userId: number
   fullName: number
   avatarUrl: number
+  nim: number
+  programStudy: number
+  semester: number
   phone: number
   bio: number
+  profileCompletedAt: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
 
+export type UserProfileAvgAggregateInputType = {
+  semester?: true
+}
+
+export type UserProfileSumAggregateInputType = {
+  semester?: true
+}
+
 export type UserProfileMinAggregateInputType = {
   id?: true
   userId?: true
   fullName?: true
   avatarUrl?: true
+  nim?: true
+  programStudy?: true
+  semester?: true
   phone?: true
   bio?: true
+  profileCompletedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -75,8 +109,12 @@ export type UserProfileMaxAggregateInputType = {
   userId?: true
   fullName?: true
   avatarUrl?: true
+  nim?: true
+  programStudy?: true
+  semester?: true
   phone?: true
   bio?: true
+  profileCompletedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -86,8 +124,12 @@ export type UserProfileCountAggregateInputType = {
   userId?: true
   fullName?: true
   avatarUrl?: true
+  nim?: true
+  programStudy?: true
+  semester?: true
   phone?: true
   bio?: true
+  profileCompletedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -131,6 +173,18 @@ export type UserProfileAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserProfileAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserProfileSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserProfileMinAggregateInputType
@@ -161,6 +215,8 @@ export type UserProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: UserProfileCountAggregateInputType | true
+  _avg?: UserProfileAvgAggregateInputType
+  _sum?: UserProfileSumAggregateInputType
   _min?: UserProfileMinAggregateInputType
   _max?: UserProfileMaxAggregateInputType
 }
@@ -170,11 +226,17 @@ export type UserProfileGroupByOutputType = {
   userId: string
   fullName: string | null
   avatarUrl: string | null
+  nim: string | null
+  programStudy: string | null
+  semester: number | null
   phone: string | null
   bio: string | null
+  profileCompletedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: UserProfileCountAggregateOutputType | null
+  _avg: UserProfileAvgAggregateOutputType | null
+  _sum: UserProfileSumAggregateOutputType | null
   _min: UserProfileMinAggregateOutputType | null
   _max: UserProfileMaxAggregateOutputType | null
 }
@@ -202,8 +264,12 @@ export type UserProfileWhereInput = {
   userId?: Prisma.UuidFilter<"UserProfile"> | string
   fullName?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  nim?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  programStudy?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  semester?: Prisma.IntNullableFilter<"UserProfile"> | number | null
   phone?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   bio?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  profileCompletedAt?: Prisma.DateTimeNullableFilter<"UserProfile"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -214,8 +280,12 @@ export type UserProfileOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   fullName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  nim?: Prisma.SortOrderInput | Prisma.SortOrder
+  programStudy?: Prisma.SortOrderInput | Prisma.SortOrder
+  semester?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
+  profileCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -229,8 +299,12 @@ export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserProfileWhereInput | Prisma.UserProfileWhereInput[]
   fullName?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  nim?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  programStudy?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  semester?: Prisma.IntNullableFilter<"UserProfile"> | number | null
   phone?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   bio?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  profileCompletedAt?: Prisma.DateTimeNullableFilter<"UserProfile"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -241,13 +315,19 @@ export type UserProfileOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   fullName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  nim?: Prisma.SortOrderInput | Prisma.SortOrder
+  programStudy?: Prisma.SortOrderInput | Prisma.SortOrder
+  semester?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
+  profileCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserProfileCountOrderByAggregateInput
+  _avg?: Prisma.UserProfileAvgOrderByAggregateInput
   _max?: Prisma.UserProfileMaxOrderByAggregateInput
   _min?: Prisma.UserProfileMinOrderByAggregateInput
+  _sum?: Prisma.UserProfileSumOrderByAggregateInput
 }
 
 export type UserProfileScalarWhereWithAggregatesInput = {
@@ -258,8 +338,12 @@ export type UserProfileScalarWhereWithAggregatesInput = {
   userId?: Prisma.UuidWithAggregatesFilter<"UserProfile"> | string
   fullName?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  nim?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  programStudy?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  semester?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   bio?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  profileCompletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"UserProfile"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
 }
@@ -268,8 +352,12 @@ export type UserProfileCreateInput = {
   id?: string
   fullName?: string | null
   avatarUrl?: string | null
+  nim?: string | null
+  programStudy?: string | null
+  semester?: number | null
   phone?: string | null
   bio?: string | null
+  profileCompletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
@@ -280,8 +368,12 @@ export type UserProfileUncheckedCreateInput = {
   userId: string
   fullName?: string | null
   avatarUrl?: string | null
+  nim?: string | null
+  programStudy?: string | null
+  semester?: number | null
   phone?: string | null
   bio?: string | null
+  profileCompletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -290,8 +382,12 @@ export type UserProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nim?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programStudy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
@@ -302,8 +398,12 @@ export type UserProfileUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nim?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programStudy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -313,8 +413,12 @@ export type UserProfileCreateManyInput = {
   userId: string
   fullName?: string | null
   avatarUrl?: string | null
+  nim?: string | null
+  programStudy?: string | null
+  semester?: number | null
   phone?: string | null
   bio?: string | null
+  profileCompletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -323,8 +427,12 @@ export type UserProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nim?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programStudy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -334,8 +442,12 @@ export type UserProfileUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nim?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programStudy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -350,10 +462,18 @@ export type UserProfileCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  nim?: Prisma.SortOrder
+  programStudy?: Prisma.SortOrder
+  semester?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   bio?: Prisma.SortOrder
+  profileCompletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserProfileAvgOrderByAggregateInput = {
+  semester?: Prisma.SortOrder
 }
 
 export type UserProfileMaxOrderByAggregateInput = {
@@ -361,8 +481,12 @@ export type UserProfileMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  nim?: Prisma.SortOrder
+  programStudy?: Prisma.SortOrder
+  semester?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   bio?: Prisma.SortOrder
+  profileCompletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -372,10 +496,18 @@ export type UserProfileMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  nim?: Prisma.SortOrder
+  programStudy?: Prisma.SortOrder
+  semester?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   bio?: Prisma.SortOrder
+  profileCompletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserProfileSumOrderByAggregateInput = {
+  semester?: Prisma.SortOrder
 }
 
 export type UserProfileCreateNestedOneWithoutUserInput = {
@@ -410,12 +542,28 @@ export type UserProfileUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserProfileUpdateToOneWithWhereWithoutUserInput, Prisma.UserProfileUpdateWithoutUserInput>, Prisma.UserProfileUncheckedUpdateWithoutUserInput>
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type UserProfileCreateWithoutUserInput = {
   id?: string
   fullName?: string | null
   avatarUrl?: string | null
+  nim?: string | null
+  programStudy?: string | null
+  semester?: number | null
   phone?: string | null
   bio?: string | null
+  profileCompletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -424,8 +572,12 @@ export type UserProfileUncheckedCreateWithoutUserInput = {
   id?: string
   fullName?: string | null
   avatarUrl?: string | null
+  nim?: string | null
+  programStudy?: string | null
+  semester?: number | null
   phone?: string | null
   bio?: string | null
+  profileCompletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -450,8 +602,12 @@ export type UserProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nim?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programStudy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -460,8 +616,12 @@ export type UserProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nim?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programStudy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -473,8 +633,12 @@ export type UserProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   userId?: boolean
   fullName?: boolean
   avatarUrl?: boolean
+  nim?: boolean
+  programStudy?: boolean
+  semester?: boolean
   phone?: boolean
   bio?: boolean
+  profileCompletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -485,8 +649,12 @@ export type UserProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   userId?: boolean
   fullName?: boolean
   avatarUrl?: boolean
+  nim?: boolean
+  programStudy?: boolean
+  semester?: boolean
   phone?: boolean
   bio?: boolean
+  profileCompletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -497,8 +665,12 @@ export type UserProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   userId?: boolean
   fullName?: boolean
   avatarUrl?: boolean
+  nim?: boolean
+  programStudy?: boolean
+  semester?: boolean
   phone?: boolean
   bio?: boolean
+  profileCompletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -509,13 +681,17 @@ export type UserProfileSelectScalar = {
   userId?: boolean
   fullName?: boolean
   avatarUrl?: boolean
+  nim?: boolean
+  programStudy?: boolean
+  semester?: boolean
   phone?: boolean
   bio?: boolean
+  profileCompletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "fullName" | "avatarUrl" | "phone" | "bio" | "createdAt" | "updatedAt", ExtArgs["result"]["userProfile"]>
+export type UserProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "fullName" | "avatarUrl" | "nim" | "programStudy" | "semester" | "phone" | "bio" | "profileCompletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["userProfile"]>
 export type UserProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -536,8 +712,12 @@ export type $UserProfilePayload<ExtArgs extends runtime.Types.Extensions.Interna
     userId: string
     fullName: string | null
     avatarUrl: string | null
+    nim: string | null
+    programStudy: string | null
+    semester: number | null
     phone: string | null
     bio: string | null
+    profileCompletedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["userProfile"]>
@@ -968,8 +1148,12 @@ export interface UserProfileFieldRefs {
   readonly userId: Prisma.FieldRef<"UserProfile", 'String'>
   readonly fullName: Prisma.FieldRef<"UserProfile", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly nim: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly programStudy: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly semester: Prisma.FieldRef<"UserProfile", 'Int'>
   readonly phone: Prisma.FieldRef<"UserProfile", 'String'>
   readonly bio: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly profileCompletedAt: Prisma.FieldRef<"UserProfile", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"UserProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"UserProfile", 'DateTime'>
 }
