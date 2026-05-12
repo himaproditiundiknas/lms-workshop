@@ -54,7 +54,9 @@ export const ModelName = {
   User: 'User',
   UserProfile: 'UserProfile',
   Role: 'Role',
-  UserRole: 'UserRole'
+  UserRole: 'UserRole',
+  InvitationCode: 'InvitationCode',
+  InvitationRedemption: 'InvitationRedemption'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -121,6 +123,33 @@ export const UserRoleScalarFieldEnum = {
 } as const
 
 export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
+
+
+export const InvitationCodeScalarFieldEnum = {
+  id: 'id',
+  codeHash: 'codeHash',
+  scope: 'scope',
+  targetId: 'targetId',
+  status: 'status',
+  maxUses: 'maxUses',
+  usedCount: 'usedCount',
+  expiresAt: 'expiresAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InvitationCodeScalarFieldEnum = (typeof InvitationCodeScalarFieldEnum)[keyof typeof InvitationCodeScalarFieldEnum]
+
+
+export const InvitationRedemptionScalarFieldEnum = {
+  id: 'id',
+  invitationCodeId: 'invitationCodeId',
+  userId: 'userId',
+  redeemedAt: 'redeemedAt'
+} as const
+
+export type InvitationRedemptionScalarFieldEnum = (typeof InvitationRedemptionScalarFieldEnum)[keyof typeof InvitationRedemptionScalarFieldEnum]
 
 
 export const SortOrder = {
