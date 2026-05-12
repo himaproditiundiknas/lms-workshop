@@ -15,6 +15,22 @@ enum UserStatus {
   @@map("user_status")
 }
 
+enum InvitationScope {
+  WORKSHOP @map("workshop")
+  COHORT   @map("cohort")
+
+  @@map("invitation_scope")
+}
+
+enum InvitationCodeStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  EXPIRED  @map("expired")
+  REVOKED  @map("revoked")
+
+  @@map("invitation_code_status")
+}
+
 model User {
   id        String     @id @default(uuid()) @db.Uuid
   email     String     @unique
@@ -23,6 +39,9 @@ model User {
 
   profile UserProfile?
   roles   UserRole[]
+
+  createdInvitationCodes InvitationCode[]       @relation("InvitationCodeCreatedBy")
+  invitationRedemptions  InvitationRedemption[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -74,4 +93,47 @@ model UserRole {
 
   @@id([userId, roleId])
   @@map("user_roles")
+}
+
+model InvitationCode {
+  id String @id @default(uuid()) @db.Uuid
+
+  codeHash String @unique @map("code_hash")
+
+  scope    InvitationScope
+  targetId String          @map("target_id") @db.Uuid
+
+  status    InvitationCodeStatus @default(ACTIVE)
+  maxUses   Int                  @default(1) @map("max_uses")
+  usedCount Int                  @default(0) @map("used_count")
+  expiresAt DateTime?            @map("expires_at")
+
+  createdById String? @map("created_by_id") @db.Uuid
+  createdBy   User?   @relation("InvitationCodeCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+  redemptions InvitationRedemption[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([scope, targetId])
+  @@index([status])
+  @@index([expiresAt])
+  @@map("invitation_codes")
+}
+
+model InvitationRedemption {
+  id String @id @default(uuid()) @db.Uuid
+
+  invitationCodeId String @map("invitation_code_id") @db.Uuid
+  userId           String @map("user_id") @db.Uuid
+
+  redeemedAt DateTime @default(now()) @map("redeemed_at")
+
+  invitationCode InvitationCode @relation(fields: [invitationCodeId], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([invitationCodeId, userId])
+  @@index([userId])
+  @@map("invitation_redemptions")
 }

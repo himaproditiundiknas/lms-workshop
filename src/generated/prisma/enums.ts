@@ -16,3 +16,21 @@ export const UserStatus = {
 } as const
 
 export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+
+export const InvitationScope = {
+  WORKSHOP: 'WORKSHOP',
+  COHORT: 'COHORT'
+} as const
+
+export type InvitationScope = (typeof InvitationScope)[keyof typeof InvitationScope]
+
+
+export const InvitationCodeStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  EXPIRED: 'EXPIRED',
+  REVOKED: 'REVOKED'
+} as const
+
+export type InvitationCodeStatus = (typeof InvitationCodeStatus)[keyof typeof InvitationCodeStatus]

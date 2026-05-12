@@ -37,3 +37,13 @@ export type Role = Prisma.RoleModel
  * 
  */
 export type UserRole = Prisma.UserRoleModel
+/**
+ * Model InvitationCode
+ * 
+ */
+export type InvitationCode = Prisma.InvitationCodeModel
+/**
+ * Model InvitationRedemption
+ * 
+ */
+export type InvitationRedemption = Prisma.InvitationRedemptionModel
