@@ -1,0 +1,200 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+
+  @@map("user_status")
+}
+
+enum InvitationScope {
+  WORKSHOP @map("workshop")
+  COHORT   @map("cohort")
+
+  @@map("invitation_scope")
+}
+
+enum InvitationCodeStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  EXPIRED  @map("expired")
+  REVOKED  @map("revoked")
+
+  @@map("invitation_code_status")
+}
+
+enum EnrollmentStatus {
+  PENDING   @map("pending")
+  APPROVED  @map("approved")
+  REJECTED  @map("rejected")
+  CANCELLED @map("cancelled")
+
+  @@map("enrollment_status")
+}
+
+model User {
+  id        String     @id @default(uuid()) @db.Uuid
+  email     String     @unique
+  googleSub String?    @unique @map("google_sub")
+  status    UserStatus @default(ACTIVE)
+
+  profile UserProfile?
+  roles   UserRole[]
+
+  createdInvitationCodes InvitationCode[]       @relation("InvitationCodeCreatedBy")
+  invitationRedemptions  InvitationRedemption[]
+  auditLogs              AuditLog[]             @relation("AuditLogActor")
+  enrollments            Enrollment[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model UserProfile {
+  id                 String    @id @default(uuid()) @db.Uuid
+  userId             String    @unique @map("user_id") @db.Uuid
+  fullName           String?   @map("full_name")
+  avatarUrl          String?   @map("avatar_url")
+  nim                String?
+  programStudy       String?   @map("program_study")
+  semester           Int?
+  phone              String?
+  bio                String?
+  profileCompletedAt DateTime? @map("profile_completed_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_profiles")
+}
+
+model Role {
+  id          String  @id @default(uuid()) @db.Uuid
+  name        String  @unique
+  description String?
+
+  users UserRole[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("roles")
+}
+
+model UserRole {
+  userId String @map("user_id") @db.Uuid
+  roleId String @map("role_id") @db.Uuid
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  assignedAt DateTime @default(now()) @map("assigned_at")
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model InvitationCode {
+  id String @id @default(uuid()) @db.Uuid
+
+  codeHash String @unique @map("code_hash")
+
+  scope    InvitationScope
+  targetId String          @map("target_id") @db.Uuid
+
+  status    InvitationCodeStatus @default(ACTIVE)
+  maxUses   Int                  @default(1) @map("max_uses")
+  usedCount Int                  @default(0) @map("used_count")
+  expiresAt DateTime?            @map("expires_at")
+
+  createdById String? @map("created_by_id") @db.Uuid
+  createdBy   User?   @relation("InvitationCodeCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+  redemptions InvitationRedemption[]
+  enrollments Enrollment[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([scope, targetId])
+  @@index([status])
+  @@index([expiresAt])
+  @@map("invitation_codes")
+}
+
+model InvitationRedemption {
+  id String @id @default(uuid()) @db.Uuid
+
+  invitationCodeId String @map("invitation_code_id") @db.Uuid
+  userId           String @map("user_id") @db.Uuid
+
+  redeemedAt DateTime @default(now()) @map("redeemed_at")
+
+  invitationCode InvitationCode @relation(fields: [invitationCodeId], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([invitationCodeId, userId])
+  @@index([userId])
+  @@map("invitation_redemptions")
+}
+
+model AuditLog {
+  id String @id @default(uuid()) @db.Uuid
+
+  actorUserId String? @map("actor_user_id") @db.Uuid
+  actorUser   User?   @relation("AuditLogActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  action     String
+  entityType String  @map("entity_type")
+  entityId   String? @map("entity_id") @db.Uuid
+  metadata   Json?
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([actorUserId])
+  @@index([action])
+  @@index([entityType, entityId])
+  @@map("audit_logs")
+}
+
+model Enrollment {
+  id String @id @default(uuid()) @db.Uuid
+
+  userId           String  @map("user_id") @db.Uuid
+  invitationCodeId String? @map("invitation_code_id") @db.Uuid
+
+  scope    InvitationScope
+  targetId String           @map("target_id") @db.Uuid
+  cohortId String?          @map("cohort_id") @db.Uuid
+  status   EnrollmentStatus @default(PENDING)
+
+  approvedAt      DateTime? @map("approved_at")
+  rejectedAt      DateTime? @map("rejected_at")
+  approvedById    String?   @map("approved_by_id") @db.Uuid
+  rejectedById    String?   @map("rejected_by_id") @db.Uuid
+  rejectionReason String?   @map("rejection_reason")
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invitationCode InvitationCode? @relation(fields: [invitationCodeId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, scope, targetId])
+  @@index([status])
+  @@index([scope, targetId])
+  @@index([cohortId])
+  @@map("enrollments")
+}
