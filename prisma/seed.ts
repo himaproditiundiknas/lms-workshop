@@ -358,6 +358,125 @@ async function main() {
     createdById: seededUsers.superAdminUserId,
   });
 
+  const moduleIntro = await prisma.module.upsert({
+    where: {
+      workshopId_slug: {
+        workshopId: workshop.id,
+        slug: "web-development-foundation",
+      },
+    },
+    update: {
+      title: "Web Development Foundation",
+      description: "Materi dasar untuk memulai pengembangan web.",
+      orderNo: 1,
+      status: "PUBLISHED",
+    },
+    create: {
+      workshopId: workshop.id,
+      title: "Web Development Foundation",
+      slug: "web-development-foundation",
+      description: "Materi dasar untuk memulai pengembangan web.",
+      orderNo: 1,
+      status: "PUBLISHED",
+    },
+  });
+
+  const moduleReact = await prisma.module.upsert({
+    where: {
+      workshopId_slug: {
+        workshopId: workshop.id,
+        slug: "frontend-with-react",
+      },
+    },
+    update: {
+      title: "Frontend with React",
+      description: "Materi pengantar React dan Next.js.",
+      orderNo: 2,
+      status: "PUBLISHED",
+    },
+    create: {
+      workshopId: workshop.id,
+      title: "Frontend with React",
+      slug: "frontend-with-react",
+      description: "Materi pengantar React dan Next.js.",
+      orderNo: 2,
+      status: "PUBLISHED",
+    },
+  });
+
+  await prisma.material.upsert({
+    where: {
+      moduleId_orderNo: {
+        moduleId: moduleIntro.id,
+        orderNo: 1,
+      },
+    },
+    update: {
+      title: "Introduction to Web Development",
+      type: "TEXT",
+      status: "PUBLISHED",
+      content:
+        "Materi pengantar tentang cara kerja website, frontend, backend, dan database.",
+    },
+    create: {
+      moduleId: moduleIntro.id,
+      orderNo: 1,
+      title: "Introduction to Web Development",
+      type: "TEXT",
+      status: "PUBLISHED",
+      content:
+        "Materi pengantar tentang cara kerja website, frontend, backend, dan database.",
+    },
+  });
+
+  await prisma.material.upsert({
+    where: {
+      moduleId_orderNo: {
+        moduleId: moduleIntro.id,
+        orderNo: 2,
+      },
+    },
+    update: {
+      title: "HTML and CSS Reference",
+      type: "LINK",
+      status: "PUBLISHED",
+      url: "https://developer.mozilla.org/en-US/docs/Learn",
+    },
+    create: {
+      moduleId: moduleIntro.id,
+      orderNo: 2,
+      title: "HTML and CSS Reference",
+      type: "LINK",
+      status: "PUBLISHED",
+      url: "https://developer.mozilla.org/en-US/docs/Learn",
+    },
+  });
+
+  await prisma.material.upsert({
+    where: {
+      moduleId_orderNo: {
+        moduleId: moduleReact.id,
+        orderNo: 1,
+      },
+    },
+    update: {
+      title: "React Fundamentals",
+      type: "TEXT",
+      status: "PUBLISHED",
+      content: "Materi dasar React: component, props, state, dan rendering.",
+    },
+    create: {
+      moduleId: moduleReact.id,
+      orderNo: 1,
+      title: "React Fundamentals",
+      type: "TEXT",
+      status: "PUBLISHED",
+      content: "Materi dasar React: component, props, state, dan rendering.",
+    },
+  });
+
+  console.log("Seeded default modules and materials");
+
   console.log("Database seed completed.");
 }
 

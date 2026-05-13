@@ -106,3 +106,13 @@ export type QrToken = Prisma.QrTokenModel
  * 
  */
 export type Attendance = Prisma.AttendanceModel
+/**
+ * Model Module
+ * 
+ */
+export type Module = Prisma.ModuleModel
+/**
+ * Model Material
+ * 
+ */
+export type Material = Prisma.MaterialModel

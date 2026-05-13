@@ -81,6 +81,24 @@ enum AttendanceMethod {
   @@map("attendance_method")
 }
 
+enum MaterialType {
+  TEXT     @map("text")
+  LINK     @map("link")
+  VIDEO    @map("video")
+  DOCUMENT @map("document")
+  FILE     @map("file")
+
+  @@map("material_type")
+}
+
+enum ContentStatus {
+  DRAFT     @map("draft")
+  PUBLISHED @map("published")
+  ARCHIVED  @map("archived")
+
+  @@map("content_status")
+}
+
 model User {
   id        String     @id @default(uuid()) @db.Uuid
   email     String     @unique
@@ -256,6 +274,7 @@ model Workshop {
   status      WorkshopStatus @default(DRAFT)
 
   cohorts Cohort[]
+  modules Module[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -312,6 +331,7 @@ model Session {
 
   qrTokens    QrToken[]
   attendances Attendance[]
+  materials   Material[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -372,4 +392,60 @@ model Attendance {
   @@index([status])
   @@index([method])
   @@map("attendances")
+}
+
+model Module {
+  id String @id @default(uuid()) @db.Uuid
+
+  workshopId String @map("workshop_id") @db.Uuid
+
+  title       String
+  slug        String
+  description String?
+  orderNo     Int           @default(1) @map("order_no")
+  status      ContentStatus @default(DRAFT)
+
+  workshop  Workshop   @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  materials Material[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([workshopId, slug])
+  @@unique([workshopId, orderNo])
+  @@index([workshopId])
+  @@index([status])
+  @@map("modules")
+}
+
+model Material {
+  id String @id @default(uuid()) @db.Uuid
+
+  moduleId  String  @map("module_id") @db.Uuid
+  sessionId String? @map("session_id") @db.Uuid
+
+  title       String
+  description String?
+  type        MaterialType
+  status      ContentStatus @default(DRAFT)
+  orderNo     Int           @default(1) @map("order_no")
+
+  content  String?
+  url      String?
+  fileUrl  String? @map("file_url")
+  mimeType String? @map("mime_type")
+  fileSize Int?    @map("file_size")
+
+  module  Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  session Session? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([moduleId, orderNo])
+  @@index([moduleId])
+  @@index([sessionId])
+  @@index([type])
+  @@index([status])
+  @@map("materials")
 }
