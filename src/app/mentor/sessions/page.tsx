@@ -1,6 +1,7 @@
 import { requireMentorOrAdmin } from "@/lib/auth/require-mentor-or-admin";
 import { prisma } from "@/lib/prisma";
 import { LogoutButton } from "@/components/logout-button";
+import { SessionAttendanceActions } from "@/components/attendance/session-attendance-actions";
 
 function formatDateTime(date: Date | null) {
   if (!date) {
@@ -69,6 +70,7 @@ export default async function MentorSessionsPage() {
                 <th className="py-3 pr-4 font-medium">Schedule</th>
                 <th className="py-3 pr-4 font-medium">Location</th>
                 <th className="py-3 pr-4 font-medium">Attendance</th>
+                <th className="py-3 pr-4 font-medium">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -103,13 +105,19 @@ export default async function MentorSessionsPage() {
                       {session.attendanceStatus}
                     </span>
                   </td>
+                  <td className="py-3 pr-4">
+                    <SessionAttendanceActions
+                      sessionId={session.id}
+                      attendanceStatus={session.attendanceStatus}
+                    />
+                  </td>
                 </tr>
               ))}
 
               {sessions.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={6}
+                    colSpan={7}
                     className="py-8 text-center text-sm text-slate-500"
                   >
                     Belum ada sesi.
