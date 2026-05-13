@@ -222,6 +222,8 @@ export const SessionScalarFieldEnum = {
   id: 'id',
   cohortId: 'cohortId',
   title: 'title',
+  description: 'description',
+  location: 'location',
   meetingNo: 'meetingNo',
   startsAt: 'startsAt',
   endsAt: 'endsAt',
