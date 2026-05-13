@@ -38,6 +38,8 @@ export type SessionMinAggregateOutputType = {
   id: string | null
   cohortId: string | null
   title: string | null
+  description: string | null
+  location: string | null
   meetingNo: number | null
   startsAt: Date | null
   endsAt: Date | null
@@ -54,6 +56,8 @@ export type SessionMaxAggregateOutputType = {
   id: string | null
   cohortId: string | null
   title: string | null
+  description: string | null
+  location: string | null
   meetingNo: number | null
   startsAt: Date | null
   endsAt: Date | null
@@ -70,6 +74,8 @@ export type SessionCountAggregateOutputType = {
   id: number
   cohortId: number
   title: number
+  description: number
+  location: number
   meetingNo: number
   startsAt: number
   endsAt: number
@@ -96,6 +102,8 @@ export type SessionMinAggregateInputType = {
   id?: true
   cohortId?: true
   title?: true
+  description?: true
+  location?: true
   meetingNo?: true
   startsAt?: true
   endsAt?: true
@@ -112,6 +120,8 @@ export type SessionMaxAggregateInputType = {
   id?: true
   cohortId?: true
   title?: true
+  description?: true
+  location?: true
   meetingNo?: true
   startsAt?: true
   endsAt?: true
@@ -128,6 +138,8 @@ export type SessionCountAggregateInputType = {
   id?: true
   cohortId?: true
   title?: true
+  description?: true
+  location?: true
   meetingNo?: true
   startsAt?: true
   endsAt?: true
@@ -231,6 +243,8 @@ export type SessionGroupByOutputType = {
   id: string
   cohortId: string
   title: string
+  description: string | null
+  location: string | null
   meetingNo: number
   startsAt: Date | null
   endsAt: Date | null
@@ -270,6 +284,8 @@ export type SessionWhereInput = {
   id?: Prisma.UuidFilter<"Session"> | string
   cohortId?: Prisma.UuidFilter<"Session"> | string
   title?: Prisma.StringFilter<"Session"> | string
+  description?: Prisma.StringNullableFilter<"Session"> | string | null
+  location?: Prisma.StringNullableFilter<"Session"> | string | null
   meetingNo?: Prisma.IntFilter<"Session"> | number
   startsAt?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
@@ -289,6 +305,8 @@ export type SessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   cohortId?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
   meetingNo?: Prisma.SortOrder
   startsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   endsAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -312,6 +330,8 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[]
   cohortId?: Prisma.UuidFilter<"Session"> | string
   title?: Prisma.StringFilter<"Session"> | string
+  description?: Prisma.StringNullableFilter<"Session"> | string | null
+  location?: Prisma.StringNullableFilter<"Session"> | string | null
   meetingNo?: Prisma.IntFilter<"Session"> | number
   startsAt?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
@@ -331,6 +351,8 @@ export type SessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   cohortId?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
   meetingNo?: Prisma.SortOrder
   startsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   endsAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -355,6 +377,8 @@ export type SessionScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Session"> | string
   cohortId?: Prisma.UuidWithAggregatesFilter<"Session"> | string
   title?: Prisma.StringWithAggregatesFilter<"Session"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
+  location?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
   meetingNo?: Prisma.IntWithAggregatesFilter<"Session"> | number
   startsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
@@ -370,6 +394,8 @@ export type SessionScalarWhereWithAggregatesInput = {
 export type SessionCreateInput = {
   id?: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -387,6 +413,8 @@ export type SessionUncheckedCreateInput = {
   id?: string
   cohortId: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -402,6 +430,8 @@ export type SessionUncheckedCreateInput = {
 export type SessionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -419,6 +449,8 @@ export type SessionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cohortId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -435,6 +467,8 @@ export type SessionCreateManyInput = {
   id?: string
   cohortId: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -450,6 +484,8 @@ export type SessionCreateManyInput = {
 export type SessionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -464,6 +500,8 @@ export type SessionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cohortId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -495,6 +533,8 @@ export type SessionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cohortId?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   meetingNo?: Prisma.SortOrder
   startsAt?: Prisma.SortOrder
   endsAt?: Prisma.SortOrder
@@ -515,6 +555,8 @@ export type SessionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cohortId?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   meetingNo?: Prisma.SortOrder
   startsAt?: Prisma.SortOrder
   endsAt?: Prisma.SortOrder
@@ -531,6 +573,8 @@ export type SessionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cohortId?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   meetingNo?: Prisma.SortOrder
   startsAt?: Prisma.SortOrder
   endsAt?: Prisma.SortOrder
@@ -680,6 +724,8 @@ export type EnumSessionAttendanceStatusFieldUpdateOperationsInput = {
 export type SessionCreateWithoutAttendanceOpenedByUserInput = {
   id?: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -696,6 +742,8 @@ export type SessionUncheckedCreateWithoutAttendanceOpenedByUserInput = {
   id?: string
   cohortId: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -720,6 +768,8 @@ export type SessionCreateManyAttendanceOpenedByUserInputEnvelope = {
 export type SessionCreateWithoutAttendanceClosedByUserInput = {
   id?: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -736,6 +786,8 @@ export type SessionUncheckedCreateWithoutAttendanceClosedByUserInput = {
   id?: string
   cohortId: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -780,6 +832,8 @@ export type SessionScalarWhereInput = {
   id?: Prisma.UuidFilter<"Session"> | string
   cohortId?: Prisma.UuidFilter<"Session"> | string
   title?: Prisma.StringFilter<"Session"> | string
+  description?: Prisma.StringNullableFilter<"Session"> | string | null
+  location?: Prisma.StringNullableFilter<"Session"> | string | null
   meetingNo?: Prisma.IntFilter<"Session"> | number
   startsAt?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
@@ -811,6 +865,8 @@ export type SessionUpdateManyWithWhereWithoutAttendanceClosedByUserInput = {
 export type SessionCreateWithoutCohortInput = {
   id?: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -826,6 +882,8 @@ export type SessionCreateWithoutCohortInput = {
 export type SessionUncheckedCreateWithoutCohortInput = {
   id?: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -868,6 +926,8 @@ export type SessionCreateManyAttendanceOpenedByUserInput = {
   id?: string
   cohortId: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -883,6 +943,8 @@ export type SessionCreateManyAttendanceClosedByUserInput = {
   id?: string
   cohortId: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -897,6 +959,8 @@ export type SessionCreateManyAttendanceClosedByUserInput = {
 export type SessionUpdateWithoutAttendanceOpenedByUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -913,6 +977,8 @@ export type SessionUncheckedUpdateWithoutAttendanceOpenedByUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cohortId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -928,6 +994,8 @@ export type SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cohortId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -942,6 +1010,8 @@ export type SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserInput = {
 export type SessionUpdateWithoutAttendanceClosedByUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -958,6 +1028,8 @@ export type SessionUncheckedUpdateWithoutAttendanceClosedByUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cohortId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -973,6 +1045,8 @@ export type SessionUncheckedUpdateManyWithoutAttendanceClosedByUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cohortId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -987,6 +1061,8 @@ export type SessionUncheckedUpdateManyWithoutAttendanceClosedByUserInput = {
 export type SessionCreateManyCohortInput = {
   id?: string
   title: string
+  description?: string | null
+  location?: string | null
   meetingNo: number
   startsAt?: Date | string | null
   endsAt?: Date | string | null
@@ -1002,6 +1078,8 @@ export type SessionCreateManyCohortInput = {
 export type SessionUpdateWithoutCohortInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1017,6 +1095,8 @@ export type SessionUpdateWithoutCohortInput = {
 export type SessionUncheckedUpdateWithoutCohortInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1032,6 +1112,8 @@ export type SessionUncheckedUpdateWithoutCohortInput = {
 export type SessionUncheckedUpdateManyWithoutCohortInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1050,6 +1132,8 @@ export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   cohortId?: boolean
   title?: boolean
+  description?: boolean
+  location?: boolean
   meetingNo?: boolean
   startsAt?: boolean
   endsAt?: boolean
@@ -1069,6 +1153,8 @@ export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   cohortId?: boolean
   title?: boolean
+  description?: boolean
+  location?: boolean
   meetingNo?: boolean
   startsAt?: boolean
   endsAt?: boolean
@@ -1088,6 +1174,8 @@ export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   cohortId?: boolean
   title?: boolean
+  description?: boolean
+  location?: boolean
   meetingNo?: boolean
   startsAt?: boolean
   endsAt?: boolean
@@ -1107,6 +1195,8 @@ export type SessionSelectScalar = {
   id?: boolean
   cohortId?: boolean
   title?: boolean
+  description?: boolean
+  location?: boolean
   meetingNo?: boolean
   startsAt?: boolean
   endsAt?: boolean
@@ -1119,7 +1209,7 @@ export type SessionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cohortId" | "title" | "meetingNo" | "startsAt" | "endsAt" | "attendanceStatus" | "attendanceOpenedAt" | "attendanceOpenedBy" | "attendanceClosedAt" | "attendanceClosedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
+export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cohortId" | "title" | "description" | "location" | "meetingNo" | "startsAt" | "endsAt" | "attendanceStatus" | "attendanceOpenedAt" | "attendanceOpenedBy" | "attendanceClosedAt" | "attendanceClosedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
 export type SessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cohort?: boolean | Prisma.CohortDefaultArgs<ExtArgs>
   attendanceOpenedByUser?: boolean | Prisma.Session$attendanceOpenedByUserArgs<ExtArgs>
@@ -1147,6 +1237,8 @@ export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     cohortId: string
     title: string
+    description: string | null
+    location: string | null
     meetingNo: number
     startsAt: Date | null
     endsAt: Date | null
@@ -1586,6 +1678,8 @@ export interface SessionFieldRefs {
   readonly id: Prisma.FieldRef<"Session", 'String'>
   readonly cohortId: Prisma.FieldRef<"Session", 'String'>
   readonly title: Prisma.FieldRef<"Session", 'String'>
+  readonly description: Prisma.FieldRef<"Session", 'String'>
+  readonly location: Prisma.FieldRef<"Session", 'String'>
   readonly meetingNo: Prisma.FieldRef<"Session", 'Int'>
   readonly startsAt: Prisma.FieldRef<"Session", 'DateTime'>
   readonly endsAt: Prisma.FieldRef<"Session", 'DateTime'>

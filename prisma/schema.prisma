@@ -269,9 +269,11 @@ model Cohort {
 model Session {
   id String @id @default(uuid()) @db.Uuid
 
-  cohortId  String @map("cohort_id") @db.Uuid
-  title     String
-  meetingNo Int    @map("meeting_no")
+  cohortId    String  @map("cohort_id") @db.Uuid
+  title       String
+  description String?
+  location    String?
+  meetingNo   Int     @map("meeting_no")
 
   startsAt DateTime? @map("starts_at")
   endsAt   DateTime? @map("ends_at")

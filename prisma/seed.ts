@@ -207,22 +207,18 @@ async function seedWorkshopCohortAndSessions() {
   });
 
   const sessions = [
-    {
-      meetingNo: 1,
-      title: "Introduction to Web Development",
-    },
-    {
-      meetingNo: 2,
-      title: "HTML and CSS Fundamentals",
-    },
-    {
-      meetingNo: 3,
-      title: "JavaScript Basics",
-    },
-    {
-      meetingNo: 4,
-      title: "Final Project Briefing",
-    },
+    { meetingNo: 1, title: "Introduction to Web Development" },
+    { meetingNo: 2, title: "HTML and CSS Fundamentals" },
+    { meetingNo: 3, title: "Responsive Layout" },
+    { meetingNo: 4, title: "JavaScript Basics" },
+    { meetingNo: 5, title: "DOM Manipulation" },
+    { meetingNo: 6, title: "Forms and Validation" },
+    { meetingNo: 7, title: "Git and GitHub Workflow" },
+    { meetingNo: 8, title: "React Fundamentals" },
+    { meetingNo: 9, title: "Next.js Routing" },
+    { meetingNo: 10, title: "Database Integration" },
+    { meetingNo: 11, title: "Authentication Flow" },
+    { meetingNo: 12, title: "Final Project Briefing" },
   ];
 
   for (const session of sessions) {
@@ -238,6 +234,8 @@ async function seedWorkshopCohortAndSessions() {
       },
       create: {
         cohortId: cohort.id,
+        description: `Materi pertemuan ${session.meetingNo}`,
+        location: "Lab Komputer",
         meetingNo: session.meetingNo,
         title: session.title,
         attendanceStatus: "NOT_OPENED",
