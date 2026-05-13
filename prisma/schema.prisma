@@ -99,6 +99,32 @@ enum ContentStatus {
   @@map("content_status")
 }
 
+enum AssignmentCategory {
+  REGULAR       @map("regular")
+  FINAL_PROJECT @map("final_project")
+
+  @@map("assignment_category")
+}
+
+enum AssignmentStatus {
+  DRAFT     @map("draft")
+  PUBLISHED @map("published")
+  CLOSED    @map("closed")
+  ARCHIVED  @map("archived")
+
+  @@map("assignment_status")
+}
+
+enum SubmissionStatus {
+  SUBMITTED @map("submitted")
+  LATE      @map("late")
+  REOPENED  @map("reopened")
+  GRADED    @map("graded")
+  RETURNED  @map("returned")
+
+  @@map("submission_status")
+}
+
 model User {
   id        String     @id @default(uuid()) @db.Uuid
   email     String     @unique
@@ -118,6 +144,10 @@ model User {
   recordedAttendances    Attendance[]           @relation("AttendanceRecordedBy")
   correctedAttendances   Attendance[]           @relation("AttendanceCorrectedBy")
   createdQrTokens        QrToken[]              @relation("QrTokenCreatedBy")
+  submissions            Submission[]
+  gradedSubmissions      Submission[]           @relation("SubmissionGradedBy")
+  reopenedSubmissions    Submission[]           @relation("SubmissionReopenedBy")
+  createdAssignments     Assignment[]           @relation("AssignmentCreatedBy")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -273,8 +303,9 @@ model Workshop {
   description String?
   status      WorkshopStatus @default(DRAFT)
 
-  cohorts Cohort[]
-  modules Module[]
+  cohorts     Cohort[]
+  modules     Module[]
+  assignments Assignment[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -332,6 +363,7 @@ model Session {
   qrTokens    QrToken[]
   attendances Attendance[]
   materials   Material[]
+  assignments Assignment[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -448,4 +480,105 @@ model Material {
   @@index([type])
   @@index([status])
   @@map("materials")
+}
+
+model Assignment {
+  id String @id @default(uuid()) @db.Uuid
+
+  workshopId  String  @map("workshop_id") @db.Uuid
+  sessionId   String? @map("session_id") @db.Uuid
+  createdById String? @map("created_by_id") @db.Uuid
+
+  title       String
+  slug        String
+  description String?
+
+  category AssignmentCategory @default(REGULAR)
+  status   AssignmentStatus   @default(DRAFT)
+
+  dueAt                  DateTime? @map("due_at")
+  maxScore               Int       @default(100) @map("max_score")
+  allowLate              Boolean   @default(false) @map("allow_late")
+  requiredForCertificate Boolean   @default(false) @map("required_for_certificate")
+
+  workshop  Workshop @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  session   Session? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  createdBy User?    @relation("AssignmentCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+  submissions Submission[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([workshopId, slug])
+  @@index([workshopId])
+  @@index([sessionId])
+  @@index([category])
+  @@index([status])
+  @@index([dueAt])
+  @@map("assignments")
+}
+
+model Submission {
+  id String @id @default(uuid()) @db.Uuid
+
+  assignmentId String @map("assignment_id") @db.Uuid
+  userId       String @map("user_id") @db.Uuid
+
+  attemptNo Int     @default(1) @map("attempt_no")
+  isLatest  Boolean @default(true) @map("is_latest")
+
+  status SubmissionStatus @default(SUBMITTED)
+
+  repositoryUrl String? @map("repository_url")
+  deploymentUrl String? @map("deployment_url")
+  contentText   String? @map("content_text")
+
+  submittedAt DateTime @default(now()) @map("submitted_at")
+
+  score      Float?
+  feedback   String?
+  gradedAt   DateTime? @map("graded_at")
+  gradedById String?   @map("graded_by_id") @db.Uuid
+
+  reopenedAt   DateTime? @map("reopened_at")
+  reopenedById String?   @map("reopened_by_id") @db.Uuid
+  reopenReason String?   @map("reopen_reason")
+
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  gradedBy   User? @relation("SubmissionGradedBy", fields: [gradedById], references: [id], onDelete: SetNull)
+  reopenedBy User? @relation("SubmissionReopenedBy", fields: [reopenedById], references: [id], onDelete: SetNull)
+
+  files SubmissionFile[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([assignmentId, userId, attemptNo])
+  @@index([assignmentId])
+  @@index([userId])
+  @@index([assignmentId, userId])
+  @@index([assignmentId, userId, isLatest])
+  @@index([status])
+  @@map("submissions")
+}
+
+model SubmissionFile {
+  id String @id @default(uuid()) @db.Uuid
+
+  submissionId String @map("submission_id") @db.Uuid
+
+  fileUrl  String @map("file_url")
+  fileName String @map("file_name")
+  mimeType String @map("mime_type")
+  fileSize Int    @map("file_size")
+
+  submission Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([submissionId])
+  @@map("submission_files")
 }

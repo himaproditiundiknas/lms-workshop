@@ -477,6 +477,76 @@ async function main() {
 
   console.log("Seeded default modules and materials");
 
+  const regularAssignment = await prisma.assignment.upsert({
+    where: {
+      workshopId_slug: {
+        workshopId: workshop.id,
+        slug: "html-css-practice",
+      },
+    },
+    update: {
+      title: "HTML & CSS Practice",
+      description:
+        "Buat halaman landing page sederhana menggunakan HTML dan CSS.",
+      category: "REGULAR",
+      status: "PUBLISHED",
+      dueAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      maxScore: 100,
+      allowLate: true,
+      requiredForCertificate: true,
+    },
+    create: {
+      workshopId: workshop.id,
+      title: "HTML & CSS Practice",
+      slug: "html-css-practice",
+      description:
+        "Buat halaman landing page sederhana menggunakan HTML dan CSS.",
+      category: "REGULAR",
+      status: "PUBLISHED",
+      dueAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      maxScore: 100,
+      allowLate: true,
+      requiredForCertificate: true,
+    },
+  });
+
+  const finalProjectAssignment = await prisma.assignment.upsert({
+    where: {
+      workshopId_slug: {
+        workshopId: workshop.id,
+        slug: "final-project-lms",
+      },
+    },
+    update: {
+      title: "Final Project LMS",
+      description: "Bangun mini project final sesuai brief mentor.",
+      category: "FINAL_PROJECT",
+      status: "DRAFT",
+      dueAt: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000),
+      maxScore: 100,
+      allowLate: false,
+      requiredForCertificate: true,
+    },
+    create: {
+      workshopId: workshop.id,
+      title: "Final Project LMS",
+      slug: "final-project-lms",
+      description: "Bangun mini project final sesuai brief mentor.",
+      category: "FINAL_PROJECT",
+      status: "DRAFT",
+      dueAt: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000),
+      maxScore: 100,
+      allowLate: false,
+      requiredForCertificate: true,
+    },
+  });
+
+  console.log(
+    "Seeded assignments:",
+    regularAssignment.title,
+    finalProjectAssignment.title,
+  );
+
   console.log("Database seed completed.");
 }
 
