@@ -199,6 +199,7 @@ export type WorkshopWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Workshop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workshop"> | Date | string
   cohorts?: Prisma.CohortListRelationFilter
+  modules?: Prisma.ModuleListRelationFilter
 }
 
 export type WorkshopOrderByWithRelationInput = {
@@ -210,6 +211,7 @@ export type WorkshopOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   cohorts?: Prisma.CohortOrderByRelationAggregateInput
+  modules?: Prisma.ModuleOrderByRelationAggregateInput
 }
 
 export type WorkshopWhereUniqueInput = Prisma.AtLeast<{
@@ -224,6 +226,7 @@ export type WorkshopWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Workshop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workshop"> | Date | string
   cohorts?: Prisma.CohortListRelationFilter
+  modules?: Prisma.ModuleListRelationFilter
 }, "id" | "slug">
 
 export type WorkshopOrderByWithAggregationInput = {
@@ -261,6 +264,7 @@ export type WorkshopCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cohorts?: Prisma.CohortCreateNestedManyWithoutWorkshopInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUncheckedCreateInput = {
@@ -272,6 +276,7 @@ export type WorkshopUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cohorts?: Prisma.CohortUncheckedCreateNestedManyWithoutWorkshopInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUpdateInput = {
@@ -283,6 +288,7 @@ export type WorkshopUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohorts?: Prisma.CohortUpdateManyWithoutWorkshopNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopUncheckedUpdateInput = {
@@ -294,6 +300,7 @@ export type WorkshopUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohorts?: Prisma.CohortUncheckedUpdateManyWithoutWorkshopNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopCreateManyInput = {
@@ -379,6 +386,20 @@ export type WorkshopUpdateOneRequiredWithoutCohortsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkshopUpdateToOneWithWhereWithoutCohortsInput, Prisma.WorkshopUpdateWithoutCohortsInput>, Prisma.WorkshopUncheckedUpdateWithoutCohortsInput>
 }
 
+export type WorkshopCreateNestedOneWithoutModulesInput = {
+  create?: Prisma.XOR<Prisma.WorkshopCreateWithoutModulesInput, Prisma.WorkshopUncheckedCreateWithoutModulesInput>
+  connectOrCreate?: Prisma.WorkshopCreateOrConnectWithoutModulesInput
+  connect?: Prisma.WorkshopWhereUniqueInput
+}
+
+export type WorkshopUpdateOneRequiredWithoutModulesNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkshopCreateWithoutModulesInput, Prisma.WorkshopUncheckedCreateWithoutModulesInput>
+  connectOrCreate?: Prisma.WorkshopCreateOrConnectWithoutModulesInput
+  upsert?: Prisma.WorkshopUpsertWithoutModulesInput
+  connect?: Prisma.WorkshopWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkshopUpdateToOneWithWhereWithoutModulesInput, Prisma.WorkshopUpdateWithoutModulesInput>, Prisma.WorkshopUncheckedUpdateWithoutModulesInput>
+}
+
 export type WorkshopCreateWithoutCohortsInput = {
   id?: string
   title: string
@@ -387,6 +408,7 @@ export type WorkshopCreateWithoutCohortsInput = {
   status?: $Enums.WorkshopStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modules?: Prisma.ModuleCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUncheckedCreateWithoutCohortsInput = {
@@ -397,6 +419,7 @@ export type WorkshopUncheckedCreateWithoutCohortsInput = {
   status?: $Enums.WorkshopStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopCreateOrConnectWithoutCohortsInput = {
@@ -423,6 +446,7 @@ export type WorkshopUpdateWithoutCohortsInput = {
   status?: Prisma.EnumWorkshopStatusFieldUpdateOperationsInput | $Enums.WorkshopStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modules?: Prisma.ModuleUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopUncheckedUpdateWithoutCohortsInput = {
@@ -433,6 +457,67 @@ export type WorkshopUncheckedUpdateWithoutCohortsInput = {
   status?: Prisma.EnumWorkshopStatusFieldUpdateOperationsInput | $Enums.WorkshopStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutWorkshopNestedInput
+}
+
+export type WorkshopCreateWithoutModulesInput = {
+  id?: string
+  title: string
+  slug: string
+  description?: string | null
+  status?: $Enums.WorkshopStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cohorts?: Prisma.CohortCreateNestedManyWithoutWorkshopInput
+}
+
+export type WorkshopUncheckedCreateWithoutModulesInput = {
+  id?: string
+  title: string
+  slug: string
+  description?: string | null
+  status?: $Enums.WorkshopStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cohorts?: Prisma.CohortUncheckedCreateNestedManyWithoutWorkshopInput
+}
+
+export type WorkshopCreateOrConnectWithoutModulesInput = {
+  where: Prisma.WorkshopWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkshopCreateWithoutModulesInput, Prisma.WorkshopUncheckedCreateWithoutModulesInput>
+}
+
+export type WorkshopUpsertWithoutModulesInput = {
+  update: Prisma.XOR<Prisma.WorkshopUpdateWithoutModulesInput, Prisma.WorkshopUncheckedUpdateWithoutModulesInput>
+  create: Prisma.XOR<Prisma.WorkshopCreateWithoutModulesInput, Prisma.WorkshopUncheckedCreateWithoutModulesInput>
+  where?: Prisma.WorkshopWhereInput
+}
+
+export type WorkshopUpdateToOneWithWhereWithoutModulesInput = {
+  where?: Prisma.WorkshopWhereInput
+  data: Prisma.XOR<Prisma.WorkshopUpdateWithoutModulesInput, Prisma.WorkshopUncheckedUpdateWithoutModulesInput>
+}
+
+export type WorkshopUpdateWithoutModulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumWorkshopStatusFieldUpdateOperationsInput | $Enums.WorkshopStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cohorts?: Prisma.CohortUpdateManyWithoutWorkshopNestedInput
+}
+
+export type WorkshopUncheckedUpdateWithoutModulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumWorkshopStatusFieldUpdateOperationsInput | $Enums.WorkshopStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cohorts?: Prisma.CohortUncheckedUpdateManyWithoutWorkshopNestedInput
 }
 
 
@@ -442,10 +527,12 @@ export type WorkshopUncheckedUpdateWithoutCohortsInput = {
 
 export type WorkshopCountOutputType = {
   cohorts: number
+  modules: number
 }
 
 export type WorkshopCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cohorts?: boolean | WorkshopCountOutputTypeCountCohortsArgs
+  modules?: boolean | WorkshopCountOutputTypeCountModulesArgs
 }
 
 /**
@@ -465,6 +552,13 @@ export type WorkshopCountOutputTypeCountCohortsArgs<ExtArgs extends runtime.Type
   where?: Prisma.CohortWhereInput
 }
 
+/**
+ * WorkshopCountOutputType without action
+ */
+export type WorkshopCountOutputTypeCountModulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ModuleWhereInput
+}
+
 
 export type WorkshopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -475,6 +569,7 @@ export type WorkshopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   cohorts?: boolean | Prisma.Workshop$cohortsArgs<ExtArgs>
+  modules?: boolean | Prisma.Workshop$modulesArgs<ExtArgs>
   _count?: boolean | Prisma.WorkshopCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workshop"]>
 
@@ -511,6 +606,7 @@ export type WorkshopSelectScalar = {
 export type WorkshopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["workshop"]>
 export type WorkshopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cohorts?: boolean | Prisma.Workshop$cohortsArgs<ExtArgs>
+  modules?: boolean | Prisma.Workshop$modulesArgs<ExtArgs>
   _count?: boolean | Prisma.WorkshopCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkshopIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -520,6 +616,7 @@ export type $WorkshopPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Workshop"
   objects: {
     cohorts: Prisma.$CohortPayload<ExtArgs>[]
+    modules: Prisma.$ModulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -924,6 +1021,7 @@ readonly fields: WorkshopFieldRefs;
 export interface Prisma__WorkshopClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cohorts<T extends Prisma.Workshop$cohortsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workshop$cohortsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CohortPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  modules<T extends Prisma.Workshop$modulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workshop$modulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1374,6 +1472,30 @@ export type Workshop$cohortsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.CohortScalarFieldEnum | Prisma.CohortScalarFieldEnum[]
+}
+
+/**
+ * Workshop.modules
+ */
+export type Workshop$modulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Module
+   */
+  select?: Prisma.ModuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Module
+   */
+  omit?: Prisma.ModuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ModuleInclude<ExtArgs> | null
+  where?: Prisma.ModuleWhereInput
+  orderBy?: Prisma.ModuleOrderByWithRelationInput | Prisma.ModuleOrderByWithRelationInput[]
+  cursor?: Prisma.ModuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ModuleScalarFieldEnum | Prisma.ModuleScalarFieldEnum[]
 }
 
 /**

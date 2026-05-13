@@ -63,7 +63,9 @@ export const ModelName = {
   Cohort: 'Cohort',
   Session: 'Session',
   QrToken: 'QrToken',
-  Attendance: 'Attendance'
+  Attendance: 'Attendance',
+  Module: 'Module',
+  Material: 'Material'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -269,6 +271,42 @@ export const AttendanceScalarFieldEnum = {
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const ModuleScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  orderNo: 'orderNo',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ModuleScalarFieldEnum = (typeof ModuleScalarFieldEnum)[keyof typeof ModuleScalarFieldEnum]
+
+
+export const MaterialScalarFieldEnum = {
+  id: 'id',
+  moduleId: 'moduleId',
+  sessionId: 'sessionId',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  status: 'status',
+  orderNo: 'orderNo',
+  content: 'content',
+  url: 'url',
+  fileUrl: 'fileUrl',
+  mimeType: 'mimeType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
 
 
 export const SortOrder = {

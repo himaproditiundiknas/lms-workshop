@@ -301,6 +301,7 @@ export type SessionWhereInput = {
   attendanceClosedByUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   qrTokens?: Prisma.QrTokenListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
+  materials?: Prisma.MaterialListRelationFilter
 }
 
 export type SessionOrderByWithRelationInput = {
@@ -324,6 +325,7 @@ export type SessionOrderByWithRelationInput = {
   attendanceClosedByUser?: Prisma.UserOrderByWithRelationInput
   qrTokens?: Prisma.QrTokenOrderByRelationAggregateInput
   attendances?: Prisma.AttendanceOrderByRelationAggregateInput
+  materials?: Prisma.MaterialOrderByRelationAggregateInput
 }
 
 export type SessionWhereUniqueInput = Prisma.AtLeast<{
@@ -351,6 +353,7 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<{
   attendanceClosedByUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   qrTokens?: Prisma.QrTokenListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
+  materials?: Prisma.MaterialListRelationFilter
 }, "id" | "cohortId_meetingNo">
 
 export type SessionOrderByWithAggregationInput = {
@@ -415,6 +418,7 @@ export type SessionCreateInput = {
   attendanceClosedByUser?: Prisma.UserCreateNestedOneWithoutClosedAttendancesInput
   qrTokens?: Prisma.QrTokenCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUncheckedCreateInput = {
@@ -435,6 +439,7 @@ export type SessionUncheckedCreateInput = {
   updatedAt?: Date | string
   qrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUpdateInput = {
@@ -455,6 +460,7 @@ export type SessionUpdateInput = {
   attendanceClosedByUser?: Prisma.UserUpdateOneWithoutClosedAttendancesNestedInput
   qrTokens?: Prisma.QrTokenUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateInput = {
@@ -475,6 +481,7 @@ export type SessionUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   qrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionCreateManyInput = {
@@ -608,6 +615,11 @@ export type SessionSumOrderByAggregateInput = {
 export type SessionScalarRelationFilter = {
   is?: Prisma.SessionWhereInput
   isNot?: Prisma.SessionWhereInput
+}
+
+export type SessionNullableScalarRelationFilter = {
+  is?: Prisma.SessionWhereInput | null
+  isNot?: Prisma.SessionWhereInput | null
 }
 
 export type SessionCreateNestedManyWithoutAttendanceOpenedByUserInput = {
@@ -768,6 +780,22 @@ export type SessionUpdateOneRequiredWithoutAttendancesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SessionUpdateToOneWithWhereWithoutAttendancesInput, Prisma.SessionUpdateWithoutAttendancesInput>, Prisma.SessionUncheckedUpdateWithoutAttendancesInput>
 }
 
+export type SessionCreateNestedOneWithoutMaterialsInput = {
+  create?: Prisma.XOR<Prisma.SessionCreateWithoutMaterialsInput, Prisma.SessionUncheckedCreateWithoutMaterialsInput>
+  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutMaterialsInput
+  connect?: Prisma.SessionWhereUniqueInput
+}
+
+export type SessionUpdateOneWithoutMaterialsNestedInput = {
+  create?: Prisma.XOR<Prisma.SessionCreateWithoutMaterialsInput, Prisma.SessionUncheckedCreateWithoutMaterialsInput>
+  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutMaterialsInput
+  upsert?: Prisma.SessionUpsertWithoutMaterialsInput
+  disconnect?: Prisma.SessionWhereInput | boolean
+  delete?: Prisma.SessionWhereInput | boolean
+  connect?: Prisma.SessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SessionUpdateToOneWithWhereWithoutMaterialsInput, Prisma.SessionUpdateWithoutMaterialsInput>, Prisma.SessionUncheckedUpdateWithoutMaterialsInput>
+}
+
 export type SessionCreateWithoutAttendanceOpenedByUserInput = {
   id?: string
   title: string
@@ -785,6 +813,7 @@ export type SessionCreateWithoutAttendanceOpenedByUserInput = {
   attendanceClosedByUser?: Prisma.UserCreateNestedOneWithoutClosedAttendancesInput
   qrTokens?: Prisma.QrTokenCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUncheckedCreateWithoutAttendanceOpenedByUserInput = {
@@ -804,6 +833,7 @@ export type SessionUncheckedCreateWithoutAttendanceOpenedByUserInput = {
   updatedAt?: Date | string
   qrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type SessionCreateOrConnectWithoutAttendanceOpenedByUserInput = {
@@ -833,6 +863,7 @@ export type SessionCreateWithoutAttendanceClosedByUserInput = {
   attendanceOpenedByUser?: Prisma.UserCreateNestedOneWithoutOpenedAttendancesInput
   qrTokens?: Prisma.QrTokenCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUncheckedCreateWithoutAttendanceClosedByUserInput = {
@@ -852,6 +883,7 @@ export type SessionUncheckedCreateWithoutAttendanceClosedByUserInput = {
   updatedAt?: Date | string
   qrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type SessionCreateOrConnectWithoutAttendanceClosedByUserInput = {
@@ -934,6 +966,7 @@ export type SessionCreateWithoutCohortInput = {
   attendanceClosedByUser?: Prisma.UserCreateNestedOneWithoutClosedAttendancesInput
   qrTokens?: Prisma.QrTokenCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUncheckedCreateWithoutCohortInput = {
@@ -953,6 +986,7 @@ export type SessionUncheckedCreateWithoutCohortInput = {
   updatedAt?: Date | string
   qrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutSessionInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type SessionCreateOrConnectWithoutCohortInput = {
@@ -998,6 +1032,7 @@ export type SessionCreateWithoutQrTokensInput = {
   attendanceOpenedByUser?: Prisma.UserCreateNestedOneWithoutOpenedAttendancesInput
   attendanceClosedByUser?: Prisma.UserCreateNestedOneWithoutClosedAttendancesInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUncheckedCreateWithoutQrTokensInput = {
@@ -1017,6 +1052,7 @@ export type SessionUncheckedCreateWithoutQrTokensInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type SessionCreateOrConnectWithoutQrTokensInput = {
@@ -1052,6 +1088,7 @@ export type SessionUpdateWithoutQrTokensInput = {
   attendanceOpenedByUser?: Prisma.UserUpdateOneWithoutOpenedAttendancesNestedInput
   attendanceClosedByUser?: Prisma.UserUpdateOneWithoutClosedAttendancesNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutQrTokensInput = {
@@ -1071,6 +1108,7 @@ export type SessionUncheckedUpdateWithoutQrTokensInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionCreateWithoutAttendancesInput = {
@@ -1090,6 +1128,7 @@ export type SessionCreateWithoutAttendancesInput = {
   attendanceOpenedByUser?: Prisma.UserCreateNestedOneWithoutOpenedAttendancesInput
   attendanceClosedByUser?: Prisma.UserCreateNestedOneWithoutClosedAttendancesInput
   qrTokens?: Prisma.QrTokenCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutSessionInput
 }
 
 export type SessionUncheckedCreateWithoutAttendancesInput = {
@@ -1109,6 +1148,7 @@ export type SessionUncheckedCreateWithoutAttendancesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   qrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutSessionInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type SessionCreateOrConnectWithoutAttendancesInput = {
@@ -1144,6 +1184,7 @@ export type SessionUpdateWithoutAttendancesInput = {
   attendanceOpenedByUser?: Prisma.UserUpdateOneWithoutOpenedAttendancesNestedInput
   attendanceClosedByUser?: Prisma.UserUpdateOneWithoutClosedAttendancesNestedInput
   qrTokens?: Prisma.QrTokenUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutAttendancesInput = {
@@ -1163,6 +1204,103 @@ export type SessionUncheckedUpdateWithoutAttendancesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   qrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+export type SessionCreateWithoutMaterialsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  location?: string | null
+  meetingNo: number
+  startsAt?: Date | string | null
+  endsAt?: Date | string | null
+  attendanceStatus?: $Enums.SessionAttendanceStatus
+  attendanceOpenedAt?: Date | string | null
+  attendanceClosedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cohort: Prisma.CohortCreateNestedOneWithoutSessionsInput
+  attendanceOpenedByUser?: Prisma.UserCreateNestedOneWithoutOpenedAttendancesInput
+  attendanceClosedByUser?: Prisma.UserCreateNestedOneWithoutClosedAttendancesInput
+  qrTokens?: Prisma.QrTokenCreateNestedManyWithoutSessionInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutSessionInput
+}
+
+export type SessionUncheckedCreateWithoutMaterialsInput = {
+  id?: string
+  cohortId: string
+  title: string
+  description?: string | null
+  location?: string | null
+  meetingNo: number
+  startsAt?: Date | string | null
+  endsAt?: Date | string | null
+  attendanceStatus?: $Enums.SessionAttendanceStatus
+  attendanceOpenedAt?: Date | string | null
+  attendanceOpenedBy?: string | null
+  attendanceClosedAt?: Date | string | null
+  attendanceClosedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  qrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutSessionInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutSessionInput
+}
+
+export type SessionCreateOrConnectWithoutMaterialsInput = {
+  where: Prisma.SessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.SessionCreateWithoutMaterialsInput, Prisma.SessionUncheckedCreateWithoutMaterialsInput>
+}
+
+export type SessionUpsertWithoutMaterialsInput = {
+  update: Prisma.XOR<Prisma.SessionUpdateWithoutMaterialsInput, Prisma.SessionUncheckedUpdateWithoutMaterialsInput>
+  create: Prisma.XOR<Prisma.SessionCreateWithoutMaterialsInput, Prisma.SessionUncheckedCreateWithoutMaterialsInput>
+  where?: Prisma.SessionWhereInput
+}
+
+export type SessionUpdateToOneWithWhereWithoutMaterialsInput = {
+  where?: Prisma.SessionWhereInput
+  data: Prisma.XOR<Prisma.SessionUpdateWithoutMaterialsInput, Prisma.SessionUncheckedUpdateWithoutMaterialsInput>
+}
+
+export type SessionUpdateWithoutMaterialsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
+  startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attendanceStatus?: Prisma.EnumSessionAttendanceStatusFieldUpdateOperationsInput | $Enums.SessionAttendanceStatus
+  attendanceOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attendanceClosedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cohort?: Prisma.CohortUpdateOneRequiredWithoutSessionsNestedInput
+  attendanceOpenedByUser?: Prisma.UserUpdateOneWithoutOpenedAttendancesNestedInput
+  attendanceClosedByUser?: Prisma.UserUpdateOneWithoutClosedAttendancesNestedInput
+  qrTokens?: Prisma.QrTokenUpdateManyWithoutSessionNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutSessionNestedInput
+}
+
+export type SessionUncheckedUpdateWithoutMaterialsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingNo?: Prisma.IntFieldUpdateOperationsInput | number
+  startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attendanceStatus?: Prisma.EnumSessionAttendanceStatusFieldUpdateOperationsInput | $Enums.SessionAttendanceStatus
+  attendanceOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attendanceOpenedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendanceClosedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attendanceClosedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  qrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutSessionNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionCreateManyAttendanceOpenedByUserInput = {
@@ -1216,6 +1354,7 @@ export type SessionUpdateWithoutAttendanceOpenedByUserInput = {
   attendanceClosedByUser?: Prisma.UserUpdateOneWithoutClosedAttendancesNestedInput
   qrTokens?: Prisma.QrTokenUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutAttendanceOpenedByUserInput = {
@@ -1235,6 +1374,7 @@ export type SessionUncheckedUpdateWithoutAttendanceOpenedByUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   qrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserInput = {
@@ -1271,6 +1411,7 @@ export type SessionUpdateWithoutAttendanceClosedByUserInput = {
   attendanceOpenedByUser?: Prisma.UserUpdateOneWithoutOpenedAttendancesNestedInput
   qrTokens?: Prisma.QrTokenUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutAttendanceClosedByUserInput = {
@@ -1290,6 +1431,7 @@ export type SessionUncheckedUpdateWithoutAttendanceClosedByUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   qrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateManyWithoutAttendanceClosedByUserInput = {
@@ -1343,6 +1485,7 @@ export type SessionUpdateWithoutCohortInput = {
   attendanceClosedByUser?: Prisma.UserUpdateOneWithoutClosedAttendancesNestedInput
   qrTokens?: Prisma.QrTokenUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutCohortInput = {
@@ -1362,6 +1505,7 @@ export type SessionUncheckedUpdateWithoutCohortInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   qrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutSessionNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutSessionNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type SessionUncheckedUpdateManyWithoutCohortInput = {
@@ -1389,11 +1533,13 @@ export type SessionUncheckedUpdateManyWithoutCohortInput = {
 export type SessionCountOutputType = {
   qrTokens: number
   attendances: number
+  materials: number
 }
 
 export type SessionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   qrTokens?: boolean | SessionCountOutputTypeCountQrTokensArgs
   attendances?: boolean | SessionCountOutputTypeCountAttendancesArgs
+  materials?: boolean | SessionCountOutputTypeCountMaterialsArgs
 }
 
 /**
@@ -1420,6 +1566,13 @@ export type SessionCountOutputTypeCountAttendancesArgs<ExtArgs extends runtime.T
   where?: Prisma.AttendanceWhereInput
 }
 
+/**
+ * SessionCountOutputType without action
+ */
+export type SessionCountOutputTypeCountMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MaterialWhereInput
+}
+
 
 export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1442,6 +1595,7 @@ export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   attendanceClosedByUser?: boolean | Prisma.Session$attendanceClosedByUserArgs<ExtArgs>
   qrTokens?: boolean | Prisma.Session$qrTokensArgs<ExtArgs>
   attendances?: boolean | Prisma.Session$attendancesArgs<ExtArgs>
+  materials?: boolean | Prisma.Session$materialsArgs<ExtArgs>
   _count?: boolean | Prisma.SessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["session"]>
 
@@ -1512,6 +1666,7 @@ export type SessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   attendanceClosedByUser?: boolean | Prisma.Session$attendanceClosedByUserArgs<ExtArgs>
   qrTokens?: boolean | Prisma.Session$qrTokensArgs<ExtArgs>
   attendances?: boolean | Prisma.Session$attendancesArgs<ExtArgs>
+  materials?: boolean | Prisma.Session$materialsArgs<ExtArgs>
   _count?: boolean | Prisma.SessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1533,6 +1688,7 @@ export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     attendanceClosedByUser: Prisma.$UserPayload<ExtArgs> | null
     qrTokens: Prisma.$QrTokenPayload<ExtArgs>[]
     attendances: Prisma.$AttendancePayload<ExtArgs>[]
+    materials: Prisma.$MaterialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1949,6 +2105,7 @@ export interface Prisma__SessionClient<T, Null = never, ExtArgs extends runtime.
   attendanceClosedByUser<T extends Prisma.Session$attendanceClosedByUserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$attendanceClosedByUserArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   qrTokens<T extends Prisma.Session$qrTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$qrTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QrTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendances<T extends Prisma.Session$attendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  materials<T extends Prisma.Session$materialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2477,6 +2634,30 @@ export type Session$attendancesArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.AttendanceScalarFieldEnum | Prisma.AttendanceScalarFieldEnum[]
+}
+
+/**
+ * Session.materials
+ */
+export type Session$materialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Material
+   */
+  select?: Prisma.MaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Material
+   */
+  omit?: Prisma.MaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  where?: Prisma.MaterialWhereInput
+  orderBy?: Prisma.MaterialOrderByWithRelationInput | Prisma.MaterialOrderByWithRelationInput[]
+  cursor?: Prisma.MaterialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MaterialScalarFieldEnum | Prisma.MaterialScalarFieldEnum[]
 }
 
 /**

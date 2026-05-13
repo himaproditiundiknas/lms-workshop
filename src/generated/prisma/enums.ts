@@ -90,3 +90,23 @@ export const AttendanceMethod = {
 } as const
 
 export type AttendanceMethod = (typeof AttendanceMethod)[keyof typeof AttendanceMethod]
+
+
+export const MaterialType = {
+  TEXT: 'TEXT',
+  LINK: 'LINK',
+  VIDEO: 'VIDEO',
+  DOCUMENT: 'DOCUMENT',
+  FILE: 'FILE'
+} as const
+
+export type MaterialType = (typeof MaterialType)[keyof typeof MaterialType]
+
+
+export const ContentStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ContentStatus = (typeof ContentStatus)[keyof typeof ContentStatus]
