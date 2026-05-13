@@ -98,6 +98,7 @@ model User {
   closedAttendances      Session[]              @relation("SessionAttendanceClosedBy")
   attendances            Attendance[]
   recordedAttendances    Attendance[]           @relation("AttendanceRecordedBy")
+  correctedAttendances   Attendance[]           @relation("AttendanceCorrectedBy")
   createdQrTokens        QrToken[]              @relation("QrTokenCreatedBy")
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -351,12 +352,16 @@ model Attendance {
 
   checkedInAt DateTime @default(now()) @map("checked_in_at")
 
-  recordedById String? @map("recorded_by_id") @db.Uuid
-  note         String?
+  recordedById  String?   @map("recorded_by_id") @db.Uuid
+  correctedById String?   @map("corrected_by_id") @db.Uuid
+  correctedAt   DateTime? @map("corrected_at")
 
-  session    Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  recordedBy User?   @relation("AttendanceRecordedBy", fields: [recordedById], references: [id], onDelete: SetNull)
+  note String?
+
+  session     Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recordedBy  User?   @relation("AttendanceRecordedBy", fields: [recordedById], references: [id], onDelete: SetNull)
+  correctedBy User?   @relation("AttendanceCorrectedBy", fields: [correctedById], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

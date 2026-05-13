@@ -1596,6 +1596,8 @@ export const AttendanceScalarFieldEnum = {
   method: 'method',
   checkedInAt: 'checkedInAt',
   recordedById: 'recordedById',
+  correctedById: 'correctedById',
+  correctedAt: 'correctedAt',
   note: 'note',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

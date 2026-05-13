@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState, useTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
 import { QRCodeSVG } from "qrcode.react";
 import {
   generateAttendanceQrTokenAction,
@@ -11,22 +17,26 @@ type QrDisplayProps = {
   sessionId: string;
 };
 
-const REGENERATE_INTERVAL_MS = 10_000;
+const REGENERATE_INTERVAL_MS = 5_000;
+const REGENERATE_INTERVAL_SECONDS = REGENERATE_INTERVAL_MS / 1_000;
 
 export function QrDisplay({ sessionId }: QrDisplayProps) {
   const [result, setResult] = useState<GenerateAttendanceQrTokenResult | null>(
     null,
   );
-  const [remainingSeconds, setRemainingSeconds] = useState(10);
+  const [remainingSeconds, setRemainingSeconds] = useState(
+    REGENERATE_INTERVAL_SECONDS,
+  );
   const [isPending, startTransition] = useTransition();
 
-  function generateToken() {
+  const generateToken = useCallback(() => {
     startTransition(async () => {
       const nextResult = await generateAttendanceQrTokenAction(sessionId);
+
       setResult(nextResult);
-      setRemainingSeconds(10);
+      setRemainingSeconds(REGENERATE_INTERVAL_SECONDS);
     });
-  }
+  }, [sessionId]);
 
   useEffect(() => {
     generateToken();
@@ -38,7 +48,7 @@ export function QrDisplay({ sessionId }: QrDisplayProps) {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [sessionId]);
+  }, [generateToken]);
 
   useEffect(() => {
     const countdownId = window.setInterval(() => {
@@ -72,7 +82,7 @@ export function QrDisplay({ sessionId }: QrDisplayProps) {
       <div>
         <h2 className="text-xl font-semibold text-slate-950">QR Presensi</h2>
         <p className="mt-2 text-sm text-slate-600">
-          QR otomatis diperbarui setiap 10 detik.
+          QR otomatis diperbarui setiap {REGENERATE_INTERVAL_SECONDS} detik.
         </p>
       </div>
 
@@ -90,12 +100,14 @@ export function QrDisplay({ sessionId }: QrDisplayProps) {
         <p className="text-sm font-medium text-slate-700">
           Regenerate dalam {remainingSeconds} detik
         </p>
+
         {result?.ok ? (
           <p className="mt-1 text-xs text-slate-500">
             Token expires at{" "}
             {new Date(result.expiresAt).toLocaleTimeString("id-ID")}
           </p>
         ) : null}
+
         {process.env.NODE_ENV === "development" && result?.ok ? (
           <details className="mt-4 rounded-lg border border-slate-200 bg-white p-3 text-left">
             <summary className="cursor-pointer text-xs font-medium text-slate-600">
