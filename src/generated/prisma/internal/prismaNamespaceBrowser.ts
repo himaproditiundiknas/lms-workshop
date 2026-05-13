@@ -173,9 +173,13 @@ export const EnrollmentScalarFieldEnum = {
   invitationCodeId: 'invitationCodeId',
   scope: 'scope',
   targetId: 'targetId',
+  cohortId: 'cohortId',
   status: 'status',
   approvedAt: 'approvedAt',
   rejectedAt: 'rejectedAt',
+  approvedById: 'approvedById',
+  rejectedById: 'rejectedById',
+  rejectionReason: 'rejectionReason',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

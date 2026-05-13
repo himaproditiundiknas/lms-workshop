@@ -30,9 +30,13 @@ export type EnrollmentMinAggregateOutputType = {
   invitationCodeId: string | null
   scope: $Enums.InvitationScope | null
   targetId: string | null
+  cohortId: string | null
   status: $Enums.EnrollmentStatus | null
   approvedAt: Date | null
   rejectedAt: Date | null
+  approvedById: string | null
+  rejectedById: string | null
+  rejectionReason: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -43,9 +47,13 @@ export type EnrollmentMaxAggregateOutputType = {
   invitationCodeId: string | null
   scope: $Enums.InvitationScope | null
   targetId: string | null
+  cohortId: string | null
   status: $Enums.EnrollmentStatus | null
   approvedAt: Date | null
   rejectedAt: Date | null
+  approvedById: string | null
+  rejectedById: string | null
+  rejectionReason: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,9 +64,13 @@ export type EnrollmentCountAggregateOutputType = {
   invitationCodeId: number
   scope: number
   targetId: number
+  cohortId: number
   status: number
   approvedAt: number
   rejectedAt: number
+  approvedById: number
+  rejectedById: number
+  rejectionReason: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -71,9 +83,13 @@ export type EnrollmentMinAggregateInputType = {
   invitationCodeId?: true
   scope?: true
   targetId?: true
+  cohortId?: true
   status?: true
   approvedAt?: true
   rejectedAt?: true
+  approvedById?: true
+  rejectedById?: true
+  rejectionReason?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -84,9 +100,13 @@ export type EnrollmentMaxAggregateInputType = {
   invitationCodeId?: true
   scope?: true
   targetId?: true
+  cohortId?: true
   status?: true
   approvedAt?: true
   rejectedAt?: true
+  approvedById?: true
+  rejectedById?: true
+  rejectionReason?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,9 +117,13 @@ export type EnrollmentCountAggregateInputType = {
   invitationCodeId?: true
   scope?: true
   targetId?: true
+  cohortId?: true
   status?: true
   approvedAt?: true
   rejectedAt?: true
+  approvedById?: true
+  rejectedById?: true
+  rejectionReason?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -183,9 +207,13 @@ export type EnrollmentGroupByOutputType = {
   invitationCodeId: string | null
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId: string | null
   status: $Enums.EnrollmentStatus
   approvedAt: Date | null
   rejectedAt: Date | null
+  approvedById: string | null
+  rejectedById: string | null
+  rejectionReason: string | null
   createdAt: Date
   updatedAt: Date
   _count: EnrollmentCountAggregateOutputType | null
@@ -217,9 +245,13 @@ export type EnrollmentWhereInput = {
   invitationCodeId?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
   scope?: Prisma.EnumInvitationScopeFilter<"Enrollment"> | $Enums.InvitationScope
   targetId?: Prisma.UuidFilter<"Enrollment"> | string
+  cohortId?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
   status?: Prisma.EnumEnrollmentStatusFilter<"Enrollment"> | $Enums.EnrollmentStatus
   approvedAt?: Prisma.DateTimeNullableFilter<"Enrollment"> | Date | string | null
   rejectedAt?: Prisma.DateTimeNullableFilter<"Enrollment"> | Date | string | null
+  approvedById?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
+  rejectedById?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
+  rejectionReason?: Prisma.StringNullableFilter<"Enrollment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Enrollment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollment"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -232,9 +264,13 @@ export type EnrollmentOrderByWithRelationInput = {
   invitationCodeId?: Prisma.SortOrderInput | Prisma.SortOrder
   scope?: Prisma.SortOrder
   targetId?: Prisma.SortOrder
+  cohortId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -251,9 +287,13 @@ export type EnrollmentWhereUniqueInput = Prisma.AtLeast<{
   invitationCodeId?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
   scope?: Prisma.EnumInvitationScopeFilter<"Enrollment"> | $Enums.InvitationScope
   targetId?: Prisma.UuidFilter<"Enrollment"> | string
+  cohortId?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
   status?: Prisma.EnumEnrollmentStatusFilter<"Enrollment"> | $Enums.EnrollmentStatus
   approvedAt?: Prisma.DateTimeNullableFilter<"Enrollment"> | Date | string | null
   rejectedAt?: Prisma.DateTimeNullableFilter<"Enrollment"> | Date | string | null
+  approvedById?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
+  rejectedById?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
+  rejectionReason?: Prisma.StringNullableFilter<"Enrollment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Enrollment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollment"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -266,9 +306,13 @@ export type EnrollmentOrderByWithAggregationInput = {
   invitationCodeId?: Prisma.SortOrderInput | Prisma.SortOrder
   scope?: Prisma.SortOrder
   targetId?: Prisma.SortOrder
+  cohortId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EnrollmentCountOrderByAggregateInput
@@ -285,9 +329,13 @@ export type EnrollmentScalarWhereWithAggregatesInput = {
   invitationCodeId?: Prisma.UuidNullableWithAggregatesFilter<"Enrollment"> | string | null
   scope?: Prisma.EnumInvitationScopeWithAggregatesFilter<"Enrollment"> | $Enums.InvitationScope
   targetId?: Prisma.UuidWithAggregatesFilter<"Enrollment"> | string
+  cohortId?: Prisma.UuidNullableWithAggregatesFilter<"Enrollment"> | string | null
   status?: Prisma.EnumEnrollmentStatusWithAggregatesFilter<"Enrollment"> | $Enums.EnrollmentStatus
   approvedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Enrollment"> | Date | string | null
   rejectedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Enrollment"> | Date | string | null
+  approvedById?: Prisma.UuidNullableWithAggregatesFilter<"Enrollment"> | string | null
+  rejectedById?: Prisma.UuidNullableWithAggregatesFilter<"Enrollment"> | string | null
+  rejectionReason?: Prisma.StringNullableWithAggregatesFilter<"Enrollment"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Enrollment"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Enrollment"> | Date | string
 }
@@ -296,9 +344,13 @@ export type EnrollmentCreateInput = {
   id?: string
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
@@ -311,9 +363,13 @@ export type EnrollmentUncheckedCreateInput = {
   invitationCodeId?: string | null
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -322,9 +378,13 @@ export type EnrollmentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
@@ -337,9 +397,13 @@ export type EnrollmentUncheckedUpdateInput = {
   invitationCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -350,9 +414,13 @@ export type EnrollmentCreateManyInput = {
   invitationCodeId?: string | null
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -361,9 +429,13 @@ export type EnrollmentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -374,9 +446,13 @@ export type EnrollmentUncheckedUpdateManyInput = {
   invitationCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -403,9 +479,13 @@ export type EnrollmentCountOrderByAggregateInput = {
   invitationCodeId?: Prisma.SortOrder
   scope?: Prisma.SortOrder
   targetId?: Prisma.SortOrder
+  cohortId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   rejectedAt?: Prisma.SortOrder
+  approvedById?: Prisma.SortOrder
+  rejectedById?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -416,9 +496,13 @@ export type EnrollmentMaxOrderByAggregateInput = {
   invitationCodeId?: Prisma.SortOrder
   scope?: Prisma.SortOrder
   targetId?: Prisma.SortOrder
+  cohortId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   rejectedAt?: Prisma.SortOrder
+  approvedById?: Prisma.SortOrder
+  rejectedById?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -429,9 +513,13 @@ export type EnrollmentMinOrderByAggregateInput = {
   invitationCodeId?: Prisma.SortOrder
   scope?: Prisma.SortOrder
   targetId?: Prisma.SortOrder
+  cohortId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   rejectedAt?: Prisma.SortOrder
+  approvedById?: Prisma.SortOrder
+  rejectedById?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -528,9 +616,13 @@ export type EnrollmentCreateWithoutUserInput = {
   id?: string
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitationCode?: Prisma.InvitationCodeCreateNestedOneWithoutEnrollmentsInput
@@ -541,9 +633,13 @@ export type EnrollmentUncheckedCreateWithoutUserInput = {
   invitationCodeId?: string | null
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -583,9 +679,13 @@ export type EnrollmentScalarWhereInput = {
   invitationCodeId?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
   scope?: Prisma.EnumInvitationScopeFilter<"Enrollment"> | $Enums.InvitationScope
   targetId?: Prisma.UuidFilter<"Enrollment"> | string
+  cohortId?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
   status?: Prisma.EnumEnrollmentStatusFilter<"Enrollment"> | $Enums.EnrollmentStatus
   approvedAt?: Prisma.DateTimeNullableFilter<"Enrollment"> | Date | string | null
   rejectedAt?: Prisma.DateTimeNullableFilter<"Enrollment"> | Date | string | null
+  approvedById?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
+  rejectedById?: Prisma.UuidNullableFilter<"Enrollment"> | string | null
+  rejectionReason?: Prisma.StringNullableFilter<"Enrollment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Enrollment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enrollment"> | Date | string
 }
@@ -594,9 +694,13 @@ export type EnrollmentCreateWithoutInvitationCodeInput = {
   id?: string
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutEnrollmentsInput
@@ -607,9 +711,13 @@ export type EnrollmentUncheckedCreateWithoutInvitationCodeInput = {
   userId: string
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -645,9 +753,13 @@ export type EnrollmentCreateManyUserInput = {
   invitationCodeId?: string | null
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -656,9 +768,13 @@ export type EnrollmentUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitationCode?: Prisma.InvitationCodeUpdateOneWithoutEnrollmentsNestedInput
@@ -669,9 +785,13 @@ export type EnrollmentUncheckedUpdateWithoutUserInput = {
   invitationCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -681,9 +801,13 @@ export type EnrollmentUncheckedUpdateManyWithoutUserInput = {
   invitationCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -693,9 +817,13 @@ export type EnrollmentCreateManyInvitationCodeInput = {
   userId: string
   scope: $Enums.InvitationScope
   targetId: string
+  cohortId?: string | null
   status?: $Enums.EnrollmentStatus
   approvedAt?: Date | string | null
   rejectedAt?: Date | string | null
+  approvedById?: string | null
+  rejectedById?: string | null
+  rejectionReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -704,9 +832,13 @@ export type EnrollmentUpdateWithoutInvitationCodeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutEnrollmentsNestedInput
@@ -717,9 +849,13 @@ export type EnrollmentUncheckedUpdateWithoutInvitationCodeInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -729,9 +865,13 @@ export type EnrollmentUncheckedUpdateManyWithoutInvitationCodeInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
   targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  cohortId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEnrollmentStatusFieldUpdateOperationsInput | $Enums.EnrollmentStatus
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -744,9 +884,13 @@ export type EnrollmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   invitationCodeId?: boolean
   scope?: boolean
   targetId?: boolean
+  cohortId?: boolean
   status?: boolean
   approvedAt?: boolean
   rejectedAt?: boolean
+  approvedById?: boolean
+  rejectedById?: boolean
+  rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -759,9 +903,13 @@ export type EnrollmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   invitationCodeId?: boolean
   scope?: boolean
   targetId?: boolean
+  cohortId?: boolean
   status?: boolean
   approvedAt?: boolean
   rejectedAt?: boolean
+  approvedById?: boolean
+  rejectedById?: boolean
+  rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -774,9 +922,13 @@ export type EnrollmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   invitationCodeId?: boolean
   scope?: boolean
   targetId?: boolean
+  cohortId?: boolean
   status?: boolean
   approvedAt?: boolean
   rejectedAt?: boolean
+  approvedById?: boolean
+  rejectedById?: boolean
+  rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -789,14 +941,18 @@ export type EnrollmentSelectScalar = {
   invitationCodeId?: boolean
   scope?: boolean
   targetId?: boolean
+  cohortId?: boolean
   status?: boolean
   approvedAt?: boolean
   rejectedAt?: boolean
+  approvedById?: boolean
+  rejectedById?: boolean
+  rejectionReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EnrollmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "invitationCodeId" | "scope" | "targetId" | "status" | "approvedAt" | "rejectedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["enrollment"]>
+export type EnrollmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "invitationCodeId" | "scope" | "targetId" | "cohortId" | "status" | "approvedAt" | "rejectedAt" | "approvedById" | "rejectedById" | "rejectionReason" | "createdAt" | "updatedAt", ExtArgs["result"]["enrollment"]>
 export type EnrollmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   invitationCode?: boolean | Prisma.Enrollment$invitationCodeArgs<ExtArgs>
@@ -822,9 +978,13 @@ export type $EnrollmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     invitationCodeId: string | null
     scope: $Enums.InvitationScope
     targetId: string
+    cohortId: string | null
     status: $Enums.EnrollmentStatus
     approvedAt: Date | null
     rejectedAt: Date | null
+    approvedById: string | null
+    rejectedById: string | null
+    rejectionReason: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["enrollment"]>
@@ -1257,9 +1417,13 @@ export interface EnrollmentFieldRefs {
   readonly invitationCodeId: Prisma.FieldRef<"Enrollment", 'String'>
   readonly scope: Prisma.FieldRef<"Enrollment", 'InvitationScope'>
   readonly targetId: Prisma.FieldRef<"Enrollment", 'String'>
+  readonly cohortId: Prisma.FieldRef<"Enrollment", 'String'>
   readonly status: Prisma.FieldRef<"Enrollment", 'EnrollmentStatus'>
   readonly approvedAt: Prisma.FieldRef<"Enrollment", 'DateTime'>
   readonly rejectedAt: Prisma.FieldRef<"Enrollment", 'DateTime'>
+  readonly approvedById: Prisma.FieldRef<"Enrollment", 'String'>
+  readonly rejectedById: Prisma.FieldRef<"Enrollment", 'String'>
+  readonly rejectionReason: Prisma.FieldRef<"Enrollment", 'String'>
   readonly createdAt: Prisma.FieldRef<"Enrollment", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Enrollment", 'DateTime'>
 }
