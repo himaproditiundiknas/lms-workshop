@@ -42,6 +42,7 @@ model User {
 
   createdInvitationCodes InvitationCode[]       @relation("InvitationCodeCreatedBy")
   invitationRedemptions  InvitationRedemption[]
+  auditLogs              AuditLog[]             @relation("AuditLogActor")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -136,4 +137,23 @@ model InvitationRedemption {
   @@unique([invitationCodeId, userId])
   @@index([userId])
   @@map("invitation_redemptions")
+}
+
+model AuditLog {
+  id String @id @default(uuid()) @db.Uuid
+
+  actorUserId String? @map("actor_user_id") @db.Uuid
+  actorUser   User?   @relation("AuditLogActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  action     String
+  entityType String  @map("entity_type")
+  entityId   String? @map("entity_id") @db.Uuid
+  metadata   Json?
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([actorUserId])
+  @@index([action])
+  @@index([entityType, entityId])
+  @@map("audit_logs")
 }
