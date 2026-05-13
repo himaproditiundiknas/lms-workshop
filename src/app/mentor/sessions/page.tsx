@@ -2,6 +2,7 @@ import { requireMentorOrAdmin } from "@/lib/auth/require-mentor-or-admin";
 import { prisma } from "@/lib/prisma";
 import { LogoutButton } from "@/components/logout-button";
 import { SessionAttendanceActions } from "@/components/attendance/session-attendance-actions";
+import Link from "next/link";
 
 function formatDateTime(date: Date | null) {
   if (!date) {
@@ -106,10 +107,21 @@ export default async function MentorSessionsPage() {
                     </span>
                   </td>
                   <td className="py-3 pr-4">
-                    <SessionAttendanceActions
-                      sessionId={session.id}
-                      attendanceStatus={session.attendanceStatus}
-                    />
+                    <div className="space-y-2">
+                      <SessionAttendanceActions
+                        sessionId={session.id}
+                        attendanceStatus={session.attendanceStatus}
+                      />
+
+                      {session.attendanceStatus === "OPEN" ? (
+                        <Link
+                          href={`/mentor/sessions/${session.id}/qr`}
+                          className="inline-flex rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-100"
+                        >
+                          Show QR
+                        </Link>
+                      ) : null}
+                    </div>
                   </td>
                 </tr>
               ))}

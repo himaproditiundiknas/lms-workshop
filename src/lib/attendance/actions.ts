@@ -160,6 +160,12 @@ export async function closeAttendanceAction(
       },
     });
 
+    await tx.qrToken.deleteMany({
+      where: {
+        sessionId: session.id,
+      },
+    });
+
     const approvedEnrollments = await tx.enrollment.findMany({
       where: {
         cohortId: session.cohortId,
