@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { LogoutButton } from "@/components/logout-button";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -20,6 +21,9 @@ export default async function DashboardPage() {
           Login berhasil. Halaman ini menjadi placeholder untuk next required
           step setelah profil lengkap.
         </p>
+        <div className="mt-6">
+          <LogoutButton />
+        </div>
       </section>
     </main>
   );

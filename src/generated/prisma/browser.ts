@@ -47,3 +47,8 @@ export type InvitationCode = Prisma.InvitationCodeModel
  * 
  */
 export type InvitationRedemption = Prisma.InvitationRedemptionModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
