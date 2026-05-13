@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
+import { RedeemInvitationForm } from "./redeem-form";
 
 export default async function RedeemInvitationPage() {
   const supabase = await createClient();
@@ -19,11 +20,21 @@ export default async function RedeemInvitationPage() {
     },
     include: {
       profile: true,
+      enrollments: {
+        where: {
+          status: "PENDING",
+        },
+        take: 1,
+      },
     },
   });
 
   if (!appUser?.profile?.profileCompletedAt) {
     redirect("/complete-profile");
+  }
+
+  if (appUser.enrollments.length > 0) {
+    redirect("/pending-approval");
   }
 
   return (
@@ -34,9 +45,12 @@ export default async function RedeemInvitationPage() {
           Redeem Kode Undangan
         </h1>
         <p className="mt-3 text-sm text-slate-600">
-          Profil kamu sudah lengkap. Form redeem kode undangan akan
-          diimplementasikan di issue berikutnya.
+          Masukkan kode undangan yang diberikan admin untuk mendaftar workshop.
         </p>
+
+        <div className="mt-8">
+          <RedeemInvitationForm />
+        </div>
       </section>
     </main>
   );

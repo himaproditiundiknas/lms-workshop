@@ -57,7 +57,8 @@ export const ModelName = {
   UserRole: 'UserRole',
   InvitationCode: 'InvitationCode',
   InvitationRedemption: 'InvitationRedemption',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  Enrollment: 'Enrollment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -164,6 +165,22 @@ export const AuditLogScalarFieldEnum = {
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const EnrollmentScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  invitationCodeId: 'invitationCodeId',
+  scope: 'scope',
+  targetId: 'targetId',
+  status: 'status',
+  approvedAt: 'approvedAt',
+  rejectedAt: 'rejectedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
 
 
 export const SortOrder = {

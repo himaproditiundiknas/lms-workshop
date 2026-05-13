@@ -52,3 +52,8 @@ export type InvitationRedemption = Prisma.InvitationRedemptionModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model Enrollment
+ * 
+ */
+export type Enrollment = Prisma.EnrollmentModel

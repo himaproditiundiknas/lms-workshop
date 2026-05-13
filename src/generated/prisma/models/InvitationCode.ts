@@ -270,6 +270,7 @@ export type InvitationCodeWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"InvitationCode"> | Date | string
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   redemptions?: Prisma.InvitationRedemptionListRelationFilter
+  enrollments?: Prisma.EnrollmentListRelationFilter
 }
 
 export type InvitationCodeOrderByWithRelationInput = {
@@ -286,6 +287,7 @@ export type InvitationCodeOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.UserOrderByWithRelationInput
   redemptions?: Prisma.InvitationRedemptionOrderByRelationAggregateInput
+  enrollments?: Prisma.EnrollmentOrderByRelationAggregateInput
 }
 
 export type InvitationCodeWhereUniqueInput = Prisma.AtLeast<{
@@ -305,6 +307,7 @@ export type InvitationCodeWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"InvitationCode"> | Date | string
   createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   redemptions?: Prisma.InvitationRedemptionListRelationFilter
+  enrollments?: Prisma.EnrollmentListRelationFilter
 }, "id" | "codeHash">
 
 export type InvitationCodeOrderByWithAggregationInput = {
@@ -356,6 +359,7 @@ export type InvitationCodeCreateInput = {
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInvitationCodesInput
   redemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutInvitationCodeInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutInvitationCodeInput
 }
 
 export type InvitationCodeUncheckedCreateInput = {
@@ -371,6 +375,7 @@ export type InvitationCodeUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   redemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutInvitationCodeInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutInvitationCodeInput
 }
 
 export type InvitationCodeUpdateInput = {
@@ -386,6 +391,7 @@ export type InvitationCodeUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInvitationCodesNestedInput
   redemptions?: Prisma.InvitationRedemptionUpdateManyWithoutInvitationCodeNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutInvitationCodeNestedInput
 }
 
 export type InvitationCodeUncheckedUpdateInput = {
@@ -401,6 +407,7 @@ export type InvitationCodeUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   redemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutInvitationCodeNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutInvitationCodeNestedInput
 }
 
 export type InvitationCodeCreateManyInput = {
@@ -511,6 +518,11 @@ export type InvitationCodeScalarRelationFilter = {
   isNot?: Prisma.InvitationCodeWhereInput
 }
 
+export type InvitationCodeNullableScalarRelationFilter = {
+  is?: Prisma.InvitationCodeWhereInput | null
+  isNot?: Prisma.InvitationCodeWhereInput | null
+}
+
 export type InvitationCodeCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.InvitationCodeCreateWithoutCreatedByInput, Prisma.InvitationCodeUncheckedCreateWithoutCreatedByInput> | Prisma.InvitationCodeCreateWithoutCreatedByInput[] | Prisma.InvitationCodeUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.InvitationCodeCreateOrConnectWithoutCreatedByInput | Prisma.InvitationCodeCreateOrConnectWithoutCreatedByInput[]
@@ -583,6 +595,22 @@ export type InvitationCodeUpdateOneRequiredWithoutRedemptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InvitationCodeUpdateToOneWithWhereWithoutRedemptionsInput, Prisma.InvitationCodeUpdateWithoutRedemptionsInput>, Prisma.InvitationCodeUncheckedUpdateWithoutRedemptionsInput>
 }
 
+export type InvitationCodeCreateNestedOneWithoutEnrollmentsInput = {
+  create?: Prisma.XOR<Prisma.InvitationCodeCreateWithoutEnrollmentsInput, Prisma.InvitationCodeUncheckedCreateWithoutEnrollmentsInput>
+  connectOrCreate?: Prisma.InvitationCodeCreateOrConnectWithoutEnrollmentsInput
+  connect?: Prisma.InvitationCodeWhereUniqueInput
+}
+
+export type InvitationCodeUpdateOneWithoutEnrollmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.InvitationCodeCreateWithoutEnrollmentsInput, Prisma.InvitationCodeUncheckedCreateWithoutEnrollmentsInput>
+  connectOrCreate?: Prisma.InvitationCodeCreateOrConnectWithoutEnrollmentsInput
+  upsert?: Prisma.InvitationCodeUpsertWithoutEnrollmentsInput
+  disconnect?: Prisma.InvitationCodeWhereInput | boolean
+  delete?: Prisma.InvitationCodeWhereInput | boolean
+  connect?: Prisma.InvitationCodeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InvitationCodeUpdateToOneWithWhereWithoutEnrollmentsInput, Prisma.InvitationCodeUpdateWithoutEnrollmentsInput>, Prisma.InvitationCodeUncheckedUpdateWithoutEnrollmentsInput>
+}
+
 export type InvitationCodeCreateWithoutCreatedByInput = {
   id?: string
   codeHash: string
@@ -595,6 +623,7 @@ export type InvitationCodeCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   redemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutInvitationCodeInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutInvitationCodeInput
 }
 
 export type InvitationCodeUncheckedCreateWithoutCreatedByInput = {
@@ -609,6 +638,7 @@ export type InvitationCodeUncheckedCreateWithoutCreatedByInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   redemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutInvitationCodeInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutInvitationCodeInput
 }
 
 export type InvitationCodeCreateOrConnectWithoutCreatedByInput = {
@@ -666,6 +696,7 @@ export type InvitationCodeCreateWithoutRedemptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInvitationCodesInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutInvitationCodeInput
 }
 
 export type InvitationCodeUncheckedCreateWithoutRedemptionsInput = {
@@ -680,6 +711,7 @@ export type InvitationCodeUncheckedCreateWithoutRedemptionsInput = {
   createdById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutInvitationCodeInput
 }
 
 export type InvitationCodeCreateOrConnectWithoutRedemptionsInput = {
@@ -710,6 +742,7 @@ export type InvitationCodeUpdateWithoutRedemptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneWithoutCreatedInvitationCodesNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutInvitationCodeNestedInput
 }
 
 export type InvitationCodeUncheckedUpdateWithoutRedemptionsInput = {
@@ -724,6 +757,83 @@ export type InvitationCodeUncheckedUpdateWithoutRedemptionsInput = {
   createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutInvitationCodeNestedInput
+}
+
+export type InvitationCodeCreateWithoutEnrollmentsInput = {
+  id?: string
+  codeHash: string
+  scope: $Enums.InvitationScope
+  targetId: string
+  status?: $Enums.InvitationCodeStatus
+  maxUses?: number
+  usedCount?: number
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdBy?: Prisma.UserCreateNestedOneWithoutCreatedInvitationCodesInput
+  redemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutInvitationCodeInput
+}
+
+export type InvitationCodeUncheckedCreateWithoutEnrollmentsInput = {
+  id?: string
+  codeHash: string
+  scope: $Enums.InvitationScope
+  targetId: string
+  status?: $Enums.InvitationCodeStatus
+  maxUses?: number
+  usedCount?: number
+  expiresAt?: Date | string | null
+  createdById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  redemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutInvitationCodeInput
+}
+
+export type InvitationCodeCreateOrConnectWithoutEnrollmentsInput = {
+  where: Prisma.InvitationCodeWhereUniqueInput
+  create: Prisma.XOR<Prisma.InvitationCodeCreateWithoutEnrollmentsInput, Prisma.InvitationCodeUncheckedCreateWithoutEnrollmentsInput>
+}
+
+export type InvitationCodeUpsertWithoutEnrollmentsInput = {
+  update: Prisma.XOR<Prisma.InvitationCodeUpdateWithoutEnrollmentsInput, Prisma.InvitationCodeUncheckedUpdateWithoutEnrollmentsInput>
+  create: Prisma.XOR<Prisma.InvitationCodeCreateWithoutEnrollmentsInput, Prisma.InvitationCodeUncheckedCreateWithoutEnrollmentsInput>
+  where?: Prisma.InvitationCodeWhereInput
+}
+
+export type InvitationCodeUpdateToOneWithWhereWithoutEnrollmentsInput = {
+  where?: Prisma.InvitationCodeWhereInput
+  data: Prisma.XOR<Prisma.InvitationCodeUpdateWithoutEnrollmentsInput, Prisma.InvitationCodeUncheckedUpdateWithoutEnrollmentsInput>
+}
+
+export type InvitationCodeUpdateWithoutEnrollmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeHash?: Prisma.StringFieldUpdateOperationsInput | string
+  scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
+  targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumInvitationCodeStatusFieldUpdateOperationsInput | $Enums.InvitationCodeStatus
+  maxUses?: Prisma.IntFieldUpdateOperationsInput | number
+  usedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.UserUpdateOneWithoutCreatedInvitationCodesNestedInput
+  redemptions?: Prisma.InvitationRedemptionUpdateManyWithoutInvitationCodeNestedInput
+}
+
+export type InvitationCodeUncheckedUpdateWithoutEnrollmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeHash?: Prisma.StringFieldUpdateOperationsInput | string
+  scope?: Prisma.EnumInvitationScopeFieldUpdateOperationsInput | $Enums.InvitationScope
+  targetId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumInvitationCodeStatusFieldUpdateOperationsInput | $Enums.InvitationCodeStatus
+  maxUses?: Prisma.IntFieldUpdateOperationsInput | number
+  usedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  redemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutInvitationCodeNestedInput
 }
 
 export type InvitationCodeCreateManyCreatedByInput = {
@@ -751,6 +861,7 @@ export type InvitationCodeUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   redemptions?: Prisma.InvitationRedemptionUpdateManyWithoutInvitationCodeNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutInvitationCodeNestedInput
 }
 
 export type InvitationCodeUncheckedUpdateWithoutCreatedByInput = {
@@ -765,6 +876,7 @@ export type InvitationCodeUncheckedUpdateWithoutCreatedByInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   redemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutInvitationCodeNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutInvitationCodeNestedInput
 }
 
 export type InvitationCodeUncheckedUpdateManyWithoutCreatedByInput = {
@@ -787,10 +899,12 @@ export type InvitationCodeUncheckedUpdateManyWithoutCreatedByInput = {
 
 export type InvitationCodeCountOutputType = {
   redemptions: number
+  enrollments: number
 }
 
 export type InvitationCodeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   redemptions?: boolean | InvitationCodeCountOutputTypeCountRedemptionsArgs
+  enrollments?: boolean | InvitationCodeCountOutputTypeCountEnrollmentsArgs
 }
 
 /**
@@ -810,6 +924,13 @@ export type InvitationCodeCountOutputTypeCountRedemptionsArgs<ExtArgs extends ru
   where?: Prisma.InvitationRedemptionWhereInput
 }
 
+/**
+ * InvitationCodeCountOutputType without action
+ */
+export type InvitationCodeCountOutputTypeCountEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EnrollmentWhereInput
+}
+
 
 export type InvitationCodeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -825,6 +946,7 @@ export type InvitationCodeSelect<ExtArgs extends runtime.Types.Extensions.Intern
   updatedAt?: boolean
   createdBy?: boolean | Prisma.InvitationCode$createdByArgs<ExtArgs>
   redemptions?: boolean | Prisma.InvitationCode$redemptionsArgs<ExtArgs>
+  enrollments?: boolean | Prisma.InvitationCode$enrollmentsArgs<ExtArgs>
   _count?: boolean | Prisma.InvitationCodeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invitationCode"]>
 
@@ -876,6 +998,7 @@ export type InvitationCodeOmit<ExtArgs extends runtime.Types.Extensions.Internal
 export type InvitationCodeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdBy?: boolean | Prisma.InvitationCode$createdByArgs<ExtArgs>
   redemptions?: boolean | Prisma.InvitationCode$redemptionsArgs<ExtArgs>
+  enrollments?: boolean | Prisma.InvitationCode$enrollmentsArgs<ExtArgs>
   _count?: boolean | Prisma.InvitationCodeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InvitationCodeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -890,6 +1013,7 @@ export type $InvitationCodePayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     createdBy: Prisma.$UserPayload<ExtArgs> | null
     redemptions: Prisma.$InvitationRedemptionPayload<ExtArgs>[]
+    enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1299,6 +1423,7 @@ export interface Prisma__InvitationCodeClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   createdBy<T extends Prisma.InvitationCode$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InvitationCode$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   redemptions<T extends Prisma.InvitationCode$redemptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InvitationCode$redemptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationRedemptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  enrollments<T extends Prisma.InvitationCode$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InvitationCode$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1780,6 +1905,30 @@ export type InvitationCode$redemptionsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.InvitationRedemptionScalarFieldEnum | Prisma.InvitationRedemptionScalarFieldEnum[]
+}
+
+/**
+ * InvitationCode.enrollments
+ */
+export type InvitationCode$enrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Enrollment
+   */
+  select?: Prisma.EnrollmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Enrollment
+   */
+  omit?: Prisma.EnrollmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnrollmentInclude<ExtArgs> | null
+  where?: Prisma.EnrollmentWhereInput
+  orderBy?: Prisma.EnrollmentOrderByWithRelationInput | Prisma.EnrollmentOrderByWithRelationInput[]
+  cursor?: Prisma.EnrollmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EnrollmentScalarFieldEnum | Prisma.EnrollmentScalarFieldEnum[]
 }
 
 /**

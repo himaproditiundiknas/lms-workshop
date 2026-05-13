@@ -34,3 +34,13 @@ export const InvitationCodeStatus = {
 } as const
 
 export type InvitationCodeStatus = (typeof InvitationCodeStatus)[keyof typeof InvitationCodeStatus]
+
+
+export const EnrollmentStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]
