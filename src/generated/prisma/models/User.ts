@@ -200,6 +200,7 @@ export type UserWhereInput = {
   closedAttendances?: Prisma.SessionListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
   recordedAttendances?: Prisma.AttendanceListRelationFilter
+  correctedAttendances?: Prisma.AttendanceListRelationFilter
   createdQrTokens?: Prisma.QrTokenListRelationFilter
 }
 
@@ -220,6 +221,7 @@ export type UserOrderByWithRelationInput = {
   closedAttendances?: Prisma.SessionOrderByRelationAggregateInput
   attendances?: Prisma.AttendanceOrderByRelationAggregateInput
   recordedAttendances?: Prisma.AttendanceOrderByRelationAggregateInput
+  correctedAttendances?: Prisma.AttendanceOrderByRelationAggregateInput
   createdQrTokens?: Prisma.QrTokenOrderByRelationAggregateInput
 }
 
@@ -243,6 +245,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   closedAttendances?: Prisma.SessionListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
   recordedAttendances?: Prisma.AttendanceListRelationFilter
+  correctedAttendances?: Prisma.AttendanceListRelationFilter
   createdQrTokens?: Prisma.QrTokenListRelationFilter
 }, "id" | "email" | "googleSub">
 
@@ -287,6 +290,7 @@ export type UserCreateInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -307,6 +311,7 @@ export type UserUncheckedCreateInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -327,6 +332,7 @@ export type UserUpdateInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -347,6 +353,7 @@ export type UserUncheckedUpdateInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -578,6 +585,12 @@ export type UserCreateNestedOneWithoutRecordedAttendancesInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
+export type UserCreateNestedOneWithoutCorrectedAttendancesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCorrectedAttendancesInput, Prisma.UserUncheckedCreateWithoutCorrectedAttendancesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCorrectedAttendancesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserUpdateOneRequiredWithoutAttendancesNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAttendancesInput, Prisma.UserUncheckedCreateWithoutAttendancesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendancesInput
@@ -596,6 +609,16 @@ export type UserUpdateOneWithoutRecordedAttendancesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecordedAttendancesInput, Prisma.UserUpdateWithoutRecordedAttendancesInput>, Prisma.UserUncheckedUpdateWithoutRecordedAttendancesInput>
 }
 
+export type UserUpdateOneWithoutCorrectedAttendancesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCorrectedAttendancesInput, Prisma.UserUncheckedCreateWithoutCorrectedAttendancesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCorrectedAttendancesInput
+  upsert?: Prisma.UserUpsertWithoutCorrectedAttendancesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCorrectedAttendancesInput, Prisma.UserUpdateWithoutCorrectedAttendancesInput>, Prisma.UserUncheckedUpdateWithoutCorrectedAttendancesInput>
+}
+
 export type UserCreateWithoutProfileInput = {
   id?: string
   email: string
@@ -612,6 +635,7 @@ export type UserCreateWithoutProfileInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -631,6 +655,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -666,6 +691,7 @@ export type UserUpdateWithoutProfileInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -685,6 +711,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -704,6 +731,7 @@ export type UserCreateWithoutRolesInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -723,6 +751,7 @@ export type UserUncheckedCreateWithoutRolesInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -758,6 +787,7 @@ export type UserUpdateWithoutRolesInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -777,6 +807,7 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -796,6 +827,7 @@ export type UserCreateWithoutCreatedInvitationCodesInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -815,6 +847,7 @@ export type UserUncheckedCreateWithoutCreatedInvitationCodesInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -850,6 +883,7 @@ export type UserUpdateWithoutCreatedInvitationCodesInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -869,6 +903,7 @@ export type UserUncheckedUpdateWithoutCreatedInvitationCodesInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -888,6 +923,7 @@ export type UserCreateWithoutInvitationRedemptionsInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -907,6 +943,7 @@ export type UserUncheckedCreateWithoutInvitationRedemptionsInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -942,6 +979,7 @@ export type UserUpdateWithoutInvitationRedemptionsInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -961,6 +999,7 @@ export type UserUncheckedUpdateWithoutInvitationRedemptionsInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -980,6 +1019,7 @@ export type UserCreateWithoutAuditLogsInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -999,6 +1039,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1034,6 +1075,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1053,6 +1095,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1072,6 +1115,7 @@ export type UserCreateWithoutEnrollmentsInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1091,6 +1135,7 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1126,6 +1171,7 @@ export type UserUpdateWithoutEnrollmentsInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1145,6 +1191,7 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1164,6 +1211,7 @@ export type UserCreateWithoutOpenedAttendancesInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1183,6 +1231,7 @@ export type UserUncheckedCreateWithoutOpenedAttendancesInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1207,6 +1256,7 @@ export type UserCreateWithoutClosedAttendancesInput = {
   openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1226,6 +1276,7 @@ export type UserUncheckedCreateWithoutClosedAttendancesInput = {
   openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1261,6 +1312,7 @@ export type UserUpdateWithoutOpenedAttendancesInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1280,6 +1332,7 @@ export type UserUncheckedUpdateWithoutOpenedAttendancesInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1310,6 +1363,7 @@ export type UserUpdateWithoutClosedAttendancesInput = {
   openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1329,6 +1383,7 @@ export type UserUncheckedUpdateWithoutClosedAttendancesInput = {
   openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1349,6 +1404,7 @@ export type UserCreateWithoutCreatedQrTokensInput = {
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedQrTokensInput = {
@@ -1368,6 +1424,7 @@ export type UserUncheckedCreateWithoutCreatedQrTokensInput = {
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedQrTokensInput = {
@@ -1403,6 +1460,7 @@ export type UserUpdateWithoutCreatedQrTokensInput = {
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedQrTokensInput = {
@@ -1422,6 +1480,7 @@ export type UserUncheckedUpdateWithoutCreatedQrTokensInput = {
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
 }
 
 export type UserCreateWithoutAttendancesInput = {
@@ -1440,6 +1499,7 @@ export type UserCreateWithoutAttendancesInput = {
   openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1459,6 +1519,7 @@ export type UserUncheckedCreateWithoutAttendancesInput = {
   openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1483,6 +1544,7 @@ export type UserCreateWithoutRecordedAttendancesInput = {
   openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
   closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1502,12 +1564,58 @@ export type UserUncheckedCreateWithoutRecordedAttendancesInput = {
   openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
   closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRecordedAttendancesInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutRecordedAttendancesInput, Prisma.UserUncheckedCreateWithoutRecordedAttendancesInput>
+}
+
+export type UserCreateWithoutCorrectedAttendancesInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutCorrectedAttendancesInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutCorrectedAttendancesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCorrectedAttendancesInput, Prisma.UserUncheckedCreateWithoutCorrectedAttendancesInput>
 }
 
 export type UserUpsertWithoutAttendancesInput = {
@@ -1537,6 +1645,7 @@ export type UserUpdateWithoutAttendancesInput = {
   openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1556,6 +1665,7 @@ export type UserUncheckedUpdateWithoutAttendancesInput = {
   openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1586,6 +1696,7 @@ export type UserUpdateWithoutRecordedAttendancesInput = {
   openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
   closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1605,6 +1716,58 @@ export type UserUncheckedUpdateWithoutRecordedAttendancesInput = {
   openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
   closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUpsertWithoutCorrectedAttendancesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCorrectedAttendancesInput, Prisma.UserUncheckedUpdateWithoutCorrectedAttendancesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCorrectedAttendancesInput, Prisma.UserUncheckedCreateWithoutCorrectedAttendancesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCorrectedAttendancesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCorrectedAttendancesInput, Prisma.UserUncheckedUpdateWithoutCorrectedAttendancesInput>
+}
+
+export type UserUpdateWithoutCorrectedAttendancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCorrectedAttendancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1623,6 +1786,7 @@ export type UserCountOutputType = {
   closedAttendances: number
   attendances: number
   recordedAttendances: number
+  correctedAttendances: number
   createdQrTokens: number
 }
 
@@ -1636,6 +1800,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   closedAttendances?: boolean | UserCountOutputTypeCountClosedAttendancesArgs
   attendances?: boolean | UserCountOutputTypeCountAttendancesArgs
   recordedAttendances?: boolean | UserCountOutputTypeCountRecordedAttendancesArgs
+  correctedAttendances?: boolean | UserCountOutputTypeCountCorrectedAttendancesArgs
   createdQrTokens?: boolean | UserCountOutputTypeCountCreatedQrTokensArgs
 }
 
@@ -1715,6 +1880,13 @@ export type UserCountOutputTypeCountRecordedAttendancesArgs<ExtArgs extends runt
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountCorrectedAttendancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountCreatedQrTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.QrTokenWhereInput
 }
@@ -1737,6 +1909,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   closedAttendances?: boolean | Prisma.User$closedAttendancesArgs<ExtArgs>
   attendances?: boolean | Prisma.User$attendancesArgs<ExtArgs>
   recordedAttendances?: boolean | Prisma.User$recordedAttendancesArgs<ExtArgs>
+  correctedAttendances?: boolean | Prisma.User$correctedAttendancesArgs<ExtArgs>
   createdQrTokens?: boolean | Prisma.User$createdQrTokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1780,6 +1953,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   closedAttendances?: boolean | Prisma.User$closedAttendancesArgs<ExtArgs>
   attendances?: boolean | Prisma.User$attendancesArgs<ExtArgs>
   recordedAttendances?: boolean | Prisma.User$recordedAttendancesArgs<ExtArgs>
+  correctedAttendances?: boolean | Prisma.User$correctedAttendancesArgs<ExtArgs>
   createdQrTokens?: boolean | Prisma.User$createdQrTokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1799,6 +1973,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     closedAttendances: Prisma.$SessionPayload<ExtArgs>[]
     attendances: Prisma.$AttendancePayload<ExtArgs>[]
     recordedAttendances: Prisma.$AttendancePayload<ExtArgs>[]
+    correctedAttendances: Prisma.$AttendancePayload<ExtArgs>[]
     createdQrTokens: Prisma.$QrTokenPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2212,6 +2387,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   closedAttendances<T extends Prisma.User$closedAttendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$closedAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendances<T extends Prisma.User$attendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recordedAttendances<T extends Prisma.User$recordedAttendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recordedAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  correctedAttendances<T extends Prisma.User$correctedAttendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$correctedAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdQrTokens<T extends Prisma.User$createdQrTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdQrTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QrTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2855,6 +3031,30 @@ export type User$attendancesArgs<ExtArgs extends runtime.Types.Extensions.Intern
  * User.recordedAttendances
  */
 export type User$recordedAttendancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Attendance
+   */
+  select?: Prisma.AttendanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Attendance
+   */
+  omit?: Prisma.AttendanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceInclude<ExtArgs> | null
+  where?: Prisma.AttendanceWhereInput
+  orderBy?: Prisma.AttendanceOrderByWithRelationInput | Prisma.AttendanceOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceScalarFieldEnum | Prisma.AttendanceScalarFieldEnum[]
+}
+
+/**
+ * User.correctedAttendances
+ */
+export type User$correctedAttendancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Attendance
    */

@@ -5,6 +5,8 @@ import { requireMentorOrAdmin } from "@/lib/auth/require-mentor-or-admin";
 import { generateQrToken, hashQrToken } from "@/lib/attendance/qr-token";
 import { createAttendanceQrPayload } from "@/lib/attendance/qr-payload";
 
+const QR_TOKEN_TTL_MS = 5_000;
+
 export type GenerateAttendanceQrTokenResult =
   | {
       ok: true;
@@ -47,7 +49,7 @@ export async function generateAttendanceQrTokenAction(
 
   const plainToken = generateQrToken();
   const tokenHash = hashQrToken(plainToken);
-  const expiresAt = new Date(Date.now() + 10_000);
+  const expiresAt = new Date(Date.now() + QR_TOKEN_TTL_MS);
 
   await prisma.$transaction(async (tx) => {
     await tx.qrToken.deleteMany({
