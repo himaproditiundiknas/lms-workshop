@@ -177,10 +177,14 @@ model Enrollment {
 
   scope    InvitationScope
   targetId String           @map("target_id") @db.Uuid
+  cohortId String?          @map("cohort_id") @db.Uuid
   status   EnrollmentStatus @default(PENDING)
 
-  approvedAt DateTime? @map("approved_at")
-  rejectedAt DateTime? @map("rejected_at")
+  approvedAt      DateTime? @map("approved_at")
+  rejectedAt      DateTime? @map("rejected_at")
+  approvedById    String?   @map("approved_by_id") @db.Uuid
+  rejectedById    String?   @map("rejected_by_id") @db.Uuid
+  rejectionReason String?   @map("rejection_reason")
 
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   invitationCode InvitationCode? @relation(fields: [invitationCodeId], references: [id], onDelete: SetNull)
@@ -191,5 +195,6 @@ model Enrollment {
   @@unique([userId, scope, targetId])
   @@index([status])
   @@index([scope, targetId])
+  @@index([cohortId])
   @@map("enrollments")
 }
