@@ -96,3 +96,13 @@ export type Cohort = Prisma.CohortModel
  * 
  */
 export type Session = Prisma.SessionModel
+/**
+ * Model QrToken
+ * 
+ */
+export type QrToken = Prisma.QrTokenModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel

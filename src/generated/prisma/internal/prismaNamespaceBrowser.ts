@@ -61,7 +61,9 @@ export const ModelName = {
   Enrollment: 'Enrollment',
   Workshop: 'Workshop',
   Cohort: 'Cohort',
-  Session: 'Session'
+  Session: 'Session',
+  QrToken: 'QrToken',
+  Attendance: 'Attendance'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -237,6 +239,34 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const QrTokenScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type QrTokenScalarFieldEnum = (typeof QrTokenScalarFieldEnum)[keyof typeof QrTokenScalarFieldEnum]
+
+
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  status: 'status',
+  method: 'method',
+  checkedInAt: 'checkedInAt',
+  recordedById: 'recordedById',
+  note: 'note',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
 
 
 export const SortOrder = {
