@@ -33,3 +33,15 @@ export const createInvitationCodeSchema = z.object({
 export type CreateInvitationCodeInput = z.infer<
   typeof createInvitationCodeSchema
 >;
+
+export const redeemInvitationCodeSchema = z.object({
+  code: z
+    .string()
+    .trim()
+    .min(3, "Kode undangan wajib diisi")
+    .max(64, "Kode undangan terlalu panjang"),
+});
+
+export type RedeemInvitationCodeInput = z.infer<
+  typeof redeemInvitationCodeSchema
+>;

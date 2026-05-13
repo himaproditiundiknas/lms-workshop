@@ -31,6 +31,15 @@ enum InvitationCodeStatus {
   @@map("invitation_code_status")
 }
 
+enum EnrollmentStatus {
+  PENDING   @map("pending")
+  APPROVED  @map("approved")
+  REJECTED  @map("rejected")
+  CANCELLED @map("cancelled")
+
+  @@map("enrollment_status")
+}
+
 model User {
   id        String     @id @default(uuid()) @db.Uuid
   email     String     @unique
@@ -43,6 +52,7 @@ model User {
   createdInvitationCodes InvitationCode[]       @relation("InvitationCodeCreatedBy")
   invitationRedemptions  InvitationRedemption[]
   auditLogs              AuditLog[]             @relation("AuditLogActor")
+  enrollments            Enrollment[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -113,6 +123,7 @@ model InvitationCode {
   createdBy   User?   @relation("InvitationCodeCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
 
   redemptions InvitationRedemption[]
+  enrollments Enrollment[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -156,4 +167,29 @@ model AuditLog {
   @@index([action])
   @@index([entityType, entityId])
   @@map("audit_logs")
+}
+
+model Enrollment {
+  id String @id @default(uuid()) @db.Uuid
+
+  userId           String  @map("user_id") @db.Uuid
+  invitationCodeId String? @map("invitation_code_id") @db.Uuid
+
+  scope    InvitationScope
+  targetId String           @map("target_id") @db.Uuid
+  status   EnrollmentStatus @default(PENDING)
+
+  approvedAt DateTime? @map("approved_at")
+  rejectedAt DateTime? @map("rejected_at")
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invitationCode InvitationCode? @relation(fields: [invitationCodeId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, scope, targetId])
+  @@index([status])
+  @@index([scope, targetId])
+  @@map("enrollments")
 }
