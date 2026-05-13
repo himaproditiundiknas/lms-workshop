@@ -71,3 +71,22 @@ export const SessionAttendanceStatus = {
 } as const
 
 export type SessionAttendanceStatus = (typeof SessionAttendanceStatus)[keyof typeof SessionAttendanceStatus]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  EXCUSED: 'EXCUSED',
+  CORRECTED: 'CORRECTED'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const AttendanceMethod = {
+  QR: 'QR',
+  MANUAL: 'MANUAL',
+  SYSTEM: 'SYSTEM'
+} as const
+
+export type AttendanceMethod = (typeof AttendanceMethod)[keyof typeof AttendanceMethod]
