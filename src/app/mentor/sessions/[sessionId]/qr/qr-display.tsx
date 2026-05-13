@@ -11,20 +11,20 @@ type QrDisplayProps = {
   sessionId: string;
 };
 
-const REGENERATE_INTERVAL_MS = 5_000;
+const REGENERATE_INTERVAL_MS = 10_000;
 
 export function QrDisplay({ sessionId }: QrDisplayProps) {
   const [result, setResult] = useState<GenerateAttendanceQrTokenResult | null>(
     null,
   );
-  const [remainingSeconds, setRemainingSeconds] = useState(5);
+  const [remainingSeconds, setRemainingSeconds] = useState(10);
   const [isPending, startTransition] = useTransition();
 
   function generateToken() {
     startTransition(async () => {
       const nextResult = await generateAttendanceQrTokenAction(sessionId);
       setResult(nextResult);
-      setRemainingSeconds(5);
+      setRemainingSeconds(10);
     });
   }
 
@@ -72,7 +72,7 @@ export function QrDisplay({ sessionId }: QrDisplayProps) {
       <div>
         <h2 className="text-xl font-semibold text-slate-950">QR Presensi</h2>
         <p className="mt-2 text-sm text-slate-600">
-          QR otomatis diperbarui setiap 5 detik.
+          QR otomatis diperbarui setiap 10 detik.
         </p>
       </div>
 
@@ -95,6 +95,16 @@ export function QrDisplay({ sessionId }: QrDisplayProps) {
             Token expires at{" "}
             {new Date(result.expiresAt).toLocaleTimeString("id-ID")}
           </p>
+        ) : null}
+        {process.env.NODE_ENV === "development" && result?.ok ? (
+          <details className="mt-4 rounded-lg border border-slate-200 bg-white p-3 text-left">
+            <summary className="cursor-pointer text-xs font-medium text-slate-600">
+              Debug QR Payload
+            </summary>
+            <pre className="mt-2 whitespace-pre-wrap break-all text-xs text-slate-500">
+              {result.qrPayload}
+            </pre>
+          </details>
         ) : null}
       </div>
     </div>

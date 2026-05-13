@@ -47,7 +47,7 @@ export async function generateAttendanceQrTokenAction(
 
   const plainToken = generateQrToken();
   const tokenHash = hashQrToken(plainToken);
-  const expiresAt = new Date(Date.now() + 5_000);
+  const expiresAt = new Date(Date.now() + 10_000);
 
   await prisma.$transaction(async (tx) => {
     await tx.qrToken.deleteMany({
