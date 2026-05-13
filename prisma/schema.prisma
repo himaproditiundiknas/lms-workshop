@@ -40,6 +40,30 @@ enum EnrollmentStatus {
   @@map("enrollment_status")
 }
 
+enum WorkshopStatus {
+  DRAFT     @map("draft")
+  PUBLISHED @map("published")
+  ARCHIVED  @map("archived")
+
+  @@map("workshop_status")
+}
+
+enum CohortStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  CLOSED   @map("closed")
+
+  @@map("cohort_status")
+}
+
+enum SessionAttendanceStatus {
+  NOT_OPENED @map("not_opened")
+  OPEN       @map("open")
+  CLOSED     @map("closed")
+
+  @@map("session_attendance_status")
+}
+
 model User {
   id        String     @id @default(uuid()) @db.Uuid
   email     String     @unique
@@ -53,6 +77,8 @@ model User {
   invitationRedemptions  InvitationRedemption[]
   auditLogs              AuditLog[]             @relation("AuditLogActor")
   enrollments            Enrollment[]
+  openedAttendances      Session[]              @relation("SessionAttendanceOpenedBy")
+  closedAttendances      Session[]              @relation("SessionAttendanceClosedBy")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -188,6 +214,7 @@ model Enrollment {
 
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   invitationCode InvitationCode? @relation(fields: [invitationCodeId], references: [id], onDelete: SetNull)
+  cohort         Cohort?         @relation(fields: [cohortId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -197,4 +224,74 @@ model Enrollment {
   @@index([scope, targetId])
   @@index([cohortId])
   @@map("enrollments")
+}
+
+model Workshop {
+  id String @id @default(uuid()) @db.Uuid
+
+  title       String
+  slug        String         @unique
+  description String?
+  status      WorkshopStatus @default(DRAFT)
+
+  cohorts Cohort[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@map("workshops")
+}
+
+model Cohort {
+  id String @id @default(uuid()) @db.Uuid
+
+  workshopId String @map("workshop_id") @db.Uuid
+
+  name     String
+  slug     String       @unique
+  status   CohortStatus @default(ACTIVE)
+  startsAt DateTime?    @map("starts_at")
+  endsAt   DateTime?    @map("ends_at")
+
+  workshop    Workshop     @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  sessions    Session[]
+  enrollments Enrollment[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([workshopId])
+  @@index([status])
+  @@map("cohorts")
+}
+
+model Session {
+  id String @id @default(uuid()) @db.Uuid
+
+  cohortId  String @map("cohort_id") @db.Uuid
+  title     String
+  meetingNo Int    @map("meeting_no")
+
+  startsAt DateTime? @map("starts_at")
+  endsAt   DateTime? @map("ends_at")
+
+  attendanceStatus   SessionAttendanceStatus @default(NOT_OPENED) @map("attendance_status")
+  attendanceOpenedAt DateTime?               @map("attendance_opened_at")
+  attendanceOpenedBy String?                 @map("attendance_opened_by") @db.Uuid
+  attendanceClosedAt DateTime?               @map("attendance_closed_at")
+  attendanceClosedBy String?                 @map("attendance_closed_by") @db.Uuid
+
+  cohort Cohort @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+
+  attendanceOpenedByUser User? @relation("SessionAttendanceOpenedBy", fields: [attendanceOpenedBy], references: [id], onDelete: SetNull)
+  attendanceClosedByUser User? @relation("SessionAttendanceClosedBy", fields: [attendanceClosedBy], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([cohortId, meetingNo])
+  @@index([cohortId])
+  @@index([attendanceStatus])
+  @@map("sessions")
 }

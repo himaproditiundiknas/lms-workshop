@@ -44,3 +44,30 @@ export const EnrollmentStatus = {
 } as const
 
 export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]
+
+
+export const WorkshopStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type WorkshopStatus = (typeof WorkshopStatus)[keyof typeof WorkshopStatus]
+
+
+export const CohortStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  CLOSED: 'CLOSED'
+} as const
+
+export type CohortStatus = (typeof CohortStatus)[keyof typeof CohortStatus]
+
+
+export const SessionAttendanceStatus = {
+  NOT_OPENED: 'NOT_OPENED',
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+} as const
+
+export type SessionAttendanceStatus = (typeof SessionAttendanceStatus)[keyof typeof SessionAttendanceStatus]

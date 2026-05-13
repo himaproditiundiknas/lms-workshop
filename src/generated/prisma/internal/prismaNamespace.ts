@@ -391,7 +391,10 @@ export const ModelName = {
   InvitationCode: 'InvitationCode',
   InvitationRedemption: 'InvitationRedemption',
   AuditLog: 'AuditLog',
-  Enrollment: 'Enrollment'
+  Enrollment: 'Enrollment',
+  Workshop: 'Workshop',
+  Cohort: 'Cohort',
+  Session: 'Session'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "userProfile" | "role" | "userRole" | "invitationCode" | "invitationRedemption" | "auditLog" | "enrollment"
+    modelProps: "user" | "userProfile" | "role" | "userRole" | "invitationCode" | "invitationRedemption" | "auditLog" | "enrollment" | "workshop" | "cohort" | "session"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1006,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Workshop: {
+      payload: Prisma.$WorkshopPayload<ExtArgs>
+      fields: Prisma.WorkshopFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkshopFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkshopFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkshopFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkshopFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>
+        }
+        findMany: {
+          args: Prisma.WorkshopFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>[]
+        }
+        create: {
+          args: Prisma.WorkshopCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>
+        }
+        createMany: {
+          args: Prisma.WorkshopCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkshopCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkshopDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>
+        }
+        update: {
+          args: Prisma.WorkshopUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkshopDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkshopUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkshopUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkshopUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkshopPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkshopAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkshop>
+        }
+        groupBy: {
+          args: Prisma.WorkshopGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkshopGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkshopCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkshopCountAggregateOutputType> | number
+        }
+      }
+    }
+    Cohort: {
+      payload: Prisma.$CohortPayload<ExtArgs>
+      fields: Prisma.CohortFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CohortFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CohortFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>
+        }
+        findFirst: {
+          args: Prisma.CohortFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CohortFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>
+        }
+        findMany: {
+          args: Prisma.CohortFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>[]
+        }
+        create: {
+          args: Prisma.CohortCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>
+        }
+        createMany: {
+          args: Prisma.CohortCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CohortCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>[]
+        }
+        delete: {
+          args: Prisma.CohortDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>
+        }
+        update: {
+          args: Prisma.CohortUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>
+        }
+        deleteMany: {
+          args: Prisma.CohortDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CohortUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CohortUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>[]
+        }
+        upsert: {
+          args: Prisma.CohortUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CohortPayload>
+        }
+        aggregate: {
+          args: Prisma.CohortAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCohort>
+        }
+        groupBy: {
+          args: Prisma.CohortGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CohortGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CohortCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CohortCountAggregateOutputType> | number
+        }
+      }
+    }
+    Session: {
+      payload: Prisma.$SessionPayload<ExtArgs>
+      fields: Prisma.SessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
+        }
+        findFirst: {
+          args: Prisma.SessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
+        }
+        findMany: {
+          args: Prisma.SessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>[]
+        }
+        create: {
+          args: Prisma.SessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
+        }
+        createMany: {
+          args: Prisma.SessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>[]
+        }
+        delete: {
+          args: Prisma.SessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
+        }
+        update: {
+          args: Prisma.SessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.SessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.SessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
+        }
+        aggregate: {
+          args: Prisma.SessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSession>
+        }
+        groupBy: {
+          args: Prisma.SessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1150,6 +1375,53 @@ export const EnrollmentScalarFieldEnum = {
 } as const
 
 export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
+
+
+export const WorkshopScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkshopScalarFieldEnum = (typeof WorkshopScalarFieldEnum)[keyof typeof WorkshopScalarFieldEnum]
+
+
+export const CohortScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  name: 'name',
+  slug: 'slug',
+  status: 'status',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CohortScalarFieldEnum = (typeof CohortScalarFieldEnum)[keyof typeof CohortScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  cohortId: 'cohortId',
+  title: 'title',
+  meetingNo: 'meetingNo',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  attendanceStatus: 'attendanceStatus',
+  attendanceOpenedAt: 'attendanceOpenedAt',
+  attendanceOpenedBy: 'attendanceOpenedBy',
+  attendanceClosedAt: 'attendanceClosedAt',
+  attendanceClosedBy: 'attendanceClosedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1312,6 +1584,48 @@ export type ListEnumEnrollmentStatusFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
+ * Reference to a field of type 'WorkshopStatus'
+ */
+export type EnumWorkshopStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkshopStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkshopStatus[]'
+ */
+export type ListEnumWorkshopStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkshopStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CohortStatus'
+ */
+export type EnumCohortStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CohortStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'CohortStatus[]'
+ */
+export type ListEnumCohortStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CohortStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SessionAttendanceStatus'
+ */
+export type EnumSessionAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SessionAttendanceStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SessionAttendanceStatus[]'
+ */
+export type ListEnumSessionAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SessionAttendanceStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1442,6 +1756,9 @@ export type GlobalOmitConfig = {
   invitationRedemption?: Prisma.InvitationRedemptionOmit
   auditLog?: Prisma.AuditLogOmit
   enrollment?: Prisma.EnrollmentOmit
+  workshop?: Prisma.WorkshopOmit
+  cohort?: Prisma.CohortOmit
+  session?: Prisma.SessionOmit
 }
 
 /* Types for Logging */

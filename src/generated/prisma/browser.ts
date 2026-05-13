@@ -57,3 +57,18 @@ export type AuditLog = Prisma.AuditLogModel
  * 
  */
 export type Enrollment = Prisma.EnrollmentModel
+/**
+ * Model Workshop
+ * 
+ */
+export type Workshop = Prisma.WorkshopModel
+/**
+ * Model Cohort
+ * 
+ */
+export type Cohort = Prisma.CohortModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
