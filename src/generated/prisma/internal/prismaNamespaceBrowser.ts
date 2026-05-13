@@ -58,7 +58,10 @@ export const ModelName = {
   InvitationCode: 'InvitationCode',
   InvitationRedemption: 'InvitationRedemption',
   AuditLog: 'AuditLog',
-  Enrollment: 'Enrollment'
+  Enrollment: 'Enrollment',
+  Workshop: 'Workshop',
+  Cohort: 'Cohort',
+  Session: 'Session'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -185,6 +188,53 @@ export const EnrollmentScalarFieldEnum = {
 } as const
 
 export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
+
+
+export const WorkshopScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkshopScalarFieldEnum = (typeof WorkshopScalarFieldEnum)[keyof typeof WorkshopScalarFieldEnum]
+
+
+export const CohortScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  name: 'name',
+  slug: 'slug',
+  status: 'status',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CohortScalarFieldEnum = (typeof CohortScalarFieldEnum)[keyof typeof CohortScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  cohortId: 'cohortId',
+  title: 'title',
+  meetingNo: 'meetingNo',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  attendanceStatus: 'attendanceStatus',
+  attendanceOpenedAt: 'attendanceOpenedAt',
+  attendanceOpenedBy: 'attendanceOpenedBy',
+  attendanceClosedAt: 'attendanceClosedAt',
+  attendanceClosedBy: 'attendanceClosedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const SortOrder = {
