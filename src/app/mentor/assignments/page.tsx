@@ -180,6 +180,12 @@ export default async function MentorAssignmentsPage({
                 >
                   Certificates
                 </Link>
+                <Link
+                  href="/admin/reports"
+                  className="rounded-lg border border-slate-300 px-4 py-2 text-center text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                >
+                  Reports
+                </Link>
                 <LogoutButton />
               </div>
             </div>
