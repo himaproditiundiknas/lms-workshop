@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "seed:dev-auth": "dotenvx run -f .env.local -- tsx prisma/seed-dev-auth.ts",
     "lint": "eslint"
   },
   "dependencies": {

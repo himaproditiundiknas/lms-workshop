@@ -1,4 +1,5 @@
 import { GoogleLoginButton } from "./google-login-button";
+import { PasswordLoginForm } from "./password-login-form";
 
 type LoginPageProps = {
   searchParams: Promise<{
@@ -16,6 +17,13 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <h1 className="text-2xl font-semibold text-slate-950">
             Login LMS Workshop
           </h1>
+
+          <PasswordLoginForm />
+          <div className="my-5 flex items-center gap-3">
+            <div className="h-px flex-1 bg-slate-200" />
+            <span className="text-xs text-slate-500">atau</span>
+            <div className="h-px flex-1 bg-slate-200" />
+          </div>
           <p className="text-sm text-slate-600">
             Masuk menggunakan akun Google untuk melanjutkan.
           </p>
