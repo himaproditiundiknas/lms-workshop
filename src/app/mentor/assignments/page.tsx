@@ -162,6 +162,12 @@ export default async function MentorAssignmentsPage({
                 >
                   Submissions
                 </Link>
+                <Link
+                  href="/mentor/project-groups"
+                  className="rounded-lg border border-slate-300 px-4 py-2 text-center text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                >
+                  Project Groups
+                </Link>
                 <LogoutButton />
               </div>
             </div>
