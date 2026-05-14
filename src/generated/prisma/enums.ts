@@ -44,3 +44,98 @@ export const EnrollmentStatus = {
 } as const
 
 export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]
+
+
+export const WorkshopStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type WorkshopStatus = (typeof WorkshopStatus)[keyof typeof WorkshopStatus]
+
+
+export const CohortStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  CLOSED: 'CLOSED'
+} as const
+
+export type CohortStatus = (typeof CohortStatus)[keyof typeof CohortStatus]
+
+
+export const SessionAttendanceStatus = {
+  NOT_OPENED: 'NOT_OPENED',
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED'
+} as const
+
+export type SessionAttendanceStatus = (typeof SessionAttendanceStatus)[keyof typeof SessionAttendanceStatus]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  EXCUSED: 'EXCUSED',
+  CORRECTED: 'CORRECTED'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const AttendanceMethod = {
+  QR: 'QR',
+  MANUAL: 'MANUAL',
+  SYSTEM: 'SYSTEM'
+} as const
+
+export type AttendanceMethod = (typeof AttendanceMethod)[keyof typeof AttendanceMethod]
+
+
+export const MaterialType = {
+  TEXT: 'TEXT',
+  LINK: 'LINK',
+  VIDEO: 'VIDEO',
+  DOCUMENT: 'DOCUMENT',
+  FILE: 'FILE'
+} as const
+
+export type MaterialType = (typeof MaterialType)[keyof typeof MaterialType]
+
+
+export const ContentStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ContentStatus = (typeof ContentStatus)[keyof typeof ContentStatus]
+
+
+export const AssignmentCategory = {
+  REGULAR: 'REGULAR',
+  FINAL_PROJECT: 'FINAL_PROJECT'
+} as const
+
+export type AssignmentCategory = (typeof AssignmentCategory)[keyof typeof AssignmentCategory]
+
+
+export const AssignmentStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  CLOSED: 'CLOSED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type AssignmentStatus = (typeof AssignmentStatus)[keyof typeof AssignmentStatus]
+
+
+export const SubmissionStatus = {
+  SUBMITTED: 'SUBMITTED',
+  LATE: 'LATE',
+  REOPENED: 'REOPENED',
+  GRADED: 'GRADED',
+  RETURNED: 'RETURNED'
+} as const
+
+export type SubmissionStatus = (typeof SubmissionStatus)[keyof typeof SubmissionStatus]

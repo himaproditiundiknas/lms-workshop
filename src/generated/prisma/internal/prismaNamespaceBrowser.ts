@@ -58,7 +58,17 @@ export const ModelName = {
   InvitationCode: 'InvitationCode',
   InvitationRedemption: 'InvitationRedemption',
   AuditLog: 'AuditLog',
-  Enrollment: 'Enrollment'
+  Enrollment: 'Enrollment',
+  Workshop: 'Workshop',
+  Cohort: 'Cohort',
+  Session: 'Session',
+  QrToken: 'QrToken',
+  Attendance: 'Attendance',
+  Module: 'Module',
+  Material: 'Material',
+  Assignment: 'Assignment',
+  Submission: 'Submission',
+  SubmissionFile: 'SubmissionFile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -185,6 +195,180 @@ export const EnrollmentScalarFieldEnum = {
 } as const
 
 export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
+
+
+export const WorkshopScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkshopScalarFieldEnum = (typeof WorkshopScalarFieldEnum)[keyof typeof WorkshopScalarFieldEnum]
+
+
+export const CohortScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  name: 'name',
+  slug: 'slug',
+  status: 'status',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CohortScalarFieldEnum = (typeof CohortScalarFieldEnum)[keyof typeof CohortScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  cohortId: 'cohortId',
+  title: 'title',
+  description: 'description',
+  location: 'location',
+  meetingNo: 'meetingNo',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  attendanceStatus: 'attendanceStatus',
+  attendanceOpenedAt: 'attendanceOpenedAt',
+  attendanceOpenedBy: 'attendanceOpenedBy',
+  attendanceClosedAt: 'attendanceClosedAt',
+  attendanceClosedBy: 'attendanceClosedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const QrTokenScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type QrTokenScalarFieldEnum = (typeof QrTokenScalarFieldEnum)[keyof typeof QrTokenScalarFieldEnum]
+
+
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  status: 'status',
+  method: 'method',
+  checkedInAt: 'checkedInAt',
+  recordedById: 'recordedById',
+  correctedById: 'correctedById',
+  correctedAt: 'correctedAt',
+  note: 'note',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const ModuleScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  orderNo: 'orderNo',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ModuleScalarFieldEnum = (typeof ModuleScalarFieldEnum)[keyof typeof ModuleScalarFieldEnum]
+
+
+export const MaterialScalarFieldEnum = {
+  id: 'id',
+  moduleId: 'moduleId',
+  sessionId: 'sessionId',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  status: 'status',
+  orderNo: 'orderNo',
+  content: 'content',
+  url: 'url',
+  fileUrl: 'fileUrl',
+  mimeType: 'mimeType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
+
+
+export const AssignmentScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  sessionId: 'sessionId',
+  createdById: 'createdById',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  dueAt: 'dueAt',
+  maxScore: 'maxScore',
+  allowLate: 'allowLate',
+  requiredForCertificate: 'requiredForCertificate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
+
+
+export const SubmissionScalarFieldEnum = {
+  id: 'id',
+  assignmentId: 'assignmentId',
+  userId: 'userId',
+  attemptNo: 'attemptNo',
+  isLatest: 'isLatest',
+  status: 'status',
+  repositoryUrl: 'repositoryUrl',
+  deploymentUrl: 'deploymentUrl',
+  contentText: 'contentText',
+  submittedAt: 'submittedAt',
+  score: 'score',
+  feedback: 'feedback',
+  gradedAt: 'gradedAt',
+  gradedById: 'gradedById',
+  reopenedAt: 'reopenedAt',
+  reopenedById: 'reopenedById',
+  reopenReason: 'reopenReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+export const SubmissionFileScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  mimeType: 'mimeType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionFileScalarFieldEnum = (typeof SubmissionFileScalarFieldEnum)[keyof typeof SubmissionFileScalarFieldEnum]
 
 
 export const SortOrder = {

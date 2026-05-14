@@ -81,3 +81,53 @@ export type AuditLog = Prisma.AuditLogModel
  * 
  */
 export type Enrollment = Prisma.EnrollmentModel
+/**
+ * Model Workshop
+ * 
+ */
+export type Workshop = Prisma.WorkshopModel
+/**
+ * Model Cohort
+ * 
+ */
+export type Cohort = Prisma.CohortModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
+ * Model QrToken
+ * 
+ */
+export type QrToken = Prisma.QrTokenModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
+/**
+ * Model Module
+ * 
+ */
+export type Module = Prisma.ModuleModel
+/**
+ * Model Material
+ * 
+ */
+export type Material = Prisma.MaterialModel
+/**
+ * Model Assignment
+ * 
+ */
+export type Assignment = Prisma.AssignmentModel
+/**
+ * Model Submission
+ * 
+ */
+export type Submission = Prisma.SubmissionModel
+/**
+ * Model SubmissionFile
+ * 
+ */
+export type SubmissionFile = Prisma.SubmissionFileModel

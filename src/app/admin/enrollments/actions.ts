@@ -75,6 +75,39 @@ export async function approveEnrollmentAction(
       };
     }
 
+    const cohort = await tx.cohort.findUnique({
+      where: {
+        id: finalCohortId,
+      },
+      select: {
+        id: true,
+        workshopId: true,
+      },
+    });
+
+    if (!cohort) {
+      return {
+        ok: false,
+        message: "Cohort tidak ditemukan.",
+        errors: {
+          cohortId: ["Cohort tidak ditemukan."],
+        },
+      };
+    }
+
+    if (
+      enrollment.scope === "WORKSHOP" &&
+      cohort.workshopId !== enrollment.targetId
+    ) {
+      return {
+        ok: false,
+        message: "Cohort tidak sesuai dengan workshop invitation.",
+        errors: {
+          cohortId: ["Cohort ini bukan bagian dari workshop yang dituju."],
+        },
+      };
+    }
+
     const participantRole = await tx.role.findUnique({
       where: {
         name: "participant",
