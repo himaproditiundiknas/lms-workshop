@@ -156,6 +156,12 @@ export default async function MentorAssignmentsPage({
                 >
                   View Participant
                 </Link>
+                <Link
+                  href="/mentor/submissions?latest=latest"
+                  className="rounded-lg border border-slate-300 px-4 py-2 text-center text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                >
+                  Submissions
+                </Link>
                 <LogoutButton />
               </div>
             </div>
