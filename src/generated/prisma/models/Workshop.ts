@@ -200,6 +200,7 @@ export type WorkshopWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Workshop"> | Date | string
   cohorts?: Prisma.CohortListRelationFilter
   modules?: Prisma.ModuleListRelationFilter
+  assignments?: Prisma.AssignmentListRelationFilter
 }
 
 export type WorkshopOrderByWithRelationInput = {
@@ -212,6 +213,7 @@ export type WorkshopOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   cohorts?: Prisma.CohortOrderByRelationAggregateInput
   modules?: Prisma.ModuleOrderByRelationAggregateInput
+  assignments?: Prisma.AssignmentOrderByRelationAggregateInput
 }
 
 export type WorkshopWhereUniqueInput = Prisma.AtLeast<{
@@ -227,6 +229,7 @@ export type WorkshopWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Workshop"> | Date | string
   cohorts?: Prisma.CohortListRelationFilter
   modules?: Prisma.ModuleListRelationFilter
+  assignments?: Prisma.AssignmentListRelationFilter
 }, "id" | "slug">
 
 export type WorkshopOrderByWithAggregationInput = {
@@ -265,6 +268,7 @@ export type WorkshopCreateInput = {
   updatedAt?: Date | string
   cohorts?: Prisma.CohortCreateNestedManyWithoutWorkshopInput
   modules?: Prisma.ModuleCreateNestedManyWithoutWorkshopInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUncheckedCreateInput = {
@@ -277,6 +281,7 @@ export type WorkshopUncheckedCreateInput = {
   updatedAt?: Date | string
   cohorts?: Prisma.CohortUncheckedCreateNestedManyWithoutWorkshopInput
   modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutWorkshopInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUpdateInput = {
@@ -289,6 +294,7 @@ export type WorkshopUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohorts?: Prisma.CohortUpdateManyWithoutWorkshopNestedInput
   modules?: Prisma.ModuleUpdateManyWithoutWorkshopNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopUncheckedUpdateInput = {
@@ -301,6 +307,7 @@ export type WorkshopUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohorts?: Prisma.CohortUncheckedUpdateManyWithoutWorkshopNestedInput
   modules?: Prisma.ModuleUncheckedUpdateManyWithoutWorkshopNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopCreateManyInput = {
@@ -400,6 +407,20 @@ export type WorkshopUpdateOneRequiredWithoutModulesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkshopUpdateToOneWithWhereWithoutModulesInput, Prisma.WorkshopUpdateWithoutModulesInput>, Prisma.WorkshopUncheckedUpdateWithoutModulesInput>
 }
 
+export type WorkshopCreateNestedOneWithoutAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.WorkshopCreateWithoutAssignmentsInput, Prisma.WorkshopUncheckedCreateWithoutAssignmentsInput>
+  connectOrCreate?: Prisma.WorkshopCreateOrConnectWithoutAssignmentsInput
+  connect?: Prisma.WorkshopWhereUniqueInput
+}
+
+export type WorkshopUpdateOneRequiredWithoutAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkshopCreateWithoutAssignmentsInput, Prisma.WorkshopUncheckedCreateWithoutAssignmentsInput>
+  connectOrCreate?: Prisma.WorkshopCreateOrConnectWithoutAssignmentsInput
+  upsert?: Prisma.WorkshopUpsertWithoutAssignmentsInput
+  connect?: Prisma.WorkshopWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkshopUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.WorkshopUpdateWithoutAssignmentsInput>, Prisma.WorkshopUncheckedUpdateWithoutAssignmentsInput>
+}
+
 export type WorkshopCreateWithoutCohortsInput = {
   id?: string
   title: string
@@ -409,6 +430,7 @@ export type WorkshopCreateWithoutCohortsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   modules?: Prisma.ModuleCreateNestedManyWithoutWorkshopInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUncheckedCreateWithoutCohortsInput = {
@@ -420,6 +442,7 @@ export type WorkshopUncheckedCreateWithoutCohortsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutWorkshopInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopCreateOrConnectWithoutCohortsInput = {
@@ -447,6 +470,7 @@ export type WorkshopUpdateWithoutCohortsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modules?: Prisma.ModuleUpdateManyWithoutWorkshopNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopUncheckedUpdateWithoutCohortsInput = {
@@ -458,6 +482,7 @@ export type WorkshopUncheckedUpdateWithoutCohortsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modules?: Prisma.ModuleUncheckedUpdateManyWithoutWorkshopNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopCreateWithoutModulesInput = {
@@ -469,6 +494,7 @@ export type WorkshopCreateWithoutModulesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cohorts?: Prisma.CohortCreateNestedManyWithoutWorkshopInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopUncheckedCreateWithoutModulesInput = {
@@ -480,6 +506,7 @@ export type WorkshopUncheckedCreateWithoutModulesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cohorts?: Prisma.CohortUncheckedCreateNestedManyWithoutWorkshopInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutWorkshopInput
 }
 
 export type WorkshopCreateOrConnectWithoutModulesInput = {
@@ -507,6 +534,7 @@ export type WorkshopUpdateWithoutModulesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohorts?: Prisma.CohortUpdateManyWithoutWorkshopNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutWorkshopNestedInput
 }
 
 export type WorkshopUncheckedUpdateWithoutModulesInput = {
@@ -518,6 +546,71 @@ export type WorkshopUncheckedUpdateWithoutModulesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohorts?: Prisma.CohortUncheckedUpdateManyWithoutWorkshopNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutWorkshopNestedInput
+}
+
+export type WorkshopCreateWithoutAssignmentsInput = {
+  id?: string
+  title: string
+  slug: string
+  description?: string | null
+  status?: $Enums.WorkshopStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cohorts?: Prisma.CohortCreateNestedManyWithoutWorkshopInput
+  modules?: Prisma.ModuleCreateNestedManyWithoutWorkshopInput
+}
+
+export type WorkshopUncheckedCreateWithoutAssignmentsInput = {
+  id?: string
+  title: string
+  slug: string
+  description?: string | null
+  status?: $Enums.WorkshopStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cohorts?: Prisma.CohortUncheckedCreateNestedManyWithoutWorkshopInput
+  modules?: Prisma.ModuleUncheckedCreateNestedManyWithoutWorkshopInput
+}
+
+export type WorkshopCreateOrConnectWithoutAssignmentsInput = {
+  where: Prisma.WorkshopWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkshopCreateWithoutAssignmentsInput, Prisma.WorkshopUncheckedCreateWithoutAssignmentsInput>
+}
+
+export type WorkshopUpsertWithoutAssignmentsInput = {
+  update: Prisma.XOR<Prisma.WorkshopUpdateWithoutAssignmentsInput, Prisma.WorkshopUncheckedUpdateWithoutAssignmentsInput>
+  create: Prisma.XOR<Prisma.WorkshopCreateWithoutAssignmentsInput, Prisma.WorkshopUncheckedCreateWithoutAssignmentsInput>
+  where?: Prisma.WorkshopWhereInput
+}
+
+export type WorkshopUpdateToOneWithWhereWithoutAssignmentsInput = {
+  where?: Prisma.WorkshopWhereInput
+  data: Prisma.XOR<Prisma.WorkshopUpdateWithoutAssignmentsInput, Prisma.WorkshopUncheckedUpdateWithoutAssignmentsInput>
+}
+
+export type WorkshopUpdateWithoutAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumWorkshopStatusFieldUpdateOperationsInput | $Enums.WorkshopStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cohorts?: Prisma.CohortUpdateManyWithoutWorkshopNestedInput
+  modules?: Prisma.ModuleUpdateManyWithoutWorkshopNestedInput
+}
+
+export type WorkshopUncheckedUpdateWithoutAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumWorkshopStatusFieldUpdateOperationsInput | $Enums.WorkshopStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cohorts?: Prisma.CohortUncheckedUpdateManyWithoutWorkshopNestedInput
+  modules?: Prisma.ModuleUncheckedUpdateManyWithoutWorkshopNestedInput
 }
 
 
@@ -528,11 +621,13 @@ export type WorkshopUncheckedUpdateWithoutModulesInput = {
 export type WorkshopCountOutputType = {
   cohorts: number
   modules: number
+  assignments: number
 }
 
 export type WorkshopCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cohorts?: boolean | WorkshopCountOutputTypeCountCohortsArgs
   modules?: boolean | WorkshopCountOutputTypeCountModulesArgs
+  assignments?: boolean | WorkshopCountOutputTypeCountAssignmentsArgs
 }
 
 /**
@@ -559,6 +654,13 @@ export type WorkshopCountOutputTypeCountModulesArgs<ExtArgs extends runtime.Type
   where?: Prisma.ModuleWhereInput
 }
 
+/**
+ * WorkshopCountOutputType without action
+ */
+export type WorkshopCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentWhereInput
+}
+
 
 export type WorkshopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -570,6 +672,7 @@ export type WorkshopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   cohorts?: boolean | Prisma.Workshop$cohortsArgs<ExtArgs>
   modules?: boolean | Prisma.Workshop$modulesArgs<ExtArgs>
+  assignments?: boolean | Prisma.Workshop$assignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkshopCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workshop"]>
 
@@ -607,6 +710,7 @@ export type WorkshopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type WorkshopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cohorts?: boolean | Prisma.Workshop$cohortsArgs<ExtArgs>
   modules?: boolean | Prisma.Workshop$modulesArgs<ExtArgs>
+  assignments?: boolean | Prisma.Workshop$assignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkshopCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkshopIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -617,6 +721,7 @@ export type $WorkshopPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     cohorts: Prisma.$CohortPayload<ExtArgs>[]
     modules: Prisma.$ModulePayload<ExtArgs>[]
+    assignments: Prisma.$AssignmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1022,6 +1127,7 @@ export interface Prisma__WorkshopClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cohorts<T extends Prisma.Workshop$cohortsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workshop$cohortsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CohortPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   modules<T extends Prisma.Workshop$modulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workshop$modulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignments<T extends Prisma.Workshop$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workshop$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1496,6 +1602,30 @@ export type Workshop$modulesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.ModuleScalarFieldEnum | Prisma.ModuleScalarFieldEnum[]
+}
+
+/**
+ * Workshop.assignments
+ */
+export type Workshop$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
 }
 
 /**

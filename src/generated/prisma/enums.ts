@@ -110,3 +110,32 @@ export const ContentStatus = {
 } as const
 
 export type ContentStatus = (typeof ContentStatus)[keyof typeof ContentStatus]
+
+
+export const AssignmentCategory = {
+  REGULAR: 'REGULAR',
+  FINAL_PROJECT: 'FINAL_PROJECT'
+} as const
+
+export type AssignmentCategory = (typeof AssignmentCategory)[keyof typeof AssignmentCategory]
+
+
+export const AssignmentStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  CLOSED: 'CLOSED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type AssignmentStatus = (typeof AssignmentStatus)[keyof typeof AssignmentStatus]
+
+
+export const SubmissionStatus = {
+  SUBMITTED: 'SUBMITTED',
+  LATE: 'LATE',
+  REOPENED: 'REOPENED',
+  GRADED: 'GRADED',
+  RETURNED: 'RETURNED'
+} as const
+
+export type SubmissionStatus = (typeof SubmissionStatus)[keyof typeof SubmissionStatus]

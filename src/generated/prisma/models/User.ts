@@ -202,6 +202,10 @@ export type UserWhereInput = {
   recordedAttendances?: Prisma.AttendanceListRelationFilter
   correctedAttendances?: Prisma.AttendanceListRelationFilter
   createdQrTokens?: Prisma.QrTokenListRelationFilter
+  submissions?: Prisma.SubmissionListRelationFilter
+  gradedSubmissions?: Prisma.SubmissionListRelationFilter
+  reopenedSubmissions?: Prisma.SubmissionListRelationFilter
+  createdAssignments?: Prisma.AssignmentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -223,6 +227,10 @@ export type UserOrderByWithRelationInput = {
   recordedAttendances?: Prisma.AttendanceOrderByRelationAggregateInput
   correctedAttendances?: Prisma.AttendanceOrderByRelationAggregateInput
   createdQrTokens?: Prisma.QrTokenOrderByRelationAggregateInput
+  submissions?: Prisma.SubmissionOrderByRelationAggregateInput
+  gradedSubmissions?: Prisma.SubmissionOrderByRelationAggregateInput
+  reopenedSubmissions?: Prisma.SubmissionOrderByRelationAggregateInput
+  createdAssignments?: Prisma.AssignmentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -247,6 +255,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   recordedAttendances?: Prisma.AttendanceListRelationFilter
   correctedAttendances?: Prisma.AttendanceListRelationFilter
   createdQrTokens?: Prisma.QrTokenListRelationFilter
+  submissions?: Prisma.SubmissionListRelationFilter
+  gradedSubmissions?: Prisma.SubmissionListRelationFilter
+  reopenedSubmissions?: Prisma.SubmissionListRelationFilter
+  createdAssignments?: Prisma.AssignmentListRelationFilter
 }, "id" | "email" | "googleSub">
 
 export type UserOrderByWithAggregationInput = {
@@ -292,6 +304,10 @@ export type UserCreateInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -313,6 +329,10 @@ export type UserUncheckedCreateInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -334,6 +354,10 @@ export type UserUpdateInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -355,6 +379,10 @@ export type UserUncheckedUpdateInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -619,6 +647,68 @@ export type UserUpdateOneWithoutCorrectedAttendancesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCorrectedAttendancesInput, Prisma.UserUpdateWithoutCorrectedAttendancesInput>, Prisma.UserUncheckedUpdateWithoutCorrectedAttendancesInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedAssignmentsInput, Prisma.UserUncheckedCreateWithoutCreatedAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedAssignmentsInput, Prisma.UserUncheckedCreateWithoutCreatedAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedAssignmentsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedAssignmentsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedAssignmentsInput, Prisma.UserUpdateWithoutCreatedAssignmentsInput>, Prisma.UserUncheckedUpdateWithoutCreatedAssignmentsInput>
+}
+
+export type UserCreateNestedOneWithoutSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmissionsInput, Prisma.UserUncheckedCreateWithoutSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutGradedSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGradedSubmissionsInput, Prisma.UserUncheckedCreateWithoutGradedSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGradedSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReopenedSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReopenedSubmissionsInput, Prisma.UserUncheckedCreateWithoutReopenedSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReopenedSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmissionsInput, Prisma.UserUncheckedCreateWithoutSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubmissionsInput, Prisma.UserUpdateWithoutSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutSubmissionsInput>
+}
+
+export type UserUpdateOneWithoutGradedSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGradedSubmissionsInput, Prisma.UserUncheckedCreateWithoutGradedSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGradedSubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutGradedSubmissionsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGradedSubmissionsInput, Prisma.UserUpdateWithoutGradedSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutGradedSubmissionsInput>
+}
+
+export type UserUpdateOneWithoutReopenedSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReopenedSubmissionsInput, Prisma.UserUncheckedCreateWithoutReopenedSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReopenedSubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutReopenedSubmissionsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReopenedSubmissionsInput, Prisma.UserUpdateWithoutReopenedSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutReopenedSubmissionsInput>
+}
+
 export type UserCreateWithoutProfileInput = {
   id?: string
   email: string
@@ -637,6 +727,10 @@ export type UserCreateWithoutProfileInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -657,6 +751,10 @@ export type UserUncheckedCreateWithoutProfileInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -693,6 +791,10 @@ export type UserUpdateWithoutProfileInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -713,6 +815,10 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRolesInput = {
@@ -733,6 +839,10 @@ export type UserCreateWithoutRolesInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -753,6 +863,10 @@ export type UserUncheckedCreateWithoutRolesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -789,6 +903,10 @@ export type UserUpdateWithoutRolesInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -809,6 +927,10 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedInvitationCodesInput = {
@@ -829,6 +951,10 @@ export type UserCreateWithoutCreatedInvitationCodesInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInvitationCodesInput = {
@@ -849,6 +975,10 @@ export type UserUncheckedCreateWithoutCreatedInvitationCodesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInvitationCodesInput = {
@@ -885,6 +1015,10 @@ export type UserUpdateWithoutCreatedInvitationCodesInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInvitationCodesInput = {
@@ -905,6 +1039,10 @@ export type UserUncheckedUpdateWithoutCreatedInvitationCodesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutInvitationRedemptionsInput = {
@@ -925,6 +1063,10 @@ export type UserCreateWithoutInvitationRedemptionsInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutInvitationRedemptionsInput = {
@@ -945,6 +1087,10 @@ export type UserUncheckedCreateWithoutInvitationRedemptionsInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutInvitationRedemptionsInput = {
@@ -981,6 +1127,10 @@ export type UserUpdateWithoutInvitationRedemptionsInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationRedemptionsInput = {
@@ -1001,6 +1151,10 @@ export type UserUncheckedUpdateWithoutInvitationRedemptionsInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1021,6 +1175,10 @@ export type UserCreateWithoutAuditLogsInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1041,6 +1199,10 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1077,6 +1239,10 @@ export type UserUpdateWithoutAuditLogsInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1097,6 +1263,10 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutEnrollmentsInput = {
@@ -1117,6 +1287,10 @@ export type UserCreateWithoutEnrollmentsInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEnrollmentsInput = {
@@ -1137,6 +1311,10 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEnrollmentsInput = {
@@ -1173,6 +1351,10 @@ export type UserUpdateWithoutEnrollmentsInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1193,6 +1375,10 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutOpenedAttendancesInput = {
@@ -1213,6 +1399,10 @@ export type UserCreateWithoutOpenedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutOpenedAttendancesInput = {
@@ -1233,6 +1423,10 @@ export type UserUncheckedCreateWithoutOpenedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutOpenedAttendancesInput = {
@@ -1258,6 +1452,10 @@ export type UserCreateWithoutClosedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutClosedAttendancesInput = {
@@ -1278,6 +1476,10 @@ export type UserUncheckedCreateWithoutClosedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutClosedAttendancesInput = {
@@ -1314,6 +1516,10 @@ export type UserUpdateWithoutOpenedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOpenedAttendancesInput = {
@@ -1334,6 +1540,10 @@ export type UserUncheckedUpdateWithoutOpenedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutClosedAttendancesInput = {
@@ -1365,6 +1575,10 @@ export type UserUpdateWithoutClosedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedAttendancesInput = {
@@ -1385,6 +1599,10 @@ export type UserUncheckedUpdateWithoutClosedAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedQrTokensInput = {
@@ -1405,6 +1623,10 @@ export type UserCreateWithoutCreatedQrTokensInput = {
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedQrTokensInput = {
@@ -1425,6 +1647,10 @@ export type UserUncheckedCreateWithoutCreatedQrTokensInput = {
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedQrTokensInput = {
@@ -1461,6 +1687,10 @@ export type UserUpdateWithoutCreatedQrTokensInput = {
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedQrTokensInput = {
@@ -1481,6 +1711,10 @@ export type UserUncheckedUpdateWithoutCreatedQrTokensInput = {
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAttendancesInput = {
@@ -1501,6 +1735,10 @@ export type UserCreateWithoutAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAttendancesInput = {
@@ -1521,6 +1759,10 @@ export type UserUncheckedCreateWithoutAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAttendancesInput = {
@@ -1546,6 +1788,10 @@ export type UserCreateWithoutRecordedAttendancesInput = {
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRecordedAttendancesInput = {
@@ -1566,6 +1812,10 @@ export type UserUncheckedCreateWithoutRecordedAttendancesInput = {
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRecordedAttendancesInput = {
@@ -1591,6 +1841,10 @@ export type UserCreateWithoutCorrectedAttendancesInput = {
   attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
   createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCorrectedAttendancesInput = {
@@ -1611,6 +1865,10 @@ export type UserUncheckedCreateWithoutCorrectedAttendancesInput = {
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
   recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
   createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCorrectedAttendancesInput = {
@@ -1647,6 +1905,10 @@ export type UserUpdateWithoutAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendancesInput = {
@@ -1667,6 +1929,10 @@ export type UserUncheckedUpdateWithoutAttendancesInput = {
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutRecordedAttendancesInput = {
@@ -1698,6 +1964,10 @@ export type UserUpdateWithoutRecordedAttendancesInput = {
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedAttendancesInput = {
@@ -1718,6 +1988,10 @@ export type UserUncheckedUpdateWithoutRecordedAttendancesInput = {
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCorrectedAttendancesInput = {
@@ -1749,6 +2023,10 @@ export type UserUpdateWithoutCorrectedAttendancesInput = {
   attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
   createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrectedAttendancesInput = {
@@ -1769,6 +2047,458 @@ export type UserUncheckedUpdateWithoutCorrectedAttendancesInput = {
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
   recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
   createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutCreatedAssignmentsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+}
+
+export type UserUncheckedCreateWithoutCreatedAssignmentsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+}
+
+export type UserCreateOrConnectWithoutCreatedAssignmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedAssignmentsInput, Prisma.UserUncheckedCreateWithoutCreatedAssignmentsInput>
+}
+
+export type UserUpsertWithoutCreatedAssignmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedAssignmentsInput, Prisma.UserUncheckedUpdateWithoutCreatedAssignmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedAssignmentsInput, Prisma.UserUncheckedCreateWithoutCreatedAssignmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedAssignmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedAssignmentsInput, Prisma.UserUncheckedUpdateWithoutCreatedAssignmentsInput>
+}
+
+export type UserUpdateWithoutCreatedAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+}
+
+export type UserCreateWithoutSubmissionsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutSubmissionsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutSubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmissionsInput, Prisma.UserUncheckedCreateWithoutSubmissionsInput>
+}
+
+export type UserCreateWithoutGradedSubmissionsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutGradedSubmissionsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutGradedSubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGradedSubmissionsInput, Prisma.UserUncheckedCreateWithoutGradedSubmissionsInput>
+}
+
+export type UserCreateWithoutReopenedSubmissionsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutReopenedSubmissionsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutReopenedSubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReopenedSubmissionsInput, Prisma.UserUncheckedCreateWithoutReopenedSubmissionsInput>
+}
+
+export type UserUpsertWithoutSubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubmissionsInput, Prisma.UserUncheckedUpdateWithoutSubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmissionsInput, Prisma.UserUncheckedCreateWithoutSubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubmissionsInput, Prisma.UserUncheckedUpdateWithoutSubmissionsInput>
+}
+
+export type UserUpdateWithoutSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUpsertWithoutGradedSubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGradedSubmissionsInput, Prisma.UserUncheckedUpdateWithoutGradedSubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGradedSubmissionsInput, Prisma.UserUncheckedCreateWithoutGradedSubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGradedSubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGradedSubmissionsInput, Prisma.UserUncheckedUpdateWithoutGradedSubmissionsInput>
+}
+
+export type UserUpdateWithoutGradedSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGradedSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUpsertWithoutReopenedSubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReopenedSubmissionsInput, Prisma.UserUncheckedUpdateWithoutReopenedSubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReopenedSubmissionsInput, Prisma.UserUncheckedCreateWithoutReopenedSubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReopenedSubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReopenedSubmissionsInput, Prisma.UserUncheckedUpdateWithoutReopenedSubmissionsInput>
+}
+
+export type UserUpdateWithoutReopenedSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReopenedSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 
@@ -1788,6 +2518,10 @@ export type UserCountOutputType = {
   recordedAttendances: number
   correctedAttendances: number
   createdQrTokens: number
+  submissions: number
+  gradedSubmissions: number
+  reopenedSubmissions: number
+  createdAssignments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1802,6 +2536,10 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   recordedAttendances?: boolean | UserCountOutputTypeCountRecordedAttendancesArgs
   correctedAttendances?: boolean | UserCountOutputTypeCountCorrectedAttendancesArgs
   createdQrTokens?: boolean | UserCountOutputTypeCountCreatedQrTokensArgs
+  submissions?: boolean | UserCountOutputTypeCountSubmissionsArgs
+  gradedSubmissions?: boolean | UserCountOutputTypeCountGradedSubmissionsArgs
+  reopenedSubmissions?: boolean | UserCountOutputTypeCountReopenedSubmissionsArgs
+  createdAssignments?: boolean | UserCountOutputTypeCountCreatedAssignmentsArgs
 }
 
 /**
@@ -1891,6 +2629,34 @@ export type UserCountOutputTypeCountCreatedQrTokensArgs<ExtArgs extends runtime.
   where?: Prisma.QrTokenWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGradedSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReopenedSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1911,6 +2677,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   recordedAttendances?: boolean | Prisma.User$recordedAttendancesArgs<ExtArgs>
   correctedAttendances?: boolean | Prisma.User$correctedAttendancesArgs<ExtArgs>
   createdQrTokens?: boolean | Prisma.User$createdQrTokensArgs<ExtArgs>
+  submissions?: boolean | Prisma.User$submissionsArgs<ExtArgs>
+  gradedSubmissions?: boolean | Prisma.User$gradedSubmissionsArgs<ExtArgs>
+  reopenedSubmissions?: boolean | Prisma.User$reopenedSubmissionsArgs<ExtArgs>
+  createdAssignments?: boolean | Prisma.User$createdAssignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1955,6 +2725,10 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   recordedAttendances?: boolean | Prisma.User$recordedAttendancesArgs<ExtArgs>
   correctedAttendances?: boolean | Prisma.User$correctedAttendancesArgs<ExtArgs>
   createdQrTokens?: boolean | Prisma.User$createdQrTokensArgs<ExtArgs>
+  submissions?: boolean | Prisma.User$submissionsArgs<ExtArgs>
+  gradedSubmissions?: boolean | Prisma.User$gradedSubmissionsArgs<ExtArgs>
+  reopenedSubmissions?: boolean | Prisma.User$reopenedSubmissionsArgs<ExtArgs>
+  createdAssignments?: boolean | Prisma.User$createdAssignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1975,6 +2749,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     recordedAttendances: Prisma.$AttendancePayload<ExtArgs>[]
     correctedAttendances: Prisma.$AttendancePayload<ExtArgs>[]
     createdQrTokens: Prisma.$QrTokenPayload<ExtArgs>[]
+    submissions: Prisma.$SubmissionPayload<ExtArgs>[]
+    gradedSubmissions: Prisma.$SubmissionPayload<ExtArgs>[]
+    reopenedSubmissions: Prisma.$SubmissionPayload<ExtArgs>[]
+    createdAssignments: Prisma.$AssignmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2389,6 +3167,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   recordedAttendances<T extends Prisma.User$recordedAttendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recordedAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   correctedAttendances<T extends Prisma.User$correctedAttendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$correctedAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdQrTokens<T extends Prisma.User$createdQrTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdQrTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QrTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissions<T extends Prisma.User$submissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  gradedSubmissions<T extends Prisma.User$gradedSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$gradedSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reopenedSubmissions<T extends Prisma.User$reopenedSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reopenedSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdAssignments<T extends Prisma.User$createdAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3097,6 +3879,102 @@ export type User$createdQrTokensArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.QrTokenScalarFieldEnum | Prisma.QrTokenScalarFieldEnum[]
+}
+
+/**
+ * User.submissions
+ */
+export type User$submissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Submission
+   */
+  select?: Prisma.SubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Submission
+   */
+  omit?: Prisma.SubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionInclude<ExtArgs> | null
+  where?: Prisma.SubmissionWhereInput
+  orderBy?: Prisma.SubmissionOrderByWithRelationInput | Prisma.SubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionScalarFieldEnum | Prisma.SubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.gradedSubmissions
+ */
+export type User$gradedSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Submission
+   */
+  select?: Prisma.SubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Submission
+   */
+  omit?: Prisma.SubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionInclude<ExtArgs> | null
+  where?: Prisma.SubmissionWhereInput
+  orderBy?: Prisma.SubmissionOrderByWithRelationInput | Prisma.SubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionScalarFieldEnum | Prisma.SubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.reopenedSubmissions
+ */
+export type User$reopenedSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Submission
+   */
+  select?: Prisma.SubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Submission
+   */
+  omit?: Prisma.SubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionInclude<ExtArgs> | null
+  where?: Prisma.SubmissionWhereInput
+  orderBy?: Prisma.SubmissionOrderByWithRelationInput | Prisma.SubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionScalarFieldEnum | Prisma.SubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.createdAssignments
+ */
+export type User$createdAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
 }
 
 /**

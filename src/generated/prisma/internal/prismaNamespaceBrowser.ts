@@ -65,7 +65,10 @@ export const ModelName = {
   QrToken: 'QrToken',
   Attendance: 'Attendance',
   Module: 'Module',
-  Material: 'Material'
+  Material: 'Material',
+  Assignment: 'Assignment',
+  Submission: 'Submission',
+  SubmissionFile: 'SubmissionFile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -307,6 +310,65 @@ export const MaterialScalarFieldEnum = {
 } as const
 
 export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
+
+
+export const AssignmentScalarFieldEnum = {
+  id: 'id',
+  workshopId: 'workshopId',
+  sessionId: 'sessionId',
+  createdById: 'createdById',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  dueAt: 'dueAt',
+  maxScore: 'maxScore',
+  allowLate: 'allowLate',
+  requiredForCertificate: 'requiredForCertificate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
+
+
+export const SubmissionScalarFieldEnum = {
+  id: 'id',
+  assignmentId: 'assignmentId',
+  userId: 'userId',
+  attemptNo: 'attemptNo',
+  isLatest: 'isLatest',
+  status: 'status',
+  repositoryUrl: 'repositoryUrl',
+  deploymentUrl: 'deploymentUrl',
+  contentText: 'contentText',
+  submittedAt: 'submittedAt',
+  score: 'score',
+  feedback: 'feedback',
+  gradedAt: 'gradedAt',
+  gradedById: 'gradedById',
+  reopenedAt: 'reopenedAt',
+  reopenedById: 'reopenedById',
+  reopenReason: 'reopenReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+export const SubmissionFileScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  mimeType: 'mimeType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionFileScalarFieldEnum = (typeof SubmissionFileScalarFieldEnum)[keyof typeof SubmissionFileScalarFieldEnum]
 
 
 export const SortOrder = {
