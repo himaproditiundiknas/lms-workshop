@@ -31,6 +31,12 @@ export default async function DashboardPage() {
           <LogoutButton />
         </div>
         <a
+          href="/assignments"
+          className="mt-3 inline-flex rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+        >
+          Lihat Assignment
+        </a>
+        <a
           href="/materials"
           className="mt-3 inline-flex rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
         >
