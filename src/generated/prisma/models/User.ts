@@ -206,6 +206,9 @@ export type UserWhereInput = {
   gradedSubmissions?: Prisma.SubmissionListRelationFilter
   reopenedSubmissions?: Prisma.SubmissionListRelationFilter
   createdAssignments?: Prisma.AssignmentListRelationFilter
+  createdProjectGroups?: Prisma.ProjectGroupListRelationFilter
+  mentoredProjectGroups?: Prisma.ProjectGroupListRelationFilter
+  projectGroupMembers?: Prisma.ProjectGroupMemberListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -231,6 +234,9 @@ export type UserOrderByWithRelationInput = {
   gradedSubmissions?: Prisma.SubmissionOrderByRelationAggregateInput
   reopenedSubmissions?: Prisma.SubmissionOrderByRelationAggregateInput
   createdAssignments?: Prisma.AssignmentOrderByRelationAggregateInput
+  createdProjectGroups?: Prisma.ProjectGroupOrderByRelationAggregateInput
+  mentoredProjectGroups?: Prisma.ProjectGroupOrderByRelationAggregateInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -259,6 +265,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   gradedSubmissions?: Prisma.SubmissionListRelationFilter
   reopenedSubmissions?: Prisma.SubmissionListRelationFilter
   createdAssignments?: Prisma.AssignmentListRelationFilter
+  createdProjectGroups?: Prisma.ProjectGroupListRelationFilter
+  mentoredProjectGroups?: Prisma.ProjectGroupListRelationFilter
+  projectGroupMembers?: Prisma.ProjectGroupMemberListRelationFilter
 }, "id" | "email" | "googleSub">
 
 export type UserOrderByWithAggregationInput = {
@@ -308,6 +317,9 @@ export type UserCreateInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -333,6 +345,9 @@ export type UserUncheckedCreateInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -358,6 +373,9 @@ export type UserUpdateInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -383,6 +401,9 @@ export type UserUncheckedUpdateInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -709,6 +730,52 @@ export type UserUpdateOneWithoutReopenedSubmissionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReopenedSubmissionsInput, Prisma.UserUpdateWithoutReopenedSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutReopenedSubmissionsInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedProjectGroupsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectGroupsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectGroupsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedProjectGroupsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutMentoredProjectGroupsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentoredProjectGroupsInput, Prisma.UserUncheckedCreateWithoutMentoredProjectGroupsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentoredProjectGroupsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedProjectGroupsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectGroupsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectGroupsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedProjectGroupsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedProjectGroupsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedProjectGroupsInput, Prisma.UserUpdateWithoutCreatedProjectGroupsInput>, Prisma.UserUncheckedUpdateWithoutCreatedProjectGroupsInput>
+}
+
+export type UserUpdateOneWithoutMentoredProjectGroupsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentoredProjectGroupsInput, Prisma.UserUncheckedCreateWithoutMentoredProjectGroupsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentoredProjectGroupsInput
+  upsert?: Prisma.UserUpsertWithoutMentoredProjectGroupsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentoredProjectGroupsInput, Prisma.UserUpdateWithoutMentoredProjectGroupsInput>, Prisma.UserUncheckedUpdateWithoutMentoredProjectGroupsInput>
+}
+
+export type UserCreateNestedOneWithoutProjectGroupMembersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectGroupMembersInput, Prisma.UserUncheckedCreateWithoutProjectGroupMembersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectGroupMembersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutProjectGroupMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectGroupMembersInput, Prisma.UserUncheckedCreateWithoutProjectGroupMembersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectGroupMembersInput
+  upsert?: Prisma.UserUpsertWithoutProjectGroupMembersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProjectGroupMembersInput, Prisma.UserUpdateWithoutProjectGroupMembersInput>, Prisma.UserUncheckedUpdateWithoutProjectGroupMembersInput>
+}
+
 export type UserCreateWithoutProfileInput = {
   id?: string
   email: string
@@ -731,6 +798,9 @@ export type UserCreateWithoutProfileInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -755,6 +825,9 @@ export type UserUncheckedCreateWithoutProfileInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -795,6 +868,9 @@ export type UserUpdateWithoutProfileInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -819,6 +895,9 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRolesInput = {
@@ -843,6 +922,9 @@ export type UserCreateWithoutRolesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -867,6 +949,9 @@ export type UserUncheckedCreateWithoutRolesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -907,6 +992,9 @@ export type UserUpdateWithoutRolesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -931,6 +1019,9 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedInvitationCodesInput = {
@@ -955,6 +1046,9 @@ export type UserCreateWithoutCreatedInvitationCodesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedInvitationCodesInput = {
@@ -979,6 +1073,9 @@ export type UserUncheckedCreateWithoutCreatedInvitationCodesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedInvitationCodesInput = {
@@ -1019,6 +1116,9 @@ export type UserUpdateWithoutCreatedInvitationCodesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedInvitationCodesInput = {
@@ -1043,6 +1143,9 @@ export type UserUncheckedUpdateWithoutCreatedInvitationCodesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutInvitationRedemptionsInput = {
@@ -1067,6 +1170,9 @@ export type UserCreateWithoutInvitationRedemptionsInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutInvitationRedemptionsInput = {
@@ -1091,6 +1197,9 @@ export type UserUncheckedCreateWithoutInvitationRedemptionsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutInvitationRedemptionsInput = {
@@ -1131,6 +1240,9 @@ export type UserUpdateWithoutInvitationRedemptionsInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationRedemptionsInput = {
@@ -1155,6 +1267,9 @@ export type UserUncheckedUpdateWithoutInvitationRedemptionsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1179,6 +1294,9 @@ export type UserCreateWithoutAuditLogsInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1203,6 +1321,9 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1243,6 +1364,9 @@ export type UserUpdateWithoutAuditLogsInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1267,6 +1391,9 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEnrollmentsInput = {
@@ -1291,6 +1418,9 @@ export type UserCreateWithoutEnrollmentsInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEnrollmentsInput = {
@@ -1315,6 +1445,9 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEnrollmentsInput = {
@@ -1355,6 +1488,9 @@ export type UserUpdateWithoutEnrollmentsInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEnrollmentsInput = {
@@ -1379,6 +1515,9 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOpenedAttendancesInput = {
@@ -1403,6 +1542,9 @@ export type UserCreateWithoutOpenedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOpenedAttendancesInput = {
@@ -1427,6 +1569,9 @@ export type UserUncheckedCreateWithoutOpenedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOpenedAttendancesInput = {
@@ -1456,6 +1601,9 @@ export type UserCreateWithoutClosedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutClosedAttendancesInput = {
@@ -1480,6 +1628,9 @@ export type UserUncheckedCreateWithoutClosedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutClosedAttendancesInput = {
@@ -1520,6 +1671,9 @@ export type UserUpdateWithoutOpenedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOpenedAttendancesInput = {
@@ -1544,6 +1698,9 @@ export type UserUncheckedUpdateWithoutOpenedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutClosedAttendancesInput = {
@@ -1579,6 +1736,9 @@ export type UserUpdateWithoutClosedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedAttendancesInput = {
@@ -1603,6 +1763,9 @@ export type UserUncheckedUpdateWithoutClosedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedQrTokensInput = {
@@ -1627,6 +1790,9 @@ export type UserCreateWithoutCreatedQrTokensInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedQrTokensInput = {
@@ -1651,6 +1817,9 @@ export type UserUncheckedCreateWithoutCreatedQrTokensInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedQrTokensInput = {
@@ -1691,6 +1860,9 @@ export type UserUpdateWithoutCreatedQrTokensInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedQrTokensInput = {
@@ -1715,6 +1887,9 @@ export type UserUncheckedUpdateWithoutCreatedQrTokensInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAttendancesInput = {
@@ -1739,6 +1914,9 @@ export type UserCreateWithoutAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAttendancesInput = {
@@ -1763,6 +1941,9 @@ export type UserUncheckedCreateWithoutAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAttendancesInput = {
@@ -1792,6 +1973,9 @@ export type UserCreateWithoutRecordedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRecordedAttendancesInput = {
@@ -1816,6 +2000,9 @@ export type UserUncheckedCreateWithoutRecordedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRecordedAttendancesInput = {
@@ -1845,6 +2032,9 @@ export type UserCreateWithoutCorrectedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCorrectedAttendancesInput = {
@@ -1869,6 +2059,9 @@ export type UserUncheckedCreateWithoutCorrectedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCorrectedAttendancesInput = {
@@ -1909,6 +2102,9 @@ export type UserUpdateWithoutAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendancesInput = {
@@ -1933,6 +2129,9 @@ export type UserUncheckedUpdateWithoutAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutRecordedAttendancesInput = {
@@ -1968,6 +2167,9 @@ export type UserUpdateWithoutRecordedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedAttendancesInput = {
@@ -1992,6 +2194,9 @@ export type UserUncheckedUpdateWithoutRecordedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCorrectedAttendancesInput = {
@@ -2027,6 +2232,9 @@ export type UserUpdateWithoutCorrectedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrectedAttendancesInput = {
@@ -2051,6 +2259,9 @@ export type UserUncheckedUpdateWithoutCorrectedAttendancesInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedAssignmentsInput = {
@@ -2075,6 +2286,9 @@ export type UserCreateWithoutCreatedAssignmentsInput = {
   submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedAssignmentsInput = {
@@ -2099,6 +2313,9 @@ export type UserUncheckedCreateWithoutCreatedAssignmentsInput = {
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedAssignmentsInput = {
@@ -2139,6 +2356,9 @@ export type UserUpdateWithoutCreatedAssignmentsInput = {
   submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedAssignmentsInput = {
@@ -2163,6 +2383,9 @@ export type UserUncheckedUpdateWithoutCreatedAssignmentsInput = {
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSubmissionsInput = {
@@ -2187,6 +2410,9 @@ export type UserCreateWithoutSubmissionsInput = {
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSubmissionsInput = {
@@ -2211,6 +2437,9 @@ export type UserUncheckedCreateWithoutSubmissionsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSubmissionsInput = {
@@ -2240,6 +2469,9 @@ export type UserCreateWithoutGradedSubmissionsInput = {
   submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
   reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutGradedSubmissionsInput = {
@@ -2264,6 +2496,9 @@ export type UserUncheckedCreateWithoutGradedSubmissionsInput = {
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutGradedSubmissionsInput = {
@@ -2293,6 +2528,9 @@ export type UserCreateWithoutReopenedSubmissionsInput = {
   submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
   gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
   createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReopenedSubmissionsInput = {
@@ -2317,6 +2555,9 @@ export type UserUncheckedCreateWithoutReopenedSubmissionsInput = {
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
   gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
   createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReopenedSubmissionsInput = {
@@ -2357,6 +2598,9 @@ export type UserUpdateWithoutSubmissionsInput = {
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubmissionsInput = {
@@ -2381,6 +2625,9 @@ export type UserUncheckedUpdateWithoutSubmissionsInput = {
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutGradedSubmissionsInput = {
@@ -2416,6 +2663,9 @@ export type UserUpdateWithoutGradedSubmissionsInput = {
   submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
   reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGradedSubmissionsInput = {
@@ -2440,6 +2690,9 @@ export type UserUncheckedUpdateWithoutGradedSubmissionsInput = {
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
   reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReopenedSubmissionsInput = {
@@ -2475,6 +2728,9 @@ export type UserUpdateWithoutReopenedSubmissionsInput = {
   submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
   gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
   createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReopenedSubmissionsInput = {
@@ -2499,6 +2755,381 @@ export type UserUncheckedUpdateWithoutReopenedSubmissionsInput = {
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
   gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
   createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCreatedProjectGroupsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedProjectGroupsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedProjectGroupsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectGroupsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectGroupsInput>
+}
+
+export type UserCreateWithoutMentoredProjectGroupsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMentoredProjectGroupsInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMentoredProjectGroupsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentoredProjectGroupsInput, Prisma.UserUncheckedCreateWithoutMentoredProjectGroupsInput>
+}
+
+export type UserUpsertWithoutCreatedProjectGroupsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedProjectGroupsInput, Prisma.UserUncheckedUpdateWithoutCreatedProjectGroupsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectGroupsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectGroupsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedProjectGroupsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedProjectGroupsInput, Prisma.UserUncheckedUpdateWithoutCreatedProjectGroupsInput>
+}
+
+export type UserUpdateWithoutCreatedProjectGroupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedProjectGroupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutMentoredProjectGroupsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMentoredProjectGroupsInput, Prisma.UserUncheckedUpdateWithoutMentoredProjectGroupsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentoredProjectGroupsInput, Prisma.UserUncheckedCreateWithoutMentoredProjectGroupsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMentoredProjectGroupsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMentoredProjectGroupsInput, Prisma.UserUncheckedUpdateWithoutMentoredProjectGroupsInput>
+}
+
+export type UserUpdateWithoutMentoredProjectGroupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMentoredProjectGroupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutProjectGroupMembersInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutMentorInput
+}
+
+export type UserUncheckedCreateWithoutProjectGroupMembersInput = {
+  id?: string
+  email: string
+  googleSub?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedCreateNestedManyWithoutCreatedByInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutUserInput
+  openedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceOpenedByUserInput
+  closedAttendances?: Prisma.SessionUncheckedCreateNestedManyWithoutAttendanceClosedByUserInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutUserInput
+  recordedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutRecordedByInput
+  correctedAttendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCorrectedByInput
+  createdQrTokens?: Prisma.QrTokenUncheckedCreateNestedManyWithoutCreatedByInput
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutUserInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGradedByInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutReopenedByInput
+  createdAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutCreatedByInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCreatedByInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutMentorInput
+}
+
+export type UserCreateOrConnectWithoutProjectGroupMembersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectGroupMembersInput, Prisma.UserUncheckedCreateWithoutProjectGroupMembersInput>
+}
+
+export type UserUpsertWithoutProjectGroupMembersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProjectGroupMembersInput, Prisma.UserUncheckedUpdateWithoutProjectGroupMembersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectGroupMembersInput, Prisma.UserUncheckedCreateWithoutProjectGroupMembersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutProjectGroupMembersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProjectGroupMembersInput, Prisma.UserUncheckedUpdateWithoutProjectGroupMembersInput>
+}
+
+export type UserUpdateWithoutProjectGroupMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUpdateManyWithoutMentorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutProjectGroupMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  googleSub?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  createdInvitationCodes?: Prisma.InvitationCodeUncheckedUpdateManyWithoutCreatedByNestedInput
+  invitationRedemptions?: Prisma.InvitationRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  openedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceOpenedByUserNestedInput
+  closedAttendances?: Prisma.SessionUncheckedUpdateManyWithoutAttendanceClosedByUserNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutUserNestedInput
+  recordedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutRecordedByNestedInput
+  correctedAttendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCorrectedByNestedInput
+  createdQrTokens?: Prisma.QrTokenUncheckedUpdateManyWithoutCreatedByNestedInput
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutUserNestedInput
+  gradedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGradedByNestedInput
+  reopenedSubmissions?: Prisma.SubmissionUncheckedUpdateManyWithoutReopenedByNestedInput
+  createdAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  mentoredProjectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutMentorNestedInput
 }
 
 
@@ -2522,6 +3153,9 @@ export type UserCountOutputType = {
   gradedSubmissions: number
   reopenedSubmissions: number
   createdAssignments: number
+  createdProjectGroups: number
+  mentoredProjectGroups: number
+  projectGroupMembers: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2540,6 +3174,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   gradedSubmissions?: boolean | UserCountOutputTypeCountGradedSubmissionsArgs
   reopenedSubmissions?: boolean | UserCountOutputTypeCountReopenedSubmissionsArgs
   createdAssignments?: boolean | UserCountOutputTypeCountCreatedAssignmentsArgs
+  createdProjectGroups?: boolean | UserCountOutputTypeCountCreatedProjectGroupsArgs
+  mentoredProjectGroups?: boolean | UserCountOutputTypeCountMentoredProjectGroupsArgs
+  projectGroupMembers?: boolean | UserCountOutputTypeCountProjectGroupMembersArgs
 }
 
 /**
@@ -2657,6 +3294,27 @@ export type UserCountOutputTypeCountCreatedAssignmentsArgs<ExtArgs extends runti
   where?: Prisma.AssignmentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedProjectGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectGroupWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMentoredProjectGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectGroupWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountProjectGroupMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectGroupMemberWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2681,6 +3339,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   gradedSubmissions?: boolean | Prisma.User$gradedSubmissionsArgs<ExtArgs>
   reopenedSubmissions?: boolean | Prisma.User$reopenedSubmissionsArgs<ExtArgs>
   createdAssignments?: boolean | Prisma.User$createdAssignmentsArgs<ExtArgs>
+  createdProjectGroups?: boolean | Prisma.User$createdProjectGroupsArgs<ExtArgs>
+  mentoredProjectGroups?: boolean | Prisma.User$mentoredProjectGroupsArgs<ExtArgs>
+  projectGroupMembers?: boolean | Prisma.User$projectGroupMembersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2729,6 +3390,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   gradedSubmissions?: boolean | Prisma.User$gradedSubmissionsArgs<ExtArgs>
   reopenedSubmissions?: boolean | Prisma.User$reopenedSubmissionsArgs<ExtArgs>
   createdAssignments?: boolean | Prisma.User$createdAssignmentsArgs<ExtArgs>
+  createdProjectGroups?: boolean | Prisma.User$createdProjectGroupsArgs<ExtArgs>
+  mentoredProjectGroups?: boolean | Prisma.User$mentoredProjectGroupsArgs<ExtArgs>
+  projectGroupMembers?: boolean | Prisma.User$projectGroupMembersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2753,6 +3417,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     gradedSubmissions: Prisma.$SubmissionPayload<ExtArgs>[]
     reopenedSubmissions: Prisma.$SubmissionPayload<ExtArgs>[]
     createdAssignments: Prisma.$AssignmentPayload<ExtArgs>[]
+    createdProjectGroups: Prisma.$ProjectGroupPayload<ExtArgs>[]
+    mentoredProjectGroups: Prisma.$ProjectGroupPayload<ExtArgs>[]
+    projectGroupMembers: Prisma.$ProjectGroupMemberPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3171,6 +3838,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   gradedSubmissions<T extends Prisma.User$gradedSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$gradedSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reopenedSubmissions<T extends Prisma.User$reopenedSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reopenedSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdAssignments<T extends Prisma.User$createdAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdProjectGroups<T extends Prisma.User$createdProjectGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdProjectGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mentoredProjectGroups<T extends Prisma.User$mentoredProjectGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mentoredProjectGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectGroupMembers<T extends Prisma.User$projectGroupMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectGroupMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3975,6 +4645,78 @@ export type User$createdAssignmentsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
+}
+
+/**
+ * User.createdProjectGroups
+ */
+export type User$createdProjectGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectGroup
+   */
+  select?: Prisma.ProjectGroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectGroup
+   */
+  omit?: Prisma.ProjectGroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectGroupInclude<ExtArgs> | null
+  where?: Prisma.ProjectGroupWhereInput
+  orderBy?: Prisma.ProjectGroupOrderByWithRelationInput | Prisma.ProjectGroupOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectGroupWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectGroupScalarFieldEnum | Prisma.ProjectGroupScalarFieldEnum[]
+}
+
+/**
+ * User.mentoredProjectGroups
+ */
+export type User$mentoredProjectGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectGroup
+   */
+  select?: Prisma.ProjectGroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectGroup
+   */
+  omit?: Prisma.ProjectGroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectGroupInclude<ExtArgs> | null
+  where?: Prisma.ProjectGroupWhereInput
+  orderBy?: Prisma.ProjectGroupOrderByWithRelationInput | Prisma.ProjectGroupOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectGroupWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectGroupScalarFieldEnum | Prisma.ProjectGroupScalarFieldEnum[]
+}
+
+/**
+ * User.projectGroupMembers
+ */
+export type User$projectGroupMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectGroupMember
+   */
+  select?: Prisma.ProjectGroupMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectGroupMember
+   */
+  omit?: Prisma.ProjectGroupMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectGroupMemberInclude<ExtArgs> | null
+  where?: Prisma.ProjectGroupMemberWhereInput
+  orderBy?: Prisma.ProjectGroupMemberOrderByWithRelationInput | Prisma.ProjectGroupMemberOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectGroupMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectGroupMemberScalarFieldEnum | Prisma.ProjectGroupMemberScalarFieldEnum[]
 }
 
 /**

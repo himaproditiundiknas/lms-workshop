@@ -217,6 +217,8 @@ export type CohortWhereInput = {
   workshop?: Prisma.XOR<Prisma.WorkshopScalarRelationFilter, Prisma.WorkshopWhereInput>
   sessions?: Prisma.SessionListRelationFilter
   enrollments?: Prisma.EnrollmentListRelationFilter
+  projectGroups?: Prisma.ProjectGroupListRelationFilter
+  projectGroupMembers?: Prisma.ProjectGroupMemberListRelationFilter
 }
 
 export type CohortOrderByWithRelationInput = {
@@ -232,6 +234,8 @@ export type CohortOrderByWithRelationInput = {
   workshop?: Prisma.WorkshopOrderByWithRelationInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   enrollments?: Prisma.EnrollmentOrderByRelationAggregateInput
+  projectGroups?: Prisma.ProjectGroupOrderByRelationAggregateInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberOrderByRelationAggregateInput
 }
 
 export type CohortWhereUniqueInput = Prisma.AtLeast<{
@@ -250,6 +254,8 @@ export type CohortWhereUniqueInput = Prisma.AtLeast<{
   workshop?: Prisma.XOR<Prisma.WorkshopScalarRelationFilter, Prisma.WorkshopWhereInput>
   sessions?: Prisma.SessionListRelationFilter
   enrollments?: Prisma.EnrollmentListRelationFilter
+  projectGroups?: Prisma.ProjectGroupListRelationFilter
+  projectGroupMembers?: Prisma.ProjectGroupMemberListRelationFilter
 }, "id" | "slug">
 
 export type CohortOrderByWithAggregationInput = {
@@ -294,6 +300,8 @@ export type CohortCreateInput = {
   workshop: Prisma.WorkshopCreateNestedOneWithoutCohortsInput
   sessions?: Prisma.SessionCreateNestedManyWithoutCohortInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutCohortInput
 }
 
 export type CohortUncheckedCreateInput = {
@@ -308,6 +316,8 @@ export type CohortUncheckedCreateInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCohortInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutCohortInput
 }
 
 export type CohortUpdateInput = {
@@ -322,6 +332,8 @@ export type CohortUpdateInput = {
   workshop?: Prisma.WorkshopUpdateOneRequiredWithoutCohortsNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutCohortNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortUncheckedUpdateInput = {
@@ -336,6 +348,8 @@ export type CohortUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutCohortNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortCreateManyInput = {
@@ -505,6 +519,34 @@ export type CohortUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CohortUpdateToOneWithWhereWithoutSessionsInput, Prisma.CohortUpdateWithoutSessionsInput>, Prisma.CohortUncheckedUpdateWithoutSessionsInput>
 }
 
+export type CohortCreateNestedOneWithoutProjectGroupsInput = {
+  create?: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupsInput, Prisma.CohortUncheckedCreateWithoutProjectGroupsInput>
+  connectOrCreate?: Prisma.CohortCreateOrConnectWithoutProjectGroupsInput
+  connect?: Prisma.CohortWhereUniqueInput
+}
+
+export type CohortUpdateOneRequiredWithoutProjectGroupsNestedInput = {
+  create?: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupsInput, Prisma.CohortUncheckedCreateWithoutProjectGroupsInput>
+  connectOrCreate?: Prisma.CohortCreateOrConnectWithoutProjectGroupsInput
+  upsert?: Prisma.CohortUpsertWithoutProjectGroupsInput
+  connect?: Prisma.CohortWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CohortUpdateToOneWithWhereWithoutProjectGroupsInput, Prisma.CohortUpdateWithoutProjectGroupsInput>, Prisma.CohortUncheckedUpdateWithoutProjectGroupsInput>
+}
+
+export type CohortCreateNestedOneWithoutProjectGroupMembersInput = {
+  create?: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupMembersInput, Prisma.CohortUncheckedCreateWithoutProjectGroupMembersInput>
+  connectOrCreate?: Prisma.CohortCreateOrConnectWithoutProjectGroupMembersInput
+  connect?: Prisma.CohortWhereUniqueInput
+}
+
+export type CohortUpdateOneRequiredWithoutProjectGroupMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupMembersInput, Prisma.CohortUncheckedCreateWithoutProjectGroupMembersInput>
+  connectOrCreate?: Prisma.CohortCreateOrConnectWithoutProjectGroupMembersInput
+  upsert?: Prisma.CohortUpsertWithoutProjectGroupMembersInput
+  connect?: Prisma.CohortWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CohortUpdateToOneWithWhereWithoutProjectGroupMembersInput, Prisma.CohortUpdateWithoutProjectGroupMembersInput>, Prisma.CohortUncheckedUpdateWithoutProjectGroupMembersInput>
+}
+
 export type CohortCreateWithoutEnrollmentsInput = {
   id?: string
   name: string
@@ -516,6 +558,8 @@ export type CohortCreateWithoutEnrollmentsInput = {
   updatedAt?: Date | string
   workshop: Prisma.WorkshopCreateNestedOneWithoutCohortsInput
   sessions?: Prisma.SessionCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutCohortInput
 }
 
 export type CohortUncheckedCreateWithoutEnrollmentsInput = {
@@ -529,6 +573,8 @@ export type CohortUncheckedCreateWithoutEnrollmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutCohortInput
 }
 
 export type CohortCreateOrConnectWithoutEnrollmentsInput = {
@@ -558,6 +604,8 @@ export type CohortUpdateWithoutEnrollmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workshop?: Prisma.WorkshopUpdateOneRequiredWithoutCohortsNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortUncheckedUpdateWithoutEnrollmentsInput = {
@@ -571,6 +619,8 @@ export type CohortUncheckedUpdateWithoutEnrollmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortCreateWithoutWorkshopInput = {
@@ -584,6 +634,8 @@ export type CohortCreateWithoutWorkshopInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutCohortInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutCohortInput
 }
 
 export type CohortUncheckedCreateWithoutWorkshopInput = {
@@ -597,6 +649,8 @@ export type CohortUncheckedCreateWithoutWorkshopInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCohortInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutCohortInput
 }
 
 export type CohortCreateOrConnectWithoutWorkshopInput = {
@@ -651,6 +705,8 @@ export type CohortCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   workshop: Prisma.WorkshopCreateNestedOneWithoutCohortsInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutCohortInput
 }
 
 export type CohortUncheckedCreateWithoutSessionsInput = {
@@ -664,6 +720,8 @@ export type CohortUncheckedCreateWithoutSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutCohortInput
 }
 
 export type CohortCreateOrConnectWithoutSessionsInput = {
@@ -693,6 +751,8 @@ export type CohortUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workshop?: Prisma.WorkshopUpdateOneRequiredWithoutCohortsNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortUncheckedUpdateWithoutSessionsInput = {
@@ -706,6 +766,160 @@ export type CohortUncheckedUpdateWithoutSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutCohortNestedInput
+}
+
+export type CohortCreateWithoutProjectGroupsInput = {
+  id?: string
+  name: string
+  slug: string
+  status?: $Enums.CohortStatus
+  startsAt?: Date | string | null
+  endsAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workshop: Prisma.WorkshopCreateNestedOneWithoutCohortsInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutCohortInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberCreateNestedManyWithoutCohortInput
+}
+
+export type CohortUncheckedCreateWithoutProjectGroupsInput = {
+  id?: string
+  workshopId: string
+  name: string
+  slug: string
+  status?: $Enums.CohortStatus
+  startsAt?: Date | string | null
+  endsAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCohortInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCohortInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedCreateNestedManyWithoutCohortInput
+}
+
+export type CohortCreateOrConnectWithoutProjectGroupsInput = {
+  where: Prisma.CohortWhereUniqueInput
+  create: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupsInput, Prisma.CohortUncheckedCreateWithoutProjectGroupsInput>
+}
+
+export type CohortUpsertWithoutProjectGroupsInput = {
+  update: Prisma.XOR<Prisma.CohortUpdateWithoutProjectGroupsInput, Prisma.CohortUncheckedUpdateWithoutProjectGroupsInput>
+  create: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupsInput, Prisma.CohortUncheckedCreateWithoutProjectGroupsInput>
+  where?: Prisma.CohortWhereInput
+}
+
+export type CohortUpdateToOneWithWhereWithoutProjectGroupsInput = {
+  where?: Prisma.CohortWhereInput
+  data: Prisma.XOR<Prisma.CohortUpdateWithoutProjectGroupsInput, Prisma.CohortUncheckedUpdateWithoutProjectGroupsInput>
+}
+
+export type CohortUpdateWithoutProjectGroupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCohortStatusFieldUpdateOperationsInput | $Enums.CohortStatus
+  startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workshop?: Prisma.WorkshopUpdateOneRequiredWithoutCohortsNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutCohortNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutCohortNestedInput
+}
+
+export type CohortUncheckedUpdateWithoutProjectGroupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workshopId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCohortStatusFieldUpdateOperationsInput | $Enums.CohortStatus
+  startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutCohortNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutCohortNestedInput
+}
+
+export type CohortCreateWithoutProjectGroupMembersInput = {
+  id?: string
+  name: string
+  slug: string
+  status?: $Enums.CohortStatus
+  startsAt?: Date | string | null
+  endsAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workshop: Prisma.WorkshopCreateNestedOneWithoutCohortsInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutCohortInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupCreateNestedManyWithoutCohortInput
+}
+
+export type CohortUncheckedCreateWithoutProjectGroupMembersInput = {
+  id?: string
+  workshopId: string
+  name: string
+  slug: string
+  status?: $Enums.CohortStatus
+  startsAt?: Date | string | null
+  endsAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCohortInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCohortInput
+  projectGroups?: Prisma.ProjectGroupUncheckedCreateNestedManyWithoutCohortInput
+}
+
+export type CohortCreateOrConnectWithoutProjectGroupMembersInput = {
+  where: Prisma.CohortWhereUniqueInput
+  create: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupMembersInput, Prisma.CohortUncheckedCreateWithoutProjectGroupMembersInput>
+}
+
+export type CohortUpsertWithoutProjectGroupMembersInput = {
+  update: Prisma.XOR<Prisma.CohortUpdateWithoutProjectGroupMembersInput, Prisma.CohortUncheckedUpdateWithoutProjectGroupMembersInput>
+  create: Prisma.XOR<Prisma.CohortCreateWithoutProjectGroupMembersInput, Prisma.CohortUncheckedCreateWithoutProjectGroupMembersInput>
+  where?: Prisma.CohortWhereInput
+}
+
+export type CohortUpdateToOneWithWhereWithoutProjectGroupMembersInput = {
+  where?: Prisma.CohortWhereInput
+  data: Prisma.XOR<Prisma.CohortUpdateWithoutProjectGroupMembersInput, Prisma.CohortUncheckedUpdateWithoutProjectGroupMembersInput>
+}
+
+export type CohortUpdateWithoutProjectGroupMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCohortStatusFieldUpdateOperationsInput | $Enums.CohortStatus
+  startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workshop?: Prisma.WorkshopUpdateOneRequiredWithoutCohortsNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutCohortNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUpdateManyWithoutCohortNestedInput
+}
+
+export type CohortUncheckedUpdateWithoutProjectGroupMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workshopId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCohortStatusFieldUpdateOperationsInput | $Enums.CohortStatus
+  startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutCohortNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortCreateManyWorkshopInput = {
@@ -730,6 +944,8 @@ export type CohortUpdateWithoutWorkshopInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutCohortNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortUncheckedUpdateWithoutWorkshopInput = {
@@ -743,6 +959,8 @@ export type CohortUncheckedUpdateWithoutWorkshopInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutCohortNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroups?: Prisma.ProjectGroupUncheckedUpdateManyWithoutCohortNestedInput
+  projectGroupMembers?: Prisma.ProjectGroupMemberUncheckedUpdateManyWithoutCohortNestedInput
 }
 
 export type CohortUncheckedUpdateManyWithoutWorkshopInput = {
@@ -764,11 +982,15 @@ export type CohortUncheckedUpdateManyWithoutWorkshopInput = {
 export type CohortCountOutputType = {
   sessions: number
   enrollments: number
+  projectGroups: number
+  projectGroupMembers: number
 }
 
 export type CohortCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | CohortCountOutputTypeCountSessionsArgs
   enrollments?: boolean | CohortCountOutputTypeCountEnrollmentsArgs
+  projectGroups?: boolean | CohortCountOutputTypeCountProjectGroupsArgs
+  projectGroupMembers?: boolean | CohortCountOutputTypeCountProjectGroupMembersArgs
 }
 
 /**
@@ -795,6 +1017,20 @@ export type CohortCountOutputTypeCountEnrollmentsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.EnrollmentWhereInput
 }
 
+/**
+ * CohortCountOutputType without action
+ */
+export type CohortCountOutputTypeCountProjectGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectGroupWhereInput
+}
+
+/**
+ * CohortCountOutputType without action
+ */
+export type CohortCountOutputTypeCountProjectGroupMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectGroupMemberWhereInput
+}
+
 
 export type CohortSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -809,6 +1045,8 @@ export type CohortSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   workshop?: boolean | Prisma.WorkshopDefaultArgs<ExtArgs>
   sessions?: boolean | Prisma.Cohort$sessionsArgs<ExtArgs>
   enrollments?: boolean | Prisma.Cohort$enrollmentsArgs<ExtArgs>
+  projectGroups?: boolean | Prisma.Cohort$projectGroupsArgs<ExtArgs>
+  projectGroupMembers?: boolean | Prisma.Cohort$projectGroupMembersArgs<ExtArgs>
   _count?: boolean | Prisma.CohortCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cohort"]>
 
@@ -855,6 +1093,8 @@ export type CohortInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   workshop?: boolean | Prisma.WorkshopDefaultArgs<ExtArgs>
   sessions?: boolean | Prisma.Cohort$sessionsArgs<ExtArgs>
   enrollments?: boolean | Prisma.Cohort$enrollmentsArgs<ExtArgs>
+  projectGroups?: boolean | Prisma.Cohort$projectGroupsArgs<ExtArgs>
+  projectGroupMembers?: boolean | Prisma.Cohort$projectGroupMembersArgs<ExtArgs>
   _count?: boolean | Prisma.CohortCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CohortIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -870,6 +1110,8 @@ export type $CohortPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     workshop: Prisma.$WorkshopPayload<ExtArgs>
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
+    projectGroups: Prisma.$ProjectGroupPayload<ExtArgs>[]
+    projectGroupMembers: Prisma.$ProjectGroupMemberPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1278,6 +1520,8 @@ export interface Prisma__CohortClient<T, Null = never, ExtArgs extends runtime.T
   workshop<T extends Prisma.WorkshopDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkshopDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkshopClient<runtime.Types.Result.GetResult<Prisma.$WorkshopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   sessions<T extends Prisma.Cohort$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cohort$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enrollments<T extends Prisma.Cohort$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cohort$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectGroups<T extends Prisma.Cohort$projectGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cohort$projectGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectGroupMembers<T extends Prisma.Cohort$projectGroupMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cohort$projectGroupMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1762,6 +2006,54 @@ export type Cohort$enrollmentsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.EnrollmentScalarFieldEnum | Prisma.EnrollmentScalarFieldEnum[]
+}
+
+/**
+ * Cohort.projectGroups
+ */
+export type Cohort$projectGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectGroup
+   */
+  select?: Prisma.ProjectGroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectGroup
+   */
+  omit?: Prisma.ProjectGroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectGroupInclude<ExtArgs> | null
+  where?: Prisma.ProjectGroupWhereInput
+  orderBy?: Prisma.ProjectGroupOrderByWithRelationInput | Prisma.ProjectGroupOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectGroupWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectGroupScalarFieldEnum | Prisma.ProjectGroupScalarFieldEnum[]
+}
+
+/**
+ * Cohort.projectGroupMembers
+ */
+export type Cohort$projectGroupMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectGroupMember
+   */
+  select?: Prisma.ProjectGroupMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectGroupMember
+   */
+  omit?: Prisma.ProjectGroupMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectGroupMemberInclude<ExtArgs> | null
+  where?: Prisma.ProjectGroupMemberWhereInput
+  orderBy?: Prisma.ProjectGroupMemberOrderByWithRelationInput | Prisma.ProjectGroupMemberOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectGroupMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectGroupMemberScalarFieldEnum | Prisma.ProjectGroupMemberScalarFieldEnum[]
 }
 
 /**

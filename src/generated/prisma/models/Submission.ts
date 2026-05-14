@@ -40,6 +40,7 @@ export type SubmissionMinAggregateOutputType = {
   id: string | null
   assignmentId: string | null
   userId: string | null
+  projectGroupId: string | null
   attemptNo: number | null
   isLatest: boolean | null
   status: $Enums.SubmissionStatus | null
@@ -62,6 +63,7 @@ export type SubmissionMaxAggregateOutputType = {
   id: string | null
   assignmentId: string | null
   userId: string | null
+  projectGroupId: string | null
   attemptNo: number | null
   isLatest: boolean | null
   status: $Enums.SubmissionStatus | null
@@ -84,6 +86,7 @@ export type SubmissionCountAggregateOutputType = {
   id: number
   assignmentId: number
   userId: number
+  projectGroupId: number
   attemptNo: number
   isLatest: number
   status: number
@@ -118,6 +121,7 @@ export type SubmissionMinAggregateInputType = {
   id?: true
   assignmentId?: true
   userId?: true
+  projectGroupId?: true
   attemptNo?: true
   isLatest?: true
   status?: true
@@ -140,6 +144,7 @@ export type SubmissionMaxAggregateInputType = {
   id?: true
   assignmentId?: true
   userId?: true
+  projectGroupId?: true
   attemptNo?: true
   isLatest?: true
   status?: true
@@ -162,6 +167,7 @@ export type SubmissionCountAggregateInputType = {
   id?: true
   assignmentId?: true
   userId?: true
+  projectGroupId?: true
   attemptNo?: true
   isLatest?: true
   status?: true
@@ -271,6 +277,7 @@ export type SubmissionGroupByOutputType = {
   id: string
   assignmentId: string
   userId: string
+  projectGroupId: string | null
   attemptNo: number
   isLatest: boolean
   status: $Enums.SubmissionStatus
@@ -316,6 +323,7 @@ export type SubmissionWhereInput = {
   id?: Prisma.UuidFilter<"Submission"> | string
   assignmentId?: Prisma.UuidFilter<"Submission"> | string
   userId?: Prisma.UuidFilter<"Submission"> | string
+  projectGroupId?: Prisma.UuidNullableFilter<"Submission"> | string | null
   attemptNo?: Prisma.IntFilter<"Submission"> | number
   isLatest?: Prisma.BoolFilter<"Submission"> | boolean
   status?: Prisma.EnumSubmissionStatusFilter<"Submission"> | $Enums.SubmissionStatus
@@ -334,6 +342,7 @@ export type SubmissionWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Submission"> | Date | string
   assignment?: Prisma.XOR<Prisma.AssignmentScalarRelationFilter, Prisma.AssignmentWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  projectGroup?: Prisma.XOR<Prisma.ProjectGroupNullableScalarRelationFilter, Prisma.ProjectGroupWhereInput> | null
   gradedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   reopenedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   files?: Prisma.SubmissionFileListRelationFilter
@@ -343,6 +352,7 @@ export type SubmissionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  projectGroupId?: Prisma.SortOrderInput | Prisma.SortOrder
   attemptNo?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -361,6 +371,7 @@ export type SubmissionOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   assignment?: Prisma.AssignmentOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
+  projectGroup?: Prisma.ProjectGroupOrderByWithRelationInput
   gradedBy?: Prisma.UserOrderByWithRelationInput
   reopenedBy?: Prisma.UserOrderByWithRelationInput
   files?: Prisma.SubmissionFileOrderByRelationAggregateInput
@@ -374,6 +385,7 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SubmissionWhereInput | Prisma.SubmissionWhereInput[]
   assignmentId?: Prisma.UuidFilter<"Submission"> | string
   userId?: Prisma.UuidFilter<"Submission"> | string
+  projectGroupId?: Prisma.UuidNullableFilter<"Submission"> | string | null
   attemptNo?: Prisma.IntFilter<"Submission"> | number
   isLatest?: Prisma.BoolFilter<"Submission"> | boolean
   status?: Prisma.EnumSubmissionStatusFilter<"Submission"> | $Enums.SubmissionStatus
@@ -392,6 +404,7 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Submission"> | Date | string
   assignment?: Prisma.XOR<Prisma.AssignmentScalarRelationFilter, Prisma.AssignmentWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  projectGroup?: Prisma.XOR<Prisma.ProjectGroupNullableScalarRelationFilter, Prisma.ProjectGroupWhereInput> | null
   gradedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   reopenedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   files?: Prisma.SubmissionFileListRelationFilter
@@ -401,6 +414,7 @@ export type SubmissionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  projectGroupId?: Prisma.SortOrderInput | Prisma.SortOrder
   attemptNo?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -431,6 +445,7 @@ export type SubmissionScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Submission"> | string
   assignmentId?: Prisma.UuidWithAggregatesFilter<"Submission"> | string
   userId?: Prisma.UuidWithAggregatesFilter<"Submission"> | string
+  projectGroupId?: Prisma.UuidNullableWithAggregatesFilter<"Submission"> | string | null
   attemptNo?: Prisma.IntWithAggregatesFilter<"Submission"> | number
   isLatest?: Prisma.BoolWithAggregatesFilter<"Submission"> | boolean
   status?: Prisma.EnumSubmissionStatusWithAggregatesFilter<"Submission"> | $Enums.SubmissionStatus
@@ -467,6 +482,7 @@ export type SubmissionCreateInput = {
   updatedAt?: Date | string
   assignment: Prisma.AssignmentCreateNestedOneWithoutSubmissionsInput
   user: Prisma.UserCreateNestedOneWithoutSubmissionsInput
+  projectGroup?: Prisma.ProjectGroupCreateNestedOneWithoutSubmissionsInput
   gradedBy?: Prisma.UserCreateNestedOneWithoutGradedSubmissionsInput
   reopenedBy?: Prisma.UserCreateNestedOneWithoutReopenedSubmissionsInput
   files?: Prisma.SubmissionFileCreateNestedManyWithoutSubmissionInput
@@ -476,6 +492,7 @@ export type SubmissionUncheckedCreateInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -513,6 +530,7 @@ export type SubmissionUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSubmissionsNestedInput
+  projectGroup?: Prisma.ProjectGroupUpdateOneWithoutSubmissionsNestedInput
   gradedBy?: Prisma.UserUpdateOneWithoutGradedSubmissionsNestedInput
   reopenedBy?: Prisma.UserUpdateOneWithoutReopenedSubmissionsNestedInput
   files?: Prisma.SubmissionFileUpdateManyWithoutSubmissionNestedInput
@@ -522,6 +540,7 @@ export type SubmissionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -545,6 +564,7 @@ export type SubmissionCreateManyInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -585,6 +605,7 @@ export type SubmissionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -623,6 +644,7 @@ export type SubmissionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  projectGroupId?: Prisma.SortOrder
   attemptNo?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -650,6 +672,7 @@ export type SubmissionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  projectGroupId?: Prisma.SortOrder
   attemptNo?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -672,6 +695,7 @@ export type SubmissionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  projectGroupId?: Prisma.SortOrder
   attemptNo?: Prisma.SortOrder
   isLatest?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -894,6 +918,48 @@ export type SubmissionUpdateOneRequiredWithoutFilesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SubmissionUpdateToOneWithWhereWithoutFilesInput, Prisma.SubmissionUpdateWithoutFilesInput>, Prisma.SubmissionUncheckedUpdateWithoutFilesInput>
 }
 
+export type SubmissionCreateNestedManyWithoutProjectGroupInput = {
+  create?: Prisma.XOR<Prisma.SubmissionCreateWithoutProjectGroupInput, Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput> | Prisma.SubmissionCreateWithoutProjectGroupInput[] | Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput[]
+  connectOrCreate?: Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput | Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput[]
+  createMany?: Prisma.SubmissionCreateManyProjectGroupInputEnvelope
+  connect?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+}
+
+export type SubmissionUncheckedCreateNestedManyWithoutProjectGroupInput = {
+  create?: Prisma.XOR<Prisma.SubmissionCreateWithoutProjectGroupInput, Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput> | Prisma.SubmissionCreateWithoutProjectGroupInput[] | Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput[]
+  connectOrCreate?: Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput | Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput[]
+  createMany?: Prisma.SubmissionCreateManyProjectGroupInputEnvelope
+  connect?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+}
+
+export type SubmissionUpdateManyWithoutProjectGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.SubmissionCreateWithoutProjectGroupInput, Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput> | Prisma.SubmissionCreateWithoutProjectGroupInput[] | Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput[]
+  connectOrCreate?: Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput | Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput[]
+  upsert?: Prisma.SubmissionUpsertWithWhereUniqueWithoutProjectGroupInput | Prisma.SubmissionUpsertWithWhereUniqueWithoutProjectGroupInput[]
+  createMany?: Prisma.SubmissionCreateManyProjectGroupInputEnvelope
+  set?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  disconnect?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  delete?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  connect?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  update?: Prisma.SubmissionUpdateWithWhereUniqueWithoutProjectGroupInput | Prisma.SubmissionUpdateWithWhereUniqueWithoutProjectGroupInput[]
+  updateMany?: Prisma.SubmissionUpdateManyWithWhereWithoutProjectGroupInput | Prisma.SubmissionUpdateManyWithWhereWithoutProjectGroupInput[]
+  deleteMany?: Prisma.SubmissionScalarWhereInput | Prisma.SubmissionScalarWhereInput[]
+}
+
+export type SubmissionUncheckedUpdateManyWithoutProjectGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.SubmissionCreateWithoutProjectGroupInput, Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput> | Prisma.SubmissionCreateWithoutProjectGroupInput[] | Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput[]
+  connectOrCreate?: Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput | Prisma.SubmissionCreateOrConnectWithoutProjectGroupInput[]
+  upsert?: Prisma.SubmissionUpsertWithWhereUniqueWithoutProjectGroupInput | Prisma.SubmissionUpsertWithWhereUniqueWithoutProjectGroupInput[]
+  createMany?: Prisma.SubmissionCreateManyProjectGroupInputEnvelope
+  set?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  disconnect?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  delete?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  connect?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[]
+  update?: Prisma.SubmissionUpdateWithWhereUniqueWithoutProjectGroupInput | Prisma.SubmissionUpdateWithWhereUniqueWithoutProjectGroupInput[]
+  updateMany?: Prisma.SubmissionUpdateManyWithWhereWithoutProjectGroupInput | Prisma.SubmissionUpdateManyWithWhereWithoutProjectGroupInput[]
+  deleteMany?: Prisma.SubmissionScalarWhereInput | Prisma.SubmissionScalarWhereInput[]
+}
+
 export type SubmissionCreateWithoutUserInput = {
   id?: string
   attemptNo?: number
@@ -911,6 +977,7 @@ export type SubmissionCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignment: Prisma.AssignmentCreateNestedOneWithoutSubmissionsInput
+  projectGroup?: Prisma.ProjectGroupCreateNestedOneWithoutSubmissionsInput
   gradedBy?: Prisma.UserCreateNestedOneWithoutGradedSubmissionsInput
   reopenedBy?: Prisma.UserCreateNestedOneWithoutReopenedSubmissionsInput
   files?: Prisma.SubmissionFileCreateNestedManyWithoutSubmissionInput
@@ -919,6 +986,7 @@ export type SubmissionCreateWithoutUserInput = {
 export type SubmissionUncheckedCreateWithoutUserInput = {
   id?: string
   assignmentId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -966,6 +1034,7 @@ export type SubmissionCreateWithoutGradedByInput = {
   updatedAt?: Date | string
   assignment: Prisma.AssignmentCreateNestedOneWithoutSubmissionsInput
   user: Prisma.UserCreateNestedOneWithoutSubmissionsInput
+  projectGroup?: Prisma.ProjectGroupCreateNestedOneWithoutSubmissionsInput
   reopenedBy?: Prisma.UserCreateNestedOneWithoutReopenedSubmissionsInput
   files?: Prisma.SubmissionFileCreateNestedManyWithoutSubmissionInput
 }
@@ -974,6 +1043,7 @@ export type SubmissionUncheckedCreateWithoutGradedByInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1020,6 +1090,7 @@ export type SubmissionCreateWithoutReopenedByInput = {
   updatedAt?: Date | string
   assignment: Prisma.AssignmentCreateNestedOneWithoutSubmissionsInput
   user: Prisma.UserCreateNestedOneWithoutSubmissionsInput
+  projectGroup?: Prisma.ProjectGroupCreateNestedOneWithoutSubmissionsInput
   gradedBy?: Prisma.UserCreateNestedOneWithoutGradedSubmissionsInput
   files?: Prisma.SubmissionFileCreateNestedManyWithoutSubmissionInput
 }
@@ -1028,6 +1099,7 @@ export type SubmissionUncheckedCreateWithoutReopenedByInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1079,6 +1151,7 @@ export type SubmissionScalarWhereInput = {
   id?: Prisma.UuidFilter<"Submission"> | string
   assignmentId?: Prisma.UuidFilter<"Submission"> | string
   userId?: Prisma.UuidFilter<"Submission"> | string
+  projectGroupId?: Prisma.UuidNullableFilter<"Submission"> | string | null
   attemptNo?: Prisma.IntFilter<"Submission"> | number
   isLatest?: Prisma.BoolFilter<"Submission"> | boolean
   status?: Prisma.EnumSubmissionStatusFilter<"Submission"> | $Enums.SubmissionStatus
@@ -1146,6 +1219,7 @@ export type SubmissionCreateWithoutAssignmentInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutSubmissionsInput
+  projectGroup?: Prisma.ProjectGroupCreateNestedOneWithoutSubmissionsInput
   gradedBy?: Prisma.UserCreateNestedOneWithoutGradedSubmissionsInput
   reopenedBy?: Prisma.UserCreateNestedOneWithoutReopenedSubmissionsInput
   files?: Prisma.SubmissionFileCreateNestedManyWithoutSubmissionInput
@@ -1154,6 +1228,7 @@ export type SubmissionCreateWithoutAssignmentInput = {
 export type SubmissionUncheckedCreateWithoutAssignmentInput = {
   id?: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1217,6 +1292,7 @@ export type SubmissionCreateWithoutFilesInput = {
   updatedAt?: Date | string
   assignment: Prisma.AssignmentCreateNestedOneWithoutSubmissionsInput
   user: Prisma.UserCreateNestedOneWithoutSubmissionsInput
+  projectGroup?: Prisma.ProjectGroupCreateNestedOneWithoutSubmissionsInput
   gradedBy?: Prisma.UserCreateNestedOneWithoutGradedSubmissionsInput
   reopenedBy?: Prisma.UserCreateNestedOneWithoutReopenedSubmissionsInput
 }
@@ -1225,6 +1301,7 @@ export type SubmissionUncheckedCreateWithoutFilesInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1277,6 +1354,7 @@ export type SubmissionUpdateWithoutFilesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSubmissionsNestedInput
+  projectGroup?: Prisma.ProjectGroupUpdateOneWithoutSubmissionsNestedInput
   gradedBy?: Prisma.UserUpdateOneWithoutGradedSubmissionsNestedInput
   reopenedBy?: Prisma.UserUpdateOneWithoutReopenedSubmissionsNestedInput
 }
@@ -1285,6 +1363,7 @@ export type SubmissionUncheckedUpdateWithoutFilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1303,9 +1382,82 @@ export type SubmissionUncheckedUpdateWithoutFilesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type SubmissionCreateWithoutProjectGroupInput = {
+  id?: string
+  attemptNo?: number
+  isLatest?: boolean
+  status?: $Enums.SubmissionStatus
+  repositoryUrl?: string | null
+  deploymentUrl?: string | null
+  contentText?: string | null
+  submittedAt?: Date | string
+  score?: number | null
+  feedback?: string | null
+  gradedAt?: Date | string | null
+  reopenedAt?: Date | string | null
+  reopenReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutSubmissionsInput
+  user: Prisma.UserCreateNestedOneWithoutSubmissionsInput
+  gradedBy?: Prisma.UserCreateNestedOneWithoutGradedSubmissionsInput
+  reopenedBy?: Prisma.UserCreateNestedOneWithoutReopenedSubmissionsInput
+  files?: Prisma.SubmissionFileCreateNestedManyWithoutSubmissionInput
+}
+
+export type SubmissionUncheckedCreateWithoutProjectGroupInput = {
+  id?: string
+  assignmentId: string
+  userId: string
+  attemptNo?: number
+  isLatest?: boolean
+  status?: $Enums.SubmissionStatus
+  repositoryUrl?: string | null
+  deploymentUrl?: string | null
+  contentText?: string | null
+  submittedAt?: Date | string
+  score?: number | null
+  feedback?: string | null
+  gradedAt?: Date | string | null
+  gradedById?: string | null
+  reopenedAt?: Date | string | null
+  reopenedById?: string | null
+  reopenReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  files?: Prisma.SubmissionFileUncheckedCreateNestedManyWithoutSubmissionInput
+}
+
+export type SubmissionCreateOrConnectWithoutProjectGroupInput = {
+  where: Prisma.SubmissionWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubmissionCreateWithoutProjectGroupInput, Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput>
+}
+
+export type SubmissionCreateManyProjectGroupInputEnvelope = {
+  data: Prisma.SubmissionCreateManyProjectGroupInput | Prisma.SubmissionCreateManyProjectGroupInput[]
+  skipDuplicates?: boolean
+}
+
+export type SubmissionUpsertWithWhereUniqueWithoutProjectGroupInput = {
+  where: Prisma.SubmissionWhereUniqueInput
+  update: Prisma.XOR<Prisma.SubmissionUpdateWithoutProjectGroupInput, Prisma.SubmissionUncheckedUpdateWithoutProjectGroupInput>
+  create: Prisma.XOR<Prisma.SubmissionCreateWithoutProjectGroupInput, Prisma.SubmissionUncheckedCreateWithoutProjectGroupInput>
+}
+
+export type SubmissionUpdateWithWhereUniqueWithoutProjectGroupInput = {
+  where: Prisma.SubmissionWhereUniqueInput
+  data: Prisma.XOR<Prisma.SubmissionUpdateWithoutProjectGroupInput, Prisma.SubmissionUncheckedUpdateWithoutProjectGroupInput>
+}
+
+export type SubmissionUpdateManyWithWhereWithoutProjectGroupInput = {
+  where: Prisma.SubmissionScalarWhereInput
+  data: Prisma.XOR<Prisma.SubmissionUpdateManyMutationInput, Prisma.SubmissionUncheckedUpdateManyWithoutProjectGroupInput>
+}
+
 export type SubmissionCreateManyUserInput = {
   id?: string
   assignmentId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1328,6 +1480,7 @@ export type SubmissionCreateManyGradedByInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1349,6 +1502,7 @@ export type SubmissionCreateManyReopenedByInput = {
   id?: string
   assignmentId: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1383,6 +1537,7 @@ export type SubmissionUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
+  projectGroup?: Prisma.ProjectGroupUpdateOneWithoutSubmissionsNestedInput
   gradedBy?: Prisma.UserUpdateOneWithoutGradedSubmissionsNestedInput
   reopenedBy?: Prisma.UserUpdateOneWithoutReopenedSubmissionsNestedInput
   files?: Prisma.SubmissionFileUpdateManyWithoutSubmissionNestedInput
@@ -1391,6 +1546,7 @@ export type SubmissionUpdateWithoutUserInput = {
 export type SubmissionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1413,6 +1569,7 @@ export type SubmissionUncheckedUpdateWithoutUserInput = {
 export type SubmissionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1449,6 +1606,7 @@ export type SubmissionUpdateWithoutGradedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSubmissionsNestedInput
+  projectGroup?: Prisma.ProjectGroupUpdateOneWithoutSubmissionsNestedInput
   reopenedBy?: Prisma.UserUpdateOneWithoutReopenedSubmissionsNestedInput
   files?: Prisma.SubmissionFileUpdateManyWithoutSubmissionNestedInput
 }
@@ -1457,6 +1615,7 @@ export type SubmissionUncheckedUpdateWithoutGradedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1479,6 +1638,7 @@ export type SubmissionUncheckedUpdateManyWithoutGradedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1514,6 +1674,7 @@ export type SubmissionUpdateWithoutReopenedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutSubmissionsNestedInput
+  projectGroup?: Prisma.ProjectGroupUpdateOneWithoutSubmissionsNestedInput
   gradedBy?: Prisma.UserUpdateOneWithoutGradedSubmissionsNestedInput
   files?: Prisma.SubmissionFileUpdateManyWithoutSubmissionNestedInput
 }
@@ -1522,6 +1683,7 @@ export type SubmissionUncheckedUpdateWithoutReopenedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1544,6 +1706,7 @@ export type SubmissionUncheckedUpdateManyWithoutReopenedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1564,6 +1727,7 @@ export type SubmissionUncheckedUpdateManyWithoutReopenedByInput = {
 export type SubmissionCreateManyAssignmentInput = {
   id?: string
   userId: string
+  projectGroupId?: string | null
   attemptNo?: number
   isLatest?: boolean
   status?: $Enums.SubmissionStatus
@@ -1599,6 +1763,7 @@ export type SubmissionUpdateWithoutAssignmentInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutSubmissionsNestedInput
+  projectGroup?: Prisma.ProjectGroupUpdateOneWithoutSubmissionsNestedInput
   gradedBy?: Prisma.UserUpdateOneWithoutGradedSubmissionsNestedInput
   reopenedBy?: Prisma.UserUpdateOneWithoutReopenedSubmissionsNestedInput
   files?: Prisma.SubmissionFileUpdateManyWithoutSubmissionNestedInput
@@ -1607,6 +1772,7 @@ export type SubmissionUpdateWithoutAssignmentInput = {
 export type SubmissionUncheckedUpdateWithoutAssignmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
@@ -1628,6 +1794,97 @@ export type SubmissionUncheckedUpdateWithoutAssignmentInput = {
 
 export type SubmissionUncheckedUpdateManyWithoutAssignmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  projectGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
+  isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+  repositoryUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deploymentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gradedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reopenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reopenedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reopenReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SubmissionCreateManyProjectGroupInput = {
+  id?: string
+  assignmentId: string
+  userId: string
+  attemptNo?: number
+  isLatest?: boolean
+  status?: $Enums.SubmissionStatus
+  repositoryUrl?: string | null
+  deploymentUrl?: string | null
+  contentText?: string | null
+  submittedAt?: Date | string
+  score?: number | null
+  feedback?: string | null
+  gradedAt?: Date | string | null
+  gradedById?: string | null
+  reopenedAt?: Date | string | null
+  reopenedById?: string | null
+  reopenReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SubmissionUpdateWithoutProjectGroupInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
+  isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+  repositoryUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deploymentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reopenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reopenReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutSubmissionsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutSubmissionsNestedInput
+  gradedBy?: Prisma.UserUpdateOneWithoutGradedSubmissionsNestedInput
+  reopenedBy?: Prisma.UserUpdateOneWithoutReopenedSubmissionsNestedInput
+  files?: Prisma.SubmissionFileUpdateManyWithoutSubmissionNestedInput
+}
+
+export type SubmissionUncheckedUpdateWithoutProjectGroupInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
+  isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumSubmissionStatusFieldUpdateOperationsInput | $Enums.SubmissionStatus
+  repositoryUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deploymentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  score?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gradedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gradedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reopenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reopenedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reopenReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  files?: Prisma.SubmissionFileUncheckedUpdateManyWithoutSubmissionNestedInput
+}
+
+export type SubmissionUncheckedUpdateManyWithoutProjectGroupInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   attemptNo?: Prisma.IntFieldUpdateOperationsInput | number
   isLatest?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1682,6 +1939,7 @@ export type SubmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   assignmentId?: boolean
   userId?: boolean
+  projectGroupId?: boolean
   attemptNo?: boolean
   isLatest?: boolean
   status?: boolean
@@ -1700,6 +1958,7 @@ export type SubmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   updatedAt?: boolean
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  projectGroup?: boolean | Prisma.Submission$projectGroupArgs<ExtArgs>
   gradedBy?: boolean | Prisma.Submission$gradedByArgs<ExtArgs>
   reopenedBy?: boolean | Prisma.Submission$reopenedByArgs<ExtArgs>
   files?: boolean | Prisma.Submission$filesArgs<ExtArgs>
@@ -1710,6 +1969,7 @@ export type SubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   assignmentId?: boolean
   userId?: boolean
+  projectGroupId?: boolean
   attemptNo?: boolean
   isLatest?: boolean
   status?: boolean
@@ -1728,6 +1988,7 @@ export type SubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   updatedAt?: boolean
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  projectGroup?: boolean | Prisma.Submission$projectGroupArgs<ExtArgs>
   gradedBy?: boolean | Prisma.Submission$gradedByArgs<ExtArgs>
   reopenedBy?: boolean | Prisma.Submission$reopenedByArgs<ExtArgs>
 }, ExtArgs["result"]["submission"]>
@@ -1736,6 +1997,7 @@ export type SubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   assignmentId?: boolean
   userId?: boolean
+  projectGroupId?: boolean
   attemptNo?: boolean
   isLatest?: boolean
   status?: boolean
@@ -1754,6 +2016,7 @@ export type SubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   updatedAt?: boolean
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  projectGroup?: boolean | Prisma.Submission$projectGroupArgs<ExtArgs>
   gradedBy?: boolean | Prisma.Submission$gradedByArgs<ExtArgs>
   reopenedBy?: boolean | Prisma.Submission$reopenedByArgs<ExtArgs>
 }, ExtArgs["result"]["submission"]>
@@ -1762,6 +2025,7 @@ export type SubmissionSelectScalar = {
   id?: boolean
   assignmentId?: boolean
   userId?: boolean
+  projectGroupId?: boolean
   attemptNo?: boolean
   isLatest?: boolean
   status?: boolean
@@ -1780,10 +2044,11 @@ export type SubmissionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "assignmentId" | "userId" | "attemptNo" | "isLatest" | "status" | "repositoryUrl" | "deploymentUrl" | "contentText" | "submittedAt" | "score" | "feedback" | "gradedAt" | "gradedById" | "reopenedAt" | "reopenedById" | "reopenReason" | "createdAt" | "updatedAt", ExtArgs["result"]["submission"]>
+export type SubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "assignmentId" | "userId" | "projectGroupId" | "attemptNo" | "isLatest" | "status" | "repositoryUrl" | "deploymentUrl" | "contentText" | "submittedAt" | "score" | "feedback" | "gradedAt" | "gradedById" | "reopenedAt" | "reopenedById" | "reopenReason" | "createdAt" | "updatedAt", ExtArgs["result"]["submission"]>
 export type SubmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  projectGroup?: boolean | Prisma.Submission$projectGroupArgs<ExtArgs>
   gradedBy?: boolean | Prisma.Submission$gradedByArgs<ExtArgs>
   reopenedBy?: boolean | Prisma.Submission$reopenedByArgs<ExtArgs>
   files?: boolean | Prisma.Submission$filesArgs<ExtArgs>
@@ -1792,12 +2057,14 @@ export type SubmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalA
 export type SubmissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  projectGroup?: boolean | Prisma.Submission$projectGroupArgs<ExtArgs>
   gradedBy?: boolean | Prisma.Submission$gradedByArgs<ExtArgs>
   reopenedBy?: boolean | Prisma.Submission$reopenedByArgs<ExtArgs>
 }
 export type SubmissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  projectGroup?: boolean | Prisma.Submission$projectGroupArgs<ExtArgs>
   gradedBy?: boolean | Prisma.Submission$gradedByArgs<ExtArgs>
   reopenedBy?: boolean | Prisma.Submission$reopenedByArgs<ExtArgs>
 }
@@ -1807,6 +2074,7 @@ export type $SubmissionPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     assignment: Prisma.$AssignmentPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
+    projectGroup: Prisma.$ProjectGroupPayload<ExtArgs> | null
     gradedBy: Prisma.$UserPayload<ExtArgs> | null
     reopenedBy: Prisma.$UserPayload<ExtArgs> | null
     files: Prisma.$SubmissionFilePayload<ExtArgs>[]
@@ -1815,6 +2083,7 @@ export type $SubmissionPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: string
     assignmentId: string
     userId: string
+    projectGroupId: string | null
     attemptNo: number
     isLatest: boolean
     status: $Enums.SubmissionStatus
@@ -2227,6 +2496,7 @@ export interface Prisma__SubmissionClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   assignment<T extends Prisma.AssignmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssignmentDefaultArgs<ExtArgs>>): Prisma.Prisma__AssignmentClient<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  projectGroup<T extends Prisma.Submission$projectGroupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Submission$projectGroupArgs<ExtArgs>>): Prisma.Prisma__ProjectGroupClient<runtime.Types.Result.GetResult<Prisma.$ProjectGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   gradedBy<T extends Prisma.Submission$gradedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Submission$gradedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   reopenedBy<T extends Prisma.Submission$reopenedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Submission$reopenedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   files<T extends Prisma.Submission$filesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Submission$filesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2262,6 +2532,7 @@ export interface SubmissionFieldRefs {
   readonly id: Prisma.FieldRef<"Submission", 'String'>
   readonly assignmentId: Prisma.FieldRef<"Submission", 'String'>
   readonly userId: Prisma.FieldRef<"Submission", 'String'>
+  readonly projectGroupId: Prisma.FieldRef<"Submission", 'String'>
   readonly attemptNo: Prisma.FieldRef<"Submission", 'Int'>
   readonly isLatest: Prisma.FieldRef<"Submission", 'Boolean'>
   readonly status: Prisma.FieldRef<"Submission", 'SubmissionStatus'>
@@ -2676,6 +2947,25 @@ export type SubmissionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Submissions to delete.
    */
   limit?: number
+}
+
+/**
+ * Submission.projectGroup
+ */
+export type Submission$projectGroupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectGroup
+   */
+  select?: Prisma.ProjectGroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectGroup
+   */
+  omit?: Prisma.ProjectGroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectGroupInclude<ExtArgs> | null
+  where?: Prisma.ProjectGroupWhereInput
 }
 
 /**

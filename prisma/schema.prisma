@@ -125,6 +125,21 @@ enum SubmissionStatus {
   @@map("submission_status")
 }
 
+enum ProjectGroupStatus {
+  ACTIVE   @map("active")
+  LOCKED   @map("locked")
+  ARCHIVED @map("archived")
+
+  @@map("project_group_status")
+}
+
+enum ProjectGroupMemberRole {
+  LEADER @map("leader")
+  MEMBER @map("member")
+
+  @@map("project_group_member_role")
+}
+
 model User {
   id        String     @id @default(uuid()) @db.Uuid
   email     String     @unique
@@ -148,6 +163,9 @@ model User {
   gradedSubmissions      Submission[]           @relation("SubmissionGradedBy")
   reopenedSubmissions    Submission[]           @relation("SubmissionReopenedBy")
   createdAssignments     Assignment[]           @relation("AssignmentCreatedBy")
+  createdProjectGroups   ProjectGroup[]         @relation("ProjectGroupCreatedBy")
+  mentoredProjectGroups  ProjectGroup[]         @relation("ProjectGroupMentor")
+  projectGroupMembers    ProjectGroupMember[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -325,9 +343,11 @@ model Cohort {
   startsAt DateTime?    @map("starts_at")
   endsAt   DateTime?    @map("ends_at")
 
-  workshop    Workshop     @relation(fields: [workshopId], references: [id], onDelete: Cascade)
-  sessions    Session[]
-  enrollments Enrollment[]
+  workshop            Workshop             @relation(fields: [workshopId], references: [id], onDelete: Cascade)
+  sessions            Session[]
+  enrollments         Enrollment[]
+  projectGroups       ProjectGroup[]
+  projectGroupMembers ProjectGroupMember[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -522,8 +542,9 @@ model Assignment {
 model Submission {
   id String @id @default(uuid()) @db.Uuid
 
-  assignmentId String @map("assignment_id") @db.Uuid
-  userId       String @map("user_id") @db.Uuid
+  assignmentId   String  @map("assignment_id") @db.Uuid
+  userId         String  @map("user_id") @db.Uuid
+  projectGroupId String? @map("project_group_id") @db.Uuid
 
   attemptNo Int     @default(1) @map("attempt_no")
   isLatest  Boolean @default(true) @map("is_latest")
@@ -545,8 +566,9 @@ model Submission {
   reopenedById String?   @map("reopened_by_id") @db.Uuid
   reopenReason String?   @map("reopen_reason")
 
-  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
-  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignment   Assignment    @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectGroup ProjectGroup? @relation(fields: [projectGroupId], references: [id], onDelete: SetNull)
 
   gradedBy   User? @relation("SubmissionGradedBy", fields: [gradedById], references: [id], onDelete: SetNull)
   reopenedBy User? @relation("SubmissionReopenedBy", fields: [reopenedById], references: [id], onDelete: SetNull)
@@ -559,6 +581,7 @@ model Submission {
   @@unique([assignmentId, userId, attemptNo])
   @@index([assignmentId])
   @@index([userId])
+  @@index([projectGroupId])
   @@index([assignmentId, userId])
   @@index([assignmentId, userId, isLatest])
   @@index([status])
@@ -581,4 +604,64 @@ model SubmissionFile {
 
   @@index([submissionId])
   @@map("submission_files")
+}
+
+model ProjectGroup {
+  id String @id @default(uuid()) @db.Uuid
+
+  cohortId    String  @map("cohort_id") @db.Uuid
+  createdById String? @map("created_by_id") @db.Uuid
+  mentorId    String? @map("mentor_id") @db.Uuid
+
+  name        String
+  slug        String
+  title       String?
+  description String?
+  status      ProjectGroupStatus @default(ACTIVE)
+
+  repositoryUrl String? @map("repository_url")
+  deploymentUrl String? @map("deployment_url")
+
+  cohort    Cohort @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+  createdBy User?  @relation("ProjectGroupCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  mentor    User?  @relation("ProjectGroupMentor", fields: [mentorId], references: [id], onDelete: SetNull)
+
+  members     ProjectGroupMember[]
+  submissions Submission[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([cohortId, slug])
+  @@index([cohortId])
+  @@index([createdById])
+  @@index([mentorId])
+  @@index([status])
+  @@map("project_groups")
+}
+
+model ProjectGroupMember {
+  id String @id @default(uuid()) @db.Uuid
+
+  projectGroupId String @map("project_group_id") @db.Uuid
+  cohortId       String @map("cohort_id") @db.Uuid
+  userId         String @map("user_id") @db.Uuid
+
+  role ProjectGroupMemberRole @default(MEMBER)
+
+  projectGroup ProjectGroup @relation(fields: [projectGroupId], references: [id], onDelete: Cascade)
+  cohort       Cohort       @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  joinedAt  DateTime @default(now()) @map("joined_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([projectGroupId, userId])
+  @@unique([cohortId, userId])
+  @@index([projectGroupId])
+  @@index([cohortId])
+  @@index([userId])
+  @@index([role])
+  @@map("project_group_members")
 }

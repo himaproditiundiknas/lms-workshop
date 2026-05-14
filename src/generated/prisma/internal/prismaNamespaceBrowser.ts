@@ -68,7 +68,9 @@ export const ModelName = {
   Material: 'Material',
   Assignment: 'Assignment',
   Submission: 'Submission',
-  SubmissionFile: 'SubmissionFile'
+  SubmissionFile: 'SubmissionFile',
+  ProjectGroup: 'ProjectGroup',
+  ProjectGroupMember: 'ProjectGroupMember'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -337,6 +339,7 @@ export const SubmissionScalarFieldEnum = {
   id: 'id',
   assignmentId: 'assignmentId',
   userId: 'userId',
+  projectGroupId: 'projectGroupId',
   attemptNo: 'attemptNo',
   isLatest: 'isLatest',
   status: 'status',
@@ -369,6 +372,39 @@ export const SubmissionFileScalarFieldEnum = {
 } as const
 
 export type SubmissionFileScalarFieldEnum = (typeof SubmissionFileScalarFieldEnum)[keyof typeof SubmissionFileScalarFieldEnum]
+
+
+export const ProjectGroupScalarFieldEnum = {
+  id: 'id',
+  cohortId: 'cohortId',
+  createdById: 'createdById',
+  mentorId: 'mentorId',
+  name: 'name',
+  slug: 'slug',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  repositoryUrl: 'repositoryUrl',
+  deploymentUrl: 'deploymentUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectGroupScalarFieldEnum = (typeof ProjectGroupScalarFieldEnum)[keyof typeof ProjectGroupScalarFieldEnum]
+
+
+export const ProjectGroupMemberScalarFieldEnum = {
+  id: 'id',
+  projectGroupId: 'projectGroupId',
+  cohortId: 'cohortId',
+  userId: 'userId',
+  role: 'role',
+  joinedAt: 'joinedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectGroupMemberScalarFieldEnum = (typeof ProjectGroupMemberScalarFieldEnum)[keyof typeof ProjectGroupMemberScalarFieldEnum]
 
 
 export const SortOrder = {
