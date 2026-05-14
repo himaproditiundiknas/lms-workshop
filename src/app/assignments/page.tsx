@@ -198,6 +198,19 @@ export default async function ParticipantAssignmentsPage() {
                         Submitted at{" "}
                         {formatDateTime(latestSubmission.submittedAt)}
                       </p>
+
+                      {latestSubmission.status === "GRADED" ? (
+                        <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">
+                          <p className="font-medium">
+                            Nilai: {latestSubmission.score ?? "-"} / 100
+                          </p>
+                          {latestSubmission.feedback ? (
+                            <p className="mt-2 whitespace-pre-wrap">
+                              Feedback: {latestSubmission.feedback}
+                            </p>
+                          ) : null}
+                        </div>
+                      ) : null}
                     </div>
                   ) : (
                     <p className="text-sm text-slate-600">

@@ -284,19 +284,28 @@ export default async function MentorSubmissionsPage({
                       )}
                     </td>
 
-                    <td className="py-4 pr-4 align-top">
-                      <ReopenSubmissionModal
-                        submissionId={submission.id}
-                        participantName={
-                          submission.user.profile?.fullName ??
-                          submission.user.email
-                        }
-                        assignmentTitle={submission.assignment.title}
-                        disabled={
-                          !submission.isLatest ||
-                          submission.status === "REOPENED"
-                        }
-                      />
+                    <td className="space-y-2 py-4 pr-4 align-top">
+                      <Link
+                        href={`/mentor/submissions/${submission.id}`}
+                        className="inline-flex rounded-lg bg-slate-950 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-800"
+                      >
+                        Review
+                      </Link>
+
+                      <div>
+                        <ReopenSubmissionModal
+                          submissionId={submission.id}
+                          participantName={
+                            submission.user.profile?.fullName ??
+                            submission.user.email
+                          }
+                          assignmentTitle={submission.assignment.title}
+                          disabled={
+                            !submission.isLatest ||
+                            submission.status === "REOPENED"
+                          }
+                        />
+                      </div>
                     </td>
                   </tr>
                 ))}

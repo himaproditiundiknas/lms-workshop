@@ -95,6 +95,9 @@ export default async function SubmitAssignmentPage({
       contentText: true,
       status: true,
       submittedAt: true,
+      score: true,
+      feedback: true,
+      gradedAt: true,
     },
   });
 
@@ -178,6 +181,22 @@ export default async function SubmitAssignmentPage({
                 Submitted: {formatDateTime(latestSubmission.submittedAt)}
               </p>
             </div>
+          </div>
+        ) : null}
+
+        {latestSubmission && latestSubmission.status === "GRADED" ? (
+          <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
+            <p className="font-medium">
+              Nilai: {latestSubmission.score ?? "-"} / 100
+            </p>
+            <p className="mt-1">
+              Graded at: {formatDateTime(latestSubmission.gradedAt)}
+            </p>
+            {latestSubmission.feedback ? (
+              <p className="mt-3 whitespace-pre-wrap">
+                Feedback: {latestSubmission.feedback}
+              </p>
+            ) : null}
           </div>
         ) : null}
 
