@@ -10,8 +10,10 @@ export type SubmissionFormState = {
   ok?: boolean;
   errors?: {
     assignmentId?: string[];
+    projectGroupId?: string[];
     repositoryUrl?: string[];
     deploymentUrl?: string[];
+    pdfUrl?: string[];
     contentText?: string[];
   };
 };
@@ -34,8 +36,10 @@ export async function submitAssignmentAction(
 
   const parsed = submissionFormSchema.safeParse({
     assignmentId: formData.get("assignmentId"),
+    projectGroupId: formData.get("projectGroupId"),
     repositoryUrl: formData.get("repositoryUrl"),
     deploymentUrl: formData.get("deploymentUrl"),
+    pdfUrl: formData.get("pdfUrl"),
     contentText: formData.get("contentText"),
   });
 
@@ -106,6 +110,9 @@ export async function submitAssignmentAction(
             workshopId: assignment.workshopId,
           },
         },
+        include: {
+          cohort: true,
+        },
       });
 
       if (!approvedEnrollment) {
@@ -122,6 +129,65 @@ export async function submitAssignmentAction(
           ok: false,
           message:
             "Submission sudah melewati due date dan late submission tidak diperbolehkan.",
+        };
+      }
+
+      let projectGroupId: string | null = null;
+
+      if (assignment.category === "FINAL_PROJECT") {
+        if (!data.projectGroupId) {
+          return {
+            ok: false,
+            message: "Final project wajib disubmit sebagai project group.",
+          };
+        }
+
+        const projectGroupMember = await tx.projectGroupMember.findFirst({
+          where: {
+            userId: appUser.id,
+            projectGroupId: data.projectGroupId,
+          },
+          include: {
+            projectGroup: {
+              include: {
+                cohort: true,
+              },
+            },
+          },
+        });
+
+        if (!projectGroupMember) {
+          return {
+            ok: false,
+            message: "Kamu bukan member project group ini.",
+          };
+        }
+
+        if (projectGroupMember.projectGroup.status === "ARCHIVED") {
+          return {
+            ok: false,
+            message: "Project group sudah archived dan tidak bisa submit.",
+          };
+        }
+
+        if (
+          projectGroupMember.projectGroup.cohort.workshopId !==
+          assignment.workshopId
+        ) {
+          return {
+            ok: false,
+            message:
+              "Project group tidak berada di workshop yang sama dengan assignment.",
+          };
+        }
+
+        projectGroupId = projectGroupMember.projectGroupId;
+      }
+
+      if (assignment.category !== "FINAL_PROJECT" && data.projectGroupId) {
+        return {
+          ok: false,
+          message: "Regular assignment tidak boleh memakai project group.",
         };
       }
 
@@ -163,6 +229,7 @@ export async function submitAssignmentAction(
         data: {
           assignmentId: assignment.id,
           userId: appUser.id,
+          projectGroupId,
           attemptNo: nextAttemptNo,
           isLatest: true,
           status: isPastDue ? "LATE" : "SUBMITTED",
@@ -173,6 +240,18 @@ export async function submitAssignmentAction(
         },
       });
 
+      if (data.pdfUrl) {
+        await tx.submissionFile.create({
+          data: {
+            submissionId: submission.id,
+            fileUrl: data.pdfUrl,
+            fileName: "final-project.pdf",
+            mimeType: "application/pdf",
+            fileSize: 0,
+          },
+        });
+      }
+
       await tx.auditLog.create({
         data: {
           actorUserId: appUser.id,
@@ -182,13 +261,16 @@ export async function submitAssignmentAction(
           metadata: {
             assignmentId: assignment.id,
             assignmentTitle: assignment.title,
+            assignmentCategory: assignment.category,
             workshopId: assignment.workshopId,
             workshopTitle: assignment.workshop.title,
+            projectGroupId,
             attemptNo: submission.attemptNo,
             isLatest: submission.isLatest,
             status: submission.status,
             repositoryUrl: submission.repositoryUrl,
             deploymentUrl: submission.deploymentUrl,
+            pdfUrl: data.pdfUrl ?? null,
             previousLatestSubmissionId: latestSubmission?.id ?? null,
             previousLatestSubmissionStatus: latestSubmission?.status ?? null,
           },
@@ -206,6 +288,8 @@ export async function submitAssignmentAction(
 
     revalidatePath("/assignments");
     revalidatePath(`/assignments/${data.assignmentId}/submit`);
+    revalidatePath("/mentor/submissions");
+    revalidatePath("/mentor/final-projects");
 
     return {
       ok: result.ok,

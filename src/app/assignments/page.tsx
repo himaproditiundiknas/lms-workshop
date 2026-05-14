@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { LogoutButton } from "@/components/logout-button";
-import Link from "next/link";
 
 function formatDateTime(date: Date | null) {
   if (!date) {
@@ -104,6 +104,10 @@ export default async function ParticipantAssignmentsPage() {
           attemptNo: "desc",
         },
         take: 1,
+        include: {
+          projectGroup: true,
+          files: true,
+        },
       },
     },
   });
@@ -199,6 +203,34 @@ export default async function ParticipantAssignmentsPage() {
                         {formatDateTime(latestSubmission.submittedAt)}
                       </p>
 
+                      {latestSubmission.projectGroup ? (
+                        <p className="mt-1">
+                          Group: {latestSubmission.projectGroup.name}
+                        </p>
+                      ) : null}
+
+                      {latestSubmission.files.length > 0 ? (
+                        <div className="mt-3">
+                          <p className="font-medium text-slate-950">
+                            File / PDF
+                          </p>
+                          <ul className="mt-1 space-y-1">
+                            {latestSubmission.files.map((file) => (
+                              <li key={file.id}>
+                                <a
+                                  href={file.fileUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="font-medium text-blue-700 hover:underline"
+                                >
+                                  {file.fileName}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+
                       {latestSubmission.status === "GRADED" ? (
                         <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">
                           <p className="font-medium">
@@ -217,16 +249,17 @@ export default async function ParticipantAssignmentsPage() {
                       Kamu belum submit assignment ini.
                     </p>
                   )}
-                  <div className="mt-5">
-                    <Link
-                      href={`/assignments/${assignment.id}/submit`}
-                      className="inline-flex rounded-lg bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-                    >
-                      {latestSubmission
-                        ? "Lihat / Resubmit"
-                        : "Submit Assignment"}
-                    </Link>
-                  </div>
+                </div>
+
+                <div className="mt-5">
+                  <Link
+                    href={`/assignments/${assignment.id}/submit`}
+                    className="inline-flex rounded-lg bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+                  >
+                    {latestSubmission
+                      ? "Lihat / Resubmit"
+                      : "Submit Assignment"}
+                  </Link>
                 </div>
               </article>
             );

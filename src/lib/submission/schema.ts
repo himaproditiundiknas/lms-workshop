@@ -10,8 +10,15 @@ const optionalUrl = z
 export const submissionFormSchema = z
   .object({
     assignmentId: z.string().uuid("Assignment ID tidak valid"),
+    projectGroupId: z
+      .string()
+      .trim()
+      .optional()
+      .transform((value) => (value ? value : undefined))
+      .pipe(z.string().uuid("Project group ID tidak valid").optional()),
     repositoryUrl: optionalUrl,
     deploymentUrl: optionalUrl,
+    pdfUrl: optionalUrl,
     contentText: z
       .string()
       .trim()
@@ -19,12 +26,17 @@ export const submissionFormSchema = z
       .optional(),
   })
   .superRefine((data, ctx) => {
-    if (!data.repositoryUrl && !data.deploymentUrl && !data.contentText) {
+    if (
+      !data.repositoryUrl &&
+      !data.deploymentUrl &&
+      !data.pdfUrl &&
+      !data.contentText
+    ) {
       ctx.addIssue({
         code: "custom",
         path: ["contentText"],
         message:
-          "Isi minimal salah satu: repository URL, deployment URL, atau catatan submission.",
+          "Isi minimal salah satu: repository URL, deployment URL, PDF URL, atau catatan submission.",
       });
     }
   });
