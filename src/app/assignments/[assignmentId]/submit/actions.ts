@@ -189,6 +189,8 @@ export async function submitAssignmentAction(
             status: submission.status,
             repositoryUrl: submission.repositoryUrl,
             deploymentUrl: submission.deploymentUrl,
+            previousLatestSubmissionId: latestSubmission?.id ?? null,
+            previousLatestSubmissionStatus: latestSubmission?.status ?? null,
           },
         },
       });
