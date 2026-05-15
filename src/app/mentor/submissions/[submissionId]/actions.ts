@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireMentorOrAdmin } from "@/lib/auth/require-mentor-or-admin";
 import { gradeSubmissionSchema } from "@/lib/submission/grading-schema";
+import { createAuditLog, toAuditMetadata } from "@/lib/audit/audit-log";
 
 export type GradeSubmissionState = {
   message?: string;
@@ -70,6 +71,8 @@ export async function gradeSubmissionAction(
       };
     }
 
+    const gradeAction = submission.gradedAt ? "grade.updated" : "grade.created";
+
     const gradedSubmission = await tx.submission.update({
       where: {
         id: submission.id,
@@ -83,13 +86,14 @@ export async function gradeSubmissionAction(
       },
     });
 
-    await tx.auditLog.create({
-      data: {
+    await createAuditLog(
+      {
         actorUserId: actor.id,
-        action: "submission.graded",
-        entityType: "submission",
+        action: gradeAction,
+        entityType: "grade",
         entityId: gradedSubmission.id,
-        metadata: {
+        metadata: toAuditMetadata({
+          submissionId: gradedSubmission.id,
           assignmentId: submission.assignmentId,
           assignmentTitle: submission.assignment.title,
           workshopId: submission.assignment.workshopId,
@@ -100,11 +104,14 @@ export async function gradeSubmissionAction(
           attemptNo: submission.attemptNo,
           previousStatus: submission.status,
           nextStatus: "GRADED",
-          score,
-          feedback: feedback || null,
-        },
+          previousScore: submission.score,
+          nextScore: score,
+          previousFeedback: submission.feedback,
+          nextFeedback: feedback || null,
+        }),
       },
-    });
+      tx,
+    );
 
     return {
       ok: true,
@@ -115,6 +122,8 @@ export async function gradeSubmissionAction(
   revalidatePath("/mentor/submissions");
   revalidatePath(`/mentor/submissions/${submissionId}`);
   revalidatePath("/assignments");
+  revalidatePath("/dashboard");
+  revalidatePath("/admin/certificates");
 
   return {
     ok: result.ok,

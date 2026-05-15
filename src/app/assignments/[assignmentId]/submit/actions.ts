@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
 import { submissionFormSchema } from "@/lib/submission/schema";
+import { createAuditLog, toAuditMetadata } from "@/lib/audit/audit-log";
 
 export type SubmissionFormState = {
   message?: string;
@@ -215,7 +216,7 @@ export async function submitAssignmentAction(
       const nextAttemptNo = (lastSubmission?.attemptNo ?? 0) + 1;
 
       if (latestSubmission) {
-        await tx.submission.update({
+        const supersededSubmission = await tx.submission.update({
           where: {
             id: latestSubmission.id,
           },
@@ -223,6 +224,28 @@ export async function submitAssignmentAction(
             isLatest: false,
           },
         });
+
+        await createAuditLog(
+          {
+            actorUserId: appUser.id,
+            action: "submission.superseded",
+            entityType: "submission",
+            entityId: supersededSubmission.id,
+            metadata: toAuditMetadata({
+              assignmentId: assignment.id,
+              assignmentTitle: assignment.title,
+              assignmentCategory: assignment.category,
+              workshopId: assignment.workshopId,
+              workshopTitle: assignment.workshop.title,
+              projectGroupId,
+              userId: appUser.id,
+              attemptNo: supersededSubmission.attemptNo,
+              previousStatus: supersededSubmission.status,
+              supersededByAttemptNo: nextAttemptNo,
+            }),
+          },
+          tx,
+        );
       }
 
       const submission = await tx.submission.create({
@@ -252,13 +275,13 @@ export async function submitAssignmentAction(
         });
       }
 
-      await tx.auditLog.create({
-        data: {
+      await createAuditLog(
+        {
           actorUserId: appUser.id,
           action: "submission.created",
           entityType: "submission",
           entityId: submission.id,
-          metadata: {
+          metadata: toAuditMetadata({
             assignmentId: assignment.id,
             assignmentTitle: assignment.title,
             assignmentCategory: assignment.category,
@@ -273,9 +296,10 @@ export async function submitAssignmentAction(
             pdfUrl: data.pdfUrl ?? null,
             previousLatestSubmissionId: latestSubmission?.id ?? null,
             previousLatestSubmissionStatus: latestSubmission?.status ?? null,
-          },
+          }),
         },
-      });
+        tx,
+      );
 
       return {
         ok: true,

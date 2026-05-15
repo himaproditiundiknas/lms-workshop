@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireMentorOrAdmin } from "@/lib/auth/require-mentor-or-admin";
 import { reopenSubmissionSchema } from "@/lib/submission/reopen-schema";
+import { createAuditLog, toAuditMetadata } from "@/lib/audit/audit-log";
 
 export type ReopenSubmissionState = {
   message?: string;
@@ -86,13 +87,13 @@ export async function reopenSubmissionAction(
       },
     });
 
-    await tx.auditLog.create({
-      data: {
+    await createAuditLog(
+      {
         actorUserId: actor.id,
         action: "submission.reopened",
         entityType: "submission",
         entityId: reopenedSubmission.id,
-        metadata: {
+        metadata: toAuditMetadata({
           assignmentId: submission.assignmentId,
           assignmentTitle: submission.assignment.title,
           workshopId: submission.assignment.workshopId,
@@ -104,9 +105,10 @@ export async function reopenSubmissionAction(
           previousStatus: submission.status,
           nextStatus: "REOPENED",
           reason,
-        },
+        }),
       },
-    });
+      tx,
+    );
 
     return {
       ok: true,
