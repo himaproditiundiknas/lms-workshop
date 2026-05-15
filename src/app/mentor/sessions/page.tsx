@@ -57,6 +57,12 @@ export default async function MentorSessionsPage() {
               Daftar sesi yang dapat dilihat mentor untuk persiapan presensi.
             </p>
           </div>
+          <Link
+            href="/mentor"
+            className="rounded-lg border border-slate-300 px-4 py-2 text-center text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+          >
+            Dashboard
+          </Link>
           <a
             href="/mentor/attendance"
             className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
