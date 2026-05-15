@@ -107,3 +107,13 @@ export type Submission = Prisma.SubmissionModel
  * 
  */
 export type SubmissionFile = Prisma.SubmissionFileModel
+/**
+ * Model ProjectGroup
+ * 
+ */
+export type ProjectGroup = Prisma.ProjectGroupModel
+/**
+ * Model ProjectGroupMember
+ * 
+ */
+export type ProjectGroupMember = Prisma.ProjectGroupMemberModel

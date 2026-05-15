@@ -139,3 +139,20 @@ export const SubmissionStatus = {
 } as const
 
 export type SubmissionStatus = (typeof SubmissionStatus)[keyof typeof SubmissionStatus]
+
+
+export const ProjectGroupStatus = {
+  ACTIVE: 'ACTIVE',
+  LOCKED: 'LOCKED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ProjectGroupStatus = (typeof ProjectGroupStatus)[keyof typeof ProjectGroupStatus]
+
+
+export const ProjectGroupMemberRole = {
+  LEADER: 'LEADER',
+  MEMBER: 'MEMBER'
+} as const
+
+export type ProjectGroupMemberRole = (typeof ProjectGroupMemberRole)[keyof typeof ProjectGroupMemberRole]
