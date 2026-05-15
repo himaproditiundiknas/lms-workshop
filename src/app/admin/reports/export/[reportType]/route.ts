@@ -9,6 +9,7 @@ import {
   type CsvRow,
 } from "@/lib/report/csv";
 import { calculateCertificateEligibility } from "@/lib/certificate/eligibility";
+import { createAuditLog, toAuditMetadata } from "@/lib/audit/audit-log";
 
 type ReportType =
   | "participants"
@@ -83,20 +84,18 @@ async function writeExportAuditLog({
   cohortId?: string;
   rowCount: number;
 }) {
-  await prisma.auditLog.create({
-    data: {
-      actorUserId,
-      action: "report.exported",
-      entityType: "report",
-      entityId: randomUUID(),
-      metadata: {
-        reportType,
-        workshopId: workshopId ?? null,
-        cohortId: cohortId ?? null,
-        rowCount,
-        exportedAt: new Date().toISOString(),
-      },
-    },
+  await createAuditLog({
+    actorUserId,
+    action: "report.exported",
+    entityType: "report",
+    entityId: randomUUID(),
+    metadata: toAuditMetadata({
+      reportType,
+      workshopId: workshopId ?? null,
+      cohortId: cohortId ?? null,
+      rowCount,
+      exportedAt: new Date().toISOString(),
+    }),
   });
 }
 
