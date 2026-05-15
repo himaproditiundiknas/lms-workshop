@@ -186,6 +186,12 @@ export default async function MentorDashboardPage() {
 
             <div className="flex flex-wrap gap-2">
               <Link
+                href="/admin"
+                className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+              >
+                Admin Dashboard
+              </Link>
+              <Link
                 href="/mentor/sessions"
                 className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
               >
