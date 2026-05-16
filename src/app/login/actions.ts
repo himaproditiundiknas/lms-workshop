@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getPostLoginRedirectPath } from "@/lib/auth/get-post-login-redirect-path";
 
 export type PasswordLoginState = {
   message?: string;
@@ -51,5 +52,7 @@ export async function passwordLoginAction(
     };
   }
 
-  redirect("/dashboard");
+  const redirectPath = await getPostLoginRedirectPath(email);
+
+  redirect(redirectPath);
 }

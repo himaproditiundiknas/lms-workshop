@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { syncSupabaseUserToDatabase } from "@/lib/auth/sync-user";
+import { getPostLoginRedirectPath } from "@/lib/auth/get-post-login-redirect-path";
 
 function redirectToLoginWithError(origin: string, message: string) {
   const url = new URL("/login", origin);
@@ -11,13 +12,11 @@ function redirectToLoginWithError(origin: string, message: string) {
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
+  const origin = requestUrl.origin;
   const code = requestUrl.searchParams.get("code");
 
   if (!code) {
-    return redirectToLoginWithError(
-      requestUrl.origin,
-      "Kode login tidak ditemukan.",
-    );
+    return redirectToLoginWithError(origin, "Kode login tidak ditemukan.");
   }
 
   const supabase = await createClient();
@@ -26,10 +25,7 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
 
   if (exchangeError) {
-    return redirectToLoginWithError(
-      requestUrl.origin,
-      "Gagal memproses login Google.",
-    );
+    return redirectToLoginWithError(origin, "Gagal memproses login Google.");
   }
 
   const {
@@ -37,20 +33,13 @@ export async function GET(request: Request) {
     error: userError,
   } = await supabase.auth.getUser();
 
-  if (userError || !user) {
-    return redirectToLoginWithError(
-      requestUrl.origin,
-      "Session login tidak valid.",
-    );
+  if (userError || !user?.email) {
+    return redirectToLoginWithError(origin, "Session login tidak valid.");
   }
 
-  const appUser = await syncSupabaseUserToDatabase(user);
+  await syncSupabaseUserToDatabase(user);
 
-  const isProfileComplete = Boolean(appUser.profile?.profileCompletedAt);
+  const redirectPath = await getPostLoginRedirectPath(user.email);
 
-  const redirectPath = isProfileComplete
-    ? "/redeem-invitation"
-    : "/complete-profile";
-
-  return NextResponse.redirect(new URL(redirectPath, requestUrl.origin));
+  return NextResponse.redirect(`${origin}${redirectPath}`);
 }
