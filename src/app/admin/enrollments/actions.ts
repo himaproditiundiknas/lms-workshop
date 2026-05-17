@@ -1,133 +1,89 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { requireAdmin } from "@/lib/auth/require-admin";
-import {
-  approveEnrollmentSchema,
-  rejectEnrollmentSchema,
-} from "@/lib/enrollment/schema";
+import { requireMentorOrAdmin } from "@/lib/auth/require-mentor-or-admin";
+import { createAuditLog, toAuditMetadata } from "@/lib/audit/audit-log";
 
 export type EnrollmentActionState = {
   message?: string;
   errors?: {
-    enrollmentId?: string[];
     cohortId?: string[];
-    rejectionReason?: string[];
   };
 };
 
-export async function approveEnrollmentAction(
-  _prevState: EnrollmentActionState,
-  formData: FormData,
-): Promise<EnrollmentActionState> {
-  const actor = await requireAdmin();
+function redirectWithMessage(type: "success" | "error", message: string): never {
+  const params = new URLSearchParams();
+  params.set(type, message);
 
-  const parsed = approveEnrollmentSchema.safeParse({
-    enrollmentId: formData.get("enrollmentId"),
-    cohortId: formData.get("cohortId"),
-  });
+  redirect(`/admin/enrollments?${params.toString()}`);
+}
 
-  if (!parsed.success) {
-    return {
-      message: "Periksa kembali data approval.",
-      errors: parsed.error.flatten().fieldErrors,
-    };
+export async function approveEnrollmentAction(formData: FormData) {
+  const actor = await requireMentorOrAdmin();
+
+  const enrollmentId = String(formData.get("enrollmentId") ?? "").trim();
+  const selectedCohortId = String(formData.get("cohortId") ?? "").trim();
+
+  if (!enrollmentId) {
+    redirectWithMessage("error", "Enrollment tidak valid.");
   }
 
-  const { enrollmentId, cohortId } = parsed.data;
-
-  const result = await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx) => {
     const enrollment = await tx.enrollment.findUnique({
       where: {
         id: enrollmentId,
       },
       include: {
-        invitationCode: true,
-        user: true,
+        user: {
+          include: {
+            profile: true,
+          },
+        },
       },
     });
 
     if (!enrollment) {
-      return {
-        ok: false,
-        message: "Enrollment tidak ditemukan.",
-      };
+      throw new Error("Enrollment tidak ditemukan.");
     }
 
     if (enrollment.status !== "PENDING") {
-      return {
-        ok: false,
-        message: "Enrollment sudah diproses.",
-      };
+      throw new Error("Enrollment ini sudah diproses.");
     }
 
-    const finalCohortId =
-      enrollment.scope === "COHORT" ? enrollment.targetId : cohortId;
+    let cohortId = selectedCohortId;
 
-    if (!finalCohortId) {
-      return {
-        ok: false,
-        message: "Cohort ID wajib diisi untuk invitation scope workshop.",
-        errors: {
-          cohortId: ["Cohort ID wajib diisi untuk scope workshop."],
-        },
-      };
+    if (enrollment.scope === "COHORT") {
+      cohortId = enrollment.targetId;
+    }
+
+    if (!cohortId) {
+      throw new Error("Pilih cohort terlebih dahulu.");
     }
 
     const cohort = await tx.cohort.findUnique({
       where: {
-        id: finalCohortId,
+        id: cohortId,
       },
-      select: {
-        id: true,
-        workshopId: true,
+      include: {
+        workshop: true,
       },
     });
 
     if (!cohort) {
-      return {
-        ok: false,
-        message: "Cohort tidak ditemukan.",
-        errors: {
-          cohortId: ["Cohort tidak ditemukan."],
-        },
-      };
+      throw new Error("Cohort tidak ditemukan.");
     }
 
     if (
       enrollment.scope === "WORKSHOP" &&
       cohort.workshopId !== enrollment.targetId
     ) {
-      return {
-        ok: false,
-        message: "Cohort tidak sesuai dengan workshop invitation.",
-        errors: {
-          cohortId: ["Cohort ini bukan bagian dari workshop yang dituju."],
-        },
-      };
+      throw new Error("Cohort tidak sesuai dengan workshop enrollment.");
     }
 
-    const participantRole = await tx.role.findUnique({
-      where: {
-        name: "participant",
-      },
-    });
-
-    if (participantRole) {
-      await tx.userRole.upsert({
-        where: {
-          userId_roleId: {
-            userId: enrollment.userId,
-            roleId: participantRole.id,
-          },
-        },
-        update: {},
-        create: {
-          userId: enrollment.userId,
-          roleId: participantRole.id,
-        },
-      });
+    if (enrollment.scope === "COHORT" && cohort.id !== enrollment.targetId) {
+      throw new Error("Cohort tidak sesuai dengan target enrollment.");
     }
 
     const approvedEnrollment = await tx.enrollment.update({
@@ -136,7 +92,7 @@ export async function approveEnrollmentAction(
       },
       data: {
         status: "APPROVED",
-        cohortId: finalCohortId,
+        cohortId: cohort.id,
         approvedAt: new Date(),
         approvedById: actor.id,
         rejectedAt: null,
@@ -145,85 +101,66 @@ export async function approveEnrollmentAction(
       },
     });
 
-    await tx.auditLog.create({
-      data: {
+    await createAuditLog(
+      {
         actorUserId: actor.id,
         action: "enrollment.approved",
         entityType: "enrollment",
         entityId: approvedEnrollment.id,
-        metadata: {
-          userId: enrollment.userId,
-          userEmail: enrollment.user.email,
+        metadata: toAuditMetadata({
+          enrollmentId: approvedEnrollment.id,
+          participantUserId: enrollment.userId,
+          participantEmail: enrollment.user.email,
+          participantName: enrollment.user.profile?.fullName ?? null,
           scope: enrollment.scope,
           targetId: enrollment.targetId,
-          cohortId: finalCohortId,
-          invitationCodeId: enrollment.invitationCodeId,
-        },
+          cohortId: cohort.id,
+          cohortName: cohort.name,
+          workshopId: cohort.workshopId,
+          workshopTitle: cohort.workshop.title,
+        }),
       },
-    });
-
-    return {
-      ok: true,
-      message: "Enrollment berhasil di-approve.",
-    };
+      tx,
+    );
   });
 
   revalidatePath("/admin/enrollments");
+  revalidatePath("/admin");
+  revalidatePath("/dashboard");
 
-  if (!result.ok) {
-    return {
-      message: result.message,
-      errors: "errors" in result ? result.errors : undefined,
-    };
-  }
-
-  return {
-    message: result.message,
-  };
+  redirectWithMessage("success", "Enrollment berhasil di-approve.");
 }
 
-export async function rejectEnrollmentAction(
-  _prevState: EnrollmentActionState,
-  formData: FormData,
-): Promise<EnrollmentActionState> {
-  const actor = await requireAdmin();
+export async function rejectEnrollmentAction(formData: FormData) {
+  const actor = await requireMentorOrAdmin();
 
-  const parsed = rejectEnrollmentSchema.safeParse({
-    enrollmentId: formData.get("enrollmentId"),
-    rejectionReason: formData.get("rejectionReason"),
-  });
+  const enrollmentId = String(formData.get("enrollmentId") ?? "").trim();
+  const reason = String(formData.get("reason") ?? "").trim();
 
-  if (!parsed.success) {
-    return {
-      message: "Periksa kembali data rejection.",
-      errors: parsed.error.flatten().fieldErrors,
-    };
+  if (!enrollmentId) {
+    redirectWithMessage("error", "Enrollment tidak valid.");
   }
 
-  const { enrollmentId, rejectionReason } = parsed.data;
-
-  const result = await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx) => {
     const enrollment = await tx.enrollment.findUnique({
       where: {
         id: enrollmentId,
       },
       include: {
-        user: true,
+        user: {
+          include: {
+            profile: true,
+          },
+        },
       },
     });
 
     if (!enrollment) {
-      return {
-        ok: false,
-        message: "Enrollment tidak ditemukan.",
-      };
+      throw new Error("Enrollment tidak ditemukan.");
     }
 
     if (enrollment.status !== "PENDING") {
-      return {
-        ok: false,
-        message: "Enrollment sudah diproses.",
-      };
+      throw new Error("Enrollment ini sudah diproses.");
     }
 
     const rejectedEnrollment = await tx.enrollment.update({
@@ -234,35 +171,32 @@ export async function rejectEnrollmentAction(
         status: "REJECTED",
         rejectedAt: new Date(),
         rejectedById: actor.id,
-        rejectionReason: rejectionReason || null,
+        rejectionReason: reason || null,
       },
     });
 
-    await tx.auditLog.create({
-      data: {
+    await createAuditLog(
+      {
         actorUserId: actor.id,
         action: "enrollment.rejected",
         entityType: "enrollment",
         entityId: rejectedEnrollment.id,
-        metadata: {
-          userId: enrollment.userId,
-          userEmail: enrollment.user.email,
+        metadata: toAuditMetadata({
+          enrollmentId: rejectedEnrollment.id,
+          participantUserId: enrollment.userId,
+          participantEmail: enrollment.user.email,
+          participantName: enrollment.user.profile?.fullName ?? null,
           scope: enrollment.scope,
           targetId: enrollment.targetId,
-          reason: rejectionReason || null,
-        },
+          reason: reason || null,
+        }),
       },
-    });
-
-    return {
-      ok: true,
-      message: "Enrollment berhasil di-reject.",
-    };
+      tx,
+    );
   });
 
   revalidatePath("/admin/enrollments");
+  revalidatePath("/admin");
 
-  return {
-    message: result.message,
-  };
+  redirectWithMessage("success", "Enrollment berhasil di-reject.");
 }

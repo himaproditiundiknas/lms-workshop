@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getPostLoginRedirectPath } from "@/lib/auth/get-post-login-redirect-path";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export type PasswordLoginState = {
   message?: string;
@@ -35,6 +36,17 @@ export async function passwordLoginAction(
     return {
       message: "Periksa kembali email dan password.",
       errors,
+    };
+  }
+
+  // Rate limit login attempts per email
+  const rateLimitResult = checkRateLimit(email, RATE_LIMITS.login);
+
+  if (!rateLimitResult.allowed) {
+    const retrySeconds = Math.ceil(rateLimitResult.retryAfterMs / 1000);
+
+    return {
+      message: `Terlalu banyak percobaan login. Coba lagi dalam ${retrySeconds} detik.`,
     };
   }
 

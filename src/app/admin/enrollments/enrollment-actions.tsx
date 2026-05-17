@@ -34,17 +34,39 @@ function SubmitButton({
   );
 }
 
+// Wrap the server actions so they satisfy the useActionState signature
+// (prevState, formData) => state. The underlying actions always redirect
+// on success, so we only need to return state when there is no redirect
+// (which currently never happens, but the wrapper keeps TS happy).
+async function approveWithState(
+  _prevState: EnrollmentActionState,
+  formData: FormData,
+): Promise<EnrollmentActionState> {
+  await approveEnrollmentAction(formData);
+
+  return {};
+}
+
+async function rejectWithState(
+  _prevState: EnrollmentActionState,
+  formData: FormData,
+): Promise<EnrollmentActionState> {
+  await rejectEnrollmentAction(formData);
+
+  return {};
+}
+
 export function EnrollmentActions({
   enrollmentId,
   scope,
 }: EnrollmentActionsProps) {
   const initialState: EnrollmentActionState = {};
   const [approveState, approveFormAction] = useActionState(
-    approveEnrollmentAction,
+    approveWithState,
     initialState,
   );
   const [rejectState, rejectFormAction] = useActionState(
-    rejectEnrollmentAction,
+    rejectWithState,
     initialState,
   );
 

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
 import { hashInvitationCode } from "@/lib/invitation/code";
 import { redeemInvitationCodeSchema } from "@/lib/invitation/schema";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export type RedeemInvitationState = {
   message?: string;
@@ -49,6 +50,18 @@ export async function redeemInvitationCodeAction(
   }
 
   const email = user.email.toLowerCase();
+
+  // Rate limit redeem attempts per email
+  const rateLimitResult = checkRateLimit(email, RATE_LIMITS.redeemInvitation);
+
+  if (!rateLimitResult.allowed) {
+    const retrySeconds = Math.ceil(rateLimitResult.retryAfterMs / 1000);
+
+    return {
+      message: `Terlalu banyak percobaan redeem. Coba lagi dalam ${retrySeconds} detik.`,
+    };
+  }
+
   const codeHash = hashInvitationCode(parsed.data.code);
   const now = new Date();
 

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
 import { hashQrToken } from "@/lib/attendance/qr-token";
 import { parseAttendanceQrPayload } from "@/lib/attendance/qr-payload";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export type ScanAttendanceResult = {
   ok: boolean;
@@ -41,6 +42,17 @@ export async function submitAttendanceQrScanAction(
   }
 
   const email = user.email.toLowerCase();
+
+  // Rate limit QR scan attempts per email
+  const rateLimitResult = checkRateLimit(email, RATE_LIMITS.qrScan);
+
+  if (!rateLimitResult.allowed) {
+    return {
+      ok: false,
+      message: "Terlalu banyak percobaan scan. Tunggu sebentar lalu coba lagi.",
+    };
+  }
+
   const tokenHash = hashQrToken(payload.token);
   const now = new Date();
 
@@ -93,7 +105,16 @@ export async function submitAttendanceQrScanAction(
         };
       }
 
-      if (qrToken.expiresAt <= now) {
+      // Allow a small grace period to account for network latency between
+      // the participant scanning the QR and the request reaching the server.
+      // The QR display rotates every 5 seconds, but a scan at second 4.9
+      // could arrive at second 5.1 on a slow connection.
+      const QR_GRACE_PERIOD_MS = 3_000;
+      const expiresWithGrace = new Date(
+        qrToken.expiresAt.getTime() + QR_GRACE_PERIOD_MS,
+      );
+
+      if (expiresWithGrace <= now) {
         return {
           ok: false,
           message: "QR sudah kedaluwarsa. Silakan scan QR terbaru.",

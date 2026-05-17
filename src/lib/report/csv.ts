@@ -15,7 +15,14 @@ function formatCsvValue(value: CsvValue) {
 }
 
 function escapeCsvValue(value: CsvValue) {
-  const stringValue = formatCsvValue(value);
+  let stringValue = formatCsvValue(value);
+
+  // Prevent CSV formula injection — values starting with these characters
+  // can trigger formula execution in Excel / LibreOffice when the CSV is
+  // opened. Prefixing with a single-quote neutralises them.
+  if (/^[=+\-@\t\r]/.test(stringValue)) {
+    stringValue = `'${stringValue}`;
+  }
 
   if (
     stringValue.includes(",") ||

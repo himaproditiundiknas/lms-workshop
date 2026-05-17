@@ -10,6 +10,7 @@ import {
 } from "@/lib/report/csv";
 import { calculateCertificateEligibility } from "@/lib/certificate/eligibility";
 import { createAuditLog, toAuditMetadata } from "@/lib/audit/audit-log";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 type ReportType =
   | "participants"
@@ -635,6 +636,15 @@ function getEmptyHeaders(reportType: ReportType) {
 export async function GET(request: NextRequest, context: ExportRouteContext) {
   const actor = await requireMentorOrAdmin();
   const { reportType: rawReportType } = await context.params;
+
+  // Rate limit CSV exports per user
+  const rateLimitResult = checkRateLimit(actor.id, RATE_LIMITS.csvExport);
+
+  if (!rateLimitResult.allowed) {
+    return new Response("Terlalu banyak export. Coba lagi nanti.", {
+      status: 429,
+    });
+  }
 
   if (!isReportType(rawReportType)) {
     return new Response("Report type tidak valid.", {
