@@ -46,19 +46,23 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to sync authenticated Google user:", error);
 
-    const existingUser = await prisma.user.findUnique({
-      where: {
-        email: user.email.toLowerCase(),
-      },
-      select: {
-        id: true,
-      },
-    });
+    try {
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          email: user.email.toLowerCase(),
+        },
+        select: {
+          id: true,
+        },
+      });
 
-    if (existingUser) {
-      redirectPath = await getPostLoginRedirectPath(user.email);
+      if (existingUser) {
+        redirectPath = await getPostLoginRedirectPath(user.email);
 
-      return NextResponse.redirect(`${origin}${redirectPath}`);
+        return NextResponse.redirect(`${origin}${redirectPath}`);
+      }
+    } catch (fallbackError) {
+      console.error("Failed to resolve existing Google user:", fallbackError);
     }
 
     await supabase.auth.signOut();
