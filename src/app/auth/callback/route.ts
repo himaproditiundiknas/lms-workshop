@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { prisma } from "@/lib/prisma";
 import { syncSupabaseUserToDatabase } from "@/lib/auth/sync-user";
 import { getPostLoginRedirectPath } from "@/lib/auth/get-post-login-redirect-path";
 
@@ -44,6 +45,21 @@ export async function GET(request: Request) {
     redirectPath = await getPostLoginRedirectPath(user.email);
   } catch (error) {
     console.error("Failed to sync authenticated Google user:", error);
+
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email: user.email.toLowerCase(),
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (existingUser) {
+      redirectPath = await getPostLoginRedirectPath(user.email);
+
+      return NextResponse.redirect(`${origin}${redirectPath}`);
+    }
 
     await supabase.auth.signOut();
 
