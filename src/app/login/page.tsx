@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { getPostLoginRedirectPath } from "@/lib/auth/get-post-login-redirect-path";
 import { GoogleLoginButton } from "./google-login-button";
 import { PasswordLoginForm } from "./password-login-form";
 
@@ -9,6 +12,15 @@ type LoginPageProps = {
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user?.email) {
+    redirect(await getPostLoginRedirectPath(user.email));
+  }
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4">

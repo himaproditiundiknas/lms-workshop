@@ -22,7 +22,7 @@ function isPublicPath(pathname: string) {
 
 export default async function proxy(request: NextRequest) {
   // 1. Refresh Supabase session cookies on every request
-  const response = await updateSession(request);
+  const { response, user } = await updateSession(request);
 
   const { pathname } = request.nextUrl;
 
@@ -31,14 +31,8 @@ export default async function proxy(request: NextRequest) {
     return response;
   }
 
-  // 3. Check for Supabase session cookies to decide if user is logged in.
-  //    We look for any sb-* auth cookie. This is a lightweight check;
-  //    the actual auth verification happens in requireAdmin / requireMentorOrAdmin etc.
-  const hasSessionCookie = request.cookies
-    .getAll()
-    .some((cookie) => cookie.name.startsWith("sb-") && cookie.name.endsWith("-auth-token"));
-
-  if (!hasSessionCookie) {
+  // 3. Validate Supabase session instead of relying on cookie name patterns.
+  if (!user) {
     const loginUrl = new URL("/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
