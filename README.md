@@ -4,7 +4,7 @@
 **Repository:** `himaproditiundiknas/lms-workshop`  
 **Application:** `workshop-himati`  
 **Version:** 1.0  
-**Last Updated:** 2026-05-15  
+**Last Updated:** 2026-06-17  
 
 ---
 
@@ -373,7 +373,7 @@ SEED_COHORT_INVITATION_CODE="LMS-DEV-COHORT"
 
 ### 8.2 Enable Email Provider
 
-Required for development email/password login.
+Required for email/password login.
 
 ```text
 Supabase Dashboard → Authentication → Providers → Email → Enable
@@ -497,6 +497,11 @@ npx prisma studio
 
 ## 11. Development Authentication
 
+The `/login` page supports two authentication options:
+
+- Email/password login.
+- Google login.
+
 Default seeded users:
 
 | Role | Email | Password |
@@ -559,7 +564,7 @@ npx playwright test
 ### 13.1 Authentication and Profile
 
 - Google login.
-- Email/password dev login.
+- Email/password login.
 - Logout.
 - Complete profile.
 - Session protection.
