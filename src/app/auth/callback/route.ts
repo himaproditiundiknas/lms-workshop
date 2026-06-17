@@ -37,9 +37,19 @@ export async function GET(request: Request) {
     return redirectToLoginWithError(origin, "Session login tidak valid.");
   }
 
-  await syncSupabaseUserToDatabase(user);
+  let redirectPath = "/complete-profile";
 
-  const redirectPath = await getPostLoginRedirectPath(user.email);
+  try {
+    await syncSupabaseUserToDatabase(user);
+    redirectPath = await getPostLoginRedirectPath(user.email);
+  } catch (error) {
+    console.error("Failed to sync authenticated Google user:", error);
+
+    return redirectToLoginWithError(
+      origin,
+      "Login Google berhasil, tetapi data akun gagal disiapkan. Hubungi admin.",
+    );
+  }
 
   return NextResponse.redirect(`${origin}${redirectPath}`);
 }
