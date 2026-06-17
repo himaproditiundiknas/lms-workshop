@@ -45,6 +45,8 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to sync authenticated Google user:", error);
 
+    await supabase.auth.signOut();
+
     return redirectToLoginWithError(
       origin,
       "Login Google berhasil, tetapi data akun gagal disiapkan. Hubungi admin.",

@@ -13,13 +13,26 @@ type LoginPageProps = {
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
   const supabase = await createClient();
+  let authError = params.error;
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (user?.email) {
-    redirect(await getPostLoginRedirectPath(user.email));
+    let redirectPath: string | null = null;
+
+    try {
+      redirectPath = await getPostLoginRedirectPath(user.email);
+    } catch (error) {
+      console.error("Failed to resolve post-login redirect:", error);
+      authError ??=
+        "Session login aktif, tetapi data akun gagal dibaca. Coba logout lalu login ulang.";
+    }
+
+    if (redirectPath) {
+      redirect(redirectPath);
+    }
   }
 
   return (
@@ -43,9 +56,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </p>
         </div>
 
-        {params.error ? (
+        {authError ? (
           <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-            {params.error}
+            {authError}
           </div>
         ) : null}
 
